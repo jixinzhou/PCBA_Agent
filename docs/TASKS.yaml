@@ -63,3 +63,7 @@ tasks:
 - id: T16
   name: Docker部署与项目文档整理
   status: todo
+
+- id: T17
+  name: 初始化并发布GitHub仓库
+  status: done

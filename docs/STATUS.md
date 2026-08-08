@@ -2,7 +2,7 @@
 
 ## 当前任务
 
-5 个核心 Tool 的正式封装、统一和端到端验收已完成。
+5 个核心 Tool 已完成正式封装、统一、端到端验收和 GitHub 首次发布。
 
 ## 已完成
 
@@ -14,10 +14,14 @@
 - 固化 `PCB_Agent` 已验证依赖版本到 `tool/requirements.txt`。
 - 完成真实 HTTP 端到端验收：3 个健康检查、5 个成功调用、5 个 422 错误契约，以及两个优化结果的再次预测均通过。
 - 验收结果位于 `tool/tests/e2e/VALIDATION_REPORT.md` 和 `tool/tests/e2e/artifacts/latest_report.json`。
+- 已初始化 Git 仓库并发布到 `https://github.com/jixinzhou/PCBA_Agent.git` 的 `main` 分支。
+- `数据资料/`、Python 缓存、运行日志和本地环境文件已通过 `.gitignore` 排除。
 
 ## 当前状态
 
 三套模型服务和 5 个 Agent Tool 可用于后续 Agent 编排。正式端口为 AOI `8000`、回流焊 `8001`、SPI `8002`，并支持启动参数和环境变量覆盖。
+
+GitHub 远端 `origin/main` 已建立并与本地 `main` 跟踪同步。
 
 ## 下一步
 
@@ -27,3 +31,4 @@
 
 - 本机 `8000` 当前被 NeatReader 占用；可关闭该应用，或为 AOI 使用 `-Port` 和 `PCBA_AOI_BASE_URL` 覆盖地址。
 - `archive/legacy_tools` 是否永久删除，待用户在后续验收后决定；当前不影响正式实现。
+- `txt_source/` 中包含 IPC/GJB 等参考 PDF；若仓库保持公开，需要由项目方确认其公开分发授权。
