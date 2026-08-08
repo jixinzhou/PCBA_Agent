@@ -1,0 +1,26 @@
+# Explicitly excluded by project publishing policy.
+/数据资料/
+
+# Python generated files.
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and secrets.
+.env
+.env.*
+.venv/
+venv/
+
+# Runtime artifacts.
+*.log
+*.pid
+*.tmp
+
+# IDE and operating-system files.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,65 @@
+tasks:
+
+- id: T01
+  name: 训练PCBA缺陷识别模型
+  status: done
+
+- id: T02
+  name: 封装缺陷识别API
+  status: done
+
+- id: T03
+  name: 训练SPI预测模型
+  status: done
+
+- id: T04
+  name: 封装SPI预测API
+  status: done
+
+- id: T05
+  name: 开发SPI参数优化工具
+  status: done
+
+- id: T06
+  name: 训练回流焊预测模型
+  status: done
+
+- id: T07
+  name: 封装回流焊预测API
+  status: done
+
+- id: T08
+  name: 开发回流焊参数优化工具
+  status: done
+
+- id: T09
+  name: 定义缺陷致因本体与术语体系
+  status: todo
+
+- id: T10
+  name: 构建工业知识RAG知识库
+  status: todo
+
+- id: T11
+  name: 抽取并构建Neo4j缺陷致因知识图谱
+  status: todo
+
+- id: T12
+  name: 将模型API封装为Agent Tools
+  status: done
+
+- id: T13
+  name: 使用LangGraph实现智能体任务编排
+  status: todo
+
+- id: T14
+  name: 打通缺陷诊断完整闭环
+  status: todo
+
+- id: T15
+  name: 构建测试集并完成智能体系统评测
+  status: todo
+
+- id: T16
+  name: Docker部署与项目文档整理
+  status: todo

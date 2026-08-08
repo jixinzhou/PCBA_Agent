@@ -1,0 +1,38 @@
+{
+  "model_name": "spi_gpr",
+  "model_version": "0.1.0",
+  "model_file": "vte_mean_model.joblib",
+  "algorithm": "GaussianProcessRegressor",
+  "output_variable": "VTE均值",
+  "output_unit": "percent",
+  "training_samples": 31,
+  "cross_validation": {
+    "strategy": "5-fold GroupKFold",
+    "r2": 0.9146192781004507,
+    "mae": 2.0057241974244735,
+    "rmse": 2.352154301222468
+  },
+  "input_features": {
+    "squeegee_pressure_kgf": {
+      "model_column": "刮刀压力(kg)",
+      "min": 5.2,
+      "max": 10.8
+    },
+    "squeegee_speed_m_s": {
+      "model_column": "刮刀速度(m/s)",
+      "min": 5.7,
+      "max": 69.3
+    },
+    "separation_speed_m_s": {
+      "model_column": "脱模速度(m/s)",
+      "min": 0.6,
+      "max": 3.4
+    },
+    "separation_distance_mm": {
+      "model_column": "脱模距离(mm)",
+      "min": 0.6,
+      "max": 3.4
+    }
+  },
+  "notes": "v1 仅正式使用 VTE 均值 GPR 模型；VTE 方差模型未进入诊断链。"
+}

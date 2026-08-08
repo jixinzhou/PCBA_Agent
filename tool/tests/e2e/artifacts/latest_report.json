@@ -1,0 +1,152 @@
+{
+  "health": {
+    "aoi": {
+      "success": true,
+      "request_id": null,
+      "api_version": "v1",
+      "tool_name": "pcba_defect_classification",
+      "tool_version": "0.1.0",
+      "model_name": "efficientnet_b0",
+      "model_version": "0.1.0",
+      "execution_time_ms": 0,
+      "data": {
+        "status": "ready",
+        "model_loaded": true,
+        "device": "cuda",
+        "class_count": 5
+      },
+      "warnings": [],
+      "error": null
+    },
+    "reflow": {
+      "success": true,
+      "request_id": null,
+      "api_version": "v1",
+      "tool_name": "reflow_profile_prediction",
+      "tool_version": "0.1.0",
+      "model_name": "reflow_curve_model",
+      "model_version": "0.1.0",
+      "execution_time_ms": 0,
+      "data": {
+        "status": "ready",
+        "model_loaded": true,
+        "route_tcs": [
+          "TC2",
+          "TC3",
+          "TC4",
+          "TC5",
+          "TC6",
+          "TC7",
+          "TC8",
+          "TC9"
+        ],
+        "curve_sample_interval_s": 0.25,
+        "training_domain_source": "2_14-8_实验方案_69组_递增_5_V2.xlsx"
+      },
+      "warnings": [],
+      "error": null
+    },
+    "spi": {
+      "success": true,
+      "request_id": null,
+      "api_version": "v1",
+      "tool_name": "spi_vte_prediction",
+      "tool_version": "0.1.0",
+      "model_name": "spi_gpr",
+      "model_version": "0.1.0",
+      "execution_time_ms": 0,
+      "data": {
+        "status": "ready",
+        "model_loaded": true,
+        "optimizer": "differential_evolution",
+        "input_features": [
+          "squeegee_pressure_kgf",
+          "squeegee_speed_m_s",
+          "separation_speed_m_s",
+          "separation_distance_mm"
+        ]
+      },
+      "warnings": [],
+      "error": null
+    }
+  },
+  "tools": {
+    "pcba_defect_classification": {
+      "passed": true,
+      "wall_time_ms": 795,
+      "request_id": "E2E-AOI-001",
+      "execution_time_ms": 431
+    },
+    "spi_vte_prediction": {
+      "passed": true,
+      "wall_time_ms": 80,
+      "request_id": "E2E-SPI-PRED-001",
+      "execution_time_ms": 45
+    },
+    "spi_parameter_optimization": {
+      "passed": true,
+      "wall_time_ms": 8198,
+      "request_id": "E2E-SPI-OPT-001",
+      "execution_time_ms": 8164,
+      "verified_by_prediction": true
+    },
+    "reflow_profile_prediction": {
+      "passed": true,
+      "wall_time_ms": 70,
+      "request_id": "E2E-REFLOW-PRED-001",
+      "execution_time_ms": 54
+    },
+    "reflow_parameter_optimization": {
+      "passed": true,
+      "wall_time_ms": 1278,
+      "request_id": "E2E-REFLOW-OPT-001",
+      "execution_time_ms": 1262,
+      "verified_by_prediction": true
+    }
+  },
+  "errors": {
+    "pcba_defect_classification": {
+      "passed": true,
+      "status_code": 422,
+      "error_code": "VALIDATION_ERROR"
+    },
+    "spi_vte_prediction": {
+      "passed": true,
+      "status_code": 422,
+      "error_code": "VALIDATION_ERROR"
+    },
+    "spi_parameter_optimization": {
+      "passed": true,
+      "status_code": 422,
+      "error_code": "VALIDATION_ERROR"
+    },
+    "reflow_profile_prediction": {
+      "passed": true,
+      "status_code": 422,
+      "error_code": "VALIDATION_ERROR"
+    },
+    "reflow_parameter_optimization": {
+      "passed": true,
+      "status_code": 422,
+      "error_code": "VALIDATION_ERROR"
+    }
+  },
+  "http_errors": {
+    "pcba_defect_classification": {
+      "passed": true,
+      "status_code": 404,
+      "error_code": "HTTP_ERROR"
+    },
+    "spi_vte_prediction": {
+      "passed": true,
+      "status_code": 404,
+      "error_code": "HTTP_ERROR"
+    },
+    "reflow_profile_prediction": {
+      "passed": true,
+      "status_code": 404,
+      "error_code": "HTTP_ERROR"
+    }
+  },
+  "passed": true
+}

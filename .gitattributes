@@ -1,0 +1,11 @@
+*.joblib binary
+*.pdf binary
+*.pt binary
+*.xlsx binary
+
+*.py text eol=lf
+*.json text eol=lf
+*.md text
+*.ps1 text eol=crlf
+*.txt text
+*.yaml text eol=lf

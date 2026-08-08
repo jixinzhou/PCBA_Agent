@@ -1,0 +1,9 @@
+# 推荐 Python 3.11；以下版本与交付模型训练/验证环境一致。
+joblib==1.5.2
+numpy==2.4.4
+pandas==3.0.5
+scipy==1.17.1
+scikit-learn==1.9.0
+lightgbm==4.6.0
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0

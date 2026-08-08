@@ -1,0 +1,1 @@
+"""SPI FastAPI application package."""
