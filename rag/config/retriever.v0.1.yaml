@@ -1,0 +1,55 @@
+schema_version: "1.1.0"
+retriever_version: "pcba-rag-retriever/0.1.0"
+
+dependencies:
+  sources_config: "rag/config/sources.v0.1.yaml"
+  embedding_config: "rag/config/embedding.v0.1.yaml"
+  qdrant_config: "rag/config/qdrant.v0.1.yaml"
+
+query:
+  unicode_normalization: "NFKC"
+  collapse_whitespace: true
+  max_tokens: 512
+  batch_size: 1
+  instruction: null
+
+retrieval:
+  default_top_k: 20
+  maximum_top_k: 100
+  exclude_structural_content: true
+  dense_vector_name: "dense"
+  sparse_vector_name: "sparse"
+
+validation:
+  summary_path: "rag/reports/t10.8_summary.json"
+  cases:
+    - case_id: "zh_insufficient_solder"
+      query: "焊膏印刷少锡的常见原因和排查方法"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: [printing]
+        defect_ids: [insufficient_solder]
+        evidence_roles: []
+        languages: []
+        document_types: []
+    - case_id: "en_printing_bridge"
+      query: "What causes solder paste bridging during printing?"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: [printing]
+        defect_ids: [short]
+        evidence_roles: []
+        languages: [en]
+        document_types: []
+    - case_id: "zh_shifted_component"
+      query: "元件偏移与回流热不均或润湿不同步有什么关系"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: []
+        defect_ids: [shifted_component]
+        evidence_roles: []
+        languages: []
+        document_types: []

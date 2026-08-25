@@ -1,0 +1,22 @@
+name: pcba-rag-qdrant
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.18.2
+    container_name: pcba-qdrant-v0-1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
+    volumes:
+      - pcba_qdrant_v0_1_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/127.0.0.1/6333'"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  pcba_qdrant_v0_1_data:
+    name: pcba_qdrant_v0_1_data

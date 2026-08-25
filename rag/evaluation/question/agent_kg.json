@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_name": "pcba_agent_kg_v1",
+  "description": "Questions reserved for Agent and knowledge-graph evaluation",
+  "query_count": 2,
+  "items": [
+    {
+      "query_id": "Q038",
+      "query": "如果元器件回流后发生偏移，应优先排查印刷、贴装还是回流工序？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "rrf",
+        "ndcg"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "agent_kg"
+    },
+    {
+      "query_id": "Q039",
+      "query": "贴装精度异常可能进一步引发哪些焊接质量问题？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "query_type": "effect_retrieval",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "agent_kg"
+    }
+  ]
+}

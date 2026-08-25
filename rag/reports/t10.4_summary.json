@@ -1,0 +1,702 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.4",
+  "chunk_schema_version": "1.0.0",
+  "chunker_version": "pcba-rag-chunker/1.0.0",
+  "tokenizer": {
+    "model_name": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "local_directory": "rag/cache/bge-m3-tokenizer",
+    "implementation": "XLMRobertaTokenizerFast",
+    "add_special_tokens": false
+  },
+  "size": {
+    "minimum_tokens": 300,
+    "target_tokens": 600,
+    "hard_max_tokens": 800
+  },
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "pypdf": "6.15.0",
+      "cryptography": "50.0.0",
+      "pypdfium2": "5.13.0",
+      "rapidocr": "3.9.2",
+      "onnxruntime": "1.28.0",
+      "jsonschema": "4.26.0",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3",
+      "Pillow": "12.2.0",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.4",
+      "torch": "2.6.0+cu118",
+      "transformers": "4.57.6",
+      "huggingface-hub": "0.36.2",
+      "sentencepiece": "0.2.2"
+    },
+    "pip_check_ok": true,
+    "pip_check_output": "No broken requirements found."
+  },
+  "total_sources": 7,
+  "input_pages": 216,
+  "total_chunks": 245,
+  "schema_valid_chunks": 245,
+  "unique_chunk_ids": 245,
+  "stable_id_verification_passed": true,
+  "no_silent_block_loss": true,
+  "empty_chunks": 0,
+  "cross_document_violations": 0,
+  "acceptance_checks_passed": true,
+  "sources": [
+    {
+      "source_id": "indium_solder_defects_2021",
+      "title": "A Guide to Minimizing Solder Defects",
+      "page_count": 52,
+      "page_status_counts": {
+        "partial": 9,
+        "success": 43
+      },
+      "chunk_count": 32,
+      "schema_valid_chunks": 32,
+      "section_count": 13,
+      "cross_page_chunks": 24,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 5,
+      "chunks_300_to_600": 25,
+      "chunks_601_to_800": 2,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 96,
+        "p50": 485,
+        "p95": 684,
+        "maximum": 722
+      },
+      "eligible_block_count": 256,
+      "covered_block_count": 256,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 82,
+      "rejected_heading_counts": {
+        "numeric_noise": 2,
+        "page_override": 17,
+        "parameter_expression": 1,
+        "sentence": 1,
+        "table_row": 13
+      },
+      "semantic_unit_counts": {
+        "figure": 2,
+        "formula": 3,
+        "list": 59,
+        "table": 15,
+        "text": 108,
+        "title": 10
+      },
+      "non_chunk_page_reasons": {
+        "no_blocks": 4
+      },
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "indium_solder_defects_2021:c_03db1489b00b03683e3e2318",
+          "section_path": [
+            "Front Matter"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 5,
+          "token_count": 561,
+          "unit_kinds": [
+            "text",
+            "list"
+          ]
+        },
+        {
+          "chunk_id": "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "section_path": [
+            "T ombstoning of Passive Components"
+          ],
+          "pdf_page_start": 29,
+          "pdf_page_end": 30,
+          "token_count": 341,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "indium_solder_defects_2021:c_822fd3d97534d02356f2e247",
+          "section_path": [
+            "Back Matter"
+          ],
+          "pdf_page_start": 52,
+          "pdf_page_end": 52,
+          "token_count": 96,
+          "unit_kinds": [
+            "text",
+            "table"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\indium_solder_defects_2021.chunks.jsonl"
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "title": "Solder Paste Print Inspection Defect Guide",
+      "page_count": 44,
+      "page_status_counts": {
+        "success": 44
+      },
+      "chunk_count": 64,
+      "schema_valid_chunks": 64,
+      "section_count": 53,
+      "cross_page_chunks": 19,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 45,
+      "chunks_300_to_600": 15,
+      "chunks_601_to_800": 4,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 7,
+        "p50": 175,
+        "p95": 689,
+        "maximum": 748
+      },
+      "eligible_block_count": 384,
+      "covered_block_count": 384,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 77,
+      "rejected_heading_counts": {
+        "generic_label": 1,
+        "numeric_noise": 6,
+        "page_override": 42,
+        "sentence": 2,
+        "table_row": 5
+      },
+      "semantic_unit_counts": {
+        "list": 40,
+        "table": 50,
+        "text": 188,
+        "title": 51
+      },
+      "non_chunk_page_reasons": {},
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "solder_paste_print_inspection_guide:c_a3266015e09c7392000e9090",
+          "section_path": [
+            "Front Matter"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 2,
+          "token_count": 117,
+          "unit_kinds": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "chunk_id": "solder_paste_print_inspection_guide:c_cf1159a2c058343d2ddedf2b",
+          "section_path": [
+            "Open QFP Joint"
+          ],
+          "pdf_page_start": 22,
+          "pdf_page_end": 22,
+          "token_count": 136,
+          "unit_kinds": [
+            "title",
+            "text",
+            "list"
+          ]
+        },
+        {
+          "chunk_id": "solder_paste_print_inspection_guide:c_77d57c1dec7e82472b4cd125",
+          "section_path": [
+            "Back Matter"
+          ],
+          "pdf_page_start": 44,
+          "pdf_page_end": 44,
+          "token_count": 215,
+          "unit_kinds": [
+            "text",
+            "table"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\solder_paste_print_inspection_guide.chunks.jsonl"
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+      "page_count": 48,
+      "page_status_counts": {
+        "blank": 42,
+        "partial": 1,
+        "success": 5
+      },
+      "chunk_count": 2,
+      "schema_valid_chunks": 2,
+      "section_count": 2,
+      "cross_page_chunks": 2,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 1,
+      "chunks_300_to_600": 0,
+      "chunks_601_to_800": 1,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 203,
+        "p50": 203,
+        "p95": 706,
+        "maximum": 706
+      },
+      "eligible_block_count": 28,
+      "covered_block_count": 28,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 9,
+      "rejected_heading_counts": {
+        "numeric_noise": 3,
+        "parameter_expression": 1,
+        "table_row": 5,
+        "unnumbered_disabled": 7
+      },
+      "semantic_unit_counts": {
+        "table": 8,
+        "text": 19
+      },
+      "non_chunk_page_reasons": {
+        "blank": 42
+      },
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "ipc_7530_zh:c_f7a4ad0bd451e135cfeda608",
+          "section_path": [
+            "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 4,
+          "token_count": 706,
+          "unit_kinds": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "chunk_id": "ipc_7530_zh:c_9b271bad791c23f32da6b866",
+          "section_path": [
+            "群焊工艺温度曲线指南（再流焊和波峰焊）"
+          ],
+          "pdf_page_start": 5,
+          "pdf_page_end": 6,
+          "token_count": 203,
+          "unit_kinds": [
+            "table",
+            "text"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\ipc_7530_zh.chunks.jsonl"
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "title": "GJB 3243A-2021 电子元器件表面安装要求",
+      "page_count": 38,
+      "page_status_counts": {
+        "success": 38
+      },
+      "chunk_count": 85,
+      "schema_valid_chunks": 85,
+      "section_count": 73,
+      "cross_page_chunks": 28,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 53,
+      "chunks_300_to_600": 26,
+      "chunks_601_to_800": 5,
+      "chunks_over_800": 1,
+      "oversized_atomic_chunks": 1,
+      "oversized_chunks": [
+        {
+          "chunk_id": "gjb_3243a_2021:c_11cdabe3c4001d0909acdbb0",
+          "section_path": [
+            "5 一般要求",
+            "5.4 电子元器件"
+          ],
+          "pdf_page_start": 8,
+          "pdf_page_end": 8,
+          "token_count": 944,
+          "oversized_atomic": true
+        }
+      ],
+      "token_statistics": {
+        "minimum": 4,
+        "p50": 139,
+        "p95": 668,
+        "maximum": 944
+      },
+      "eligible_block_count": 799,
+      "covered_block_count": 799,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 37,
+      "rejected_heading_counts": {
+        "list_sentence": 4,
+        "numeric_noise": 10,
+        "parameter_expression": 3,
+        "sentence": 4,
+        "table_row": 54,
+        "toc_entry": 15,
+        "too_short": 1,
+        "unnumbered_disabled": 9
+      },
+      "semantic_unit_counts": {
+        "figure": 7,
+        "formula": 11,
+        "list": 165,
+        "table": 117,
+        "text": 253,
+        "title": 67
+      },
+      "non_chunk_page_reasons": {},
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "gjb_3243a_2021:c_26bfc87be68bb9e47aa76e51",
+          "section_path": [
+            "GJB 3243A-2021 电子元器件表面安装要求"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 1,
+          "token_count": 86,
+          "unit_kinds": [
+            "text",
+            "table"
+          ]
+        },
+        {
+          "chunk_id": "gjb_3243a_2021:c_d15f6b14b7e40682841d8a9a",
+          "section_path": [
+            "6 详细要求",
+            "6.1 PCB 设计",
+            "6.1.3 连接盘设计",
+            "6.1.3.2 连接盘尺寸要素确定",
+            "6.1.3.2.3 元器件贴装公差"
+          ],
+          "pdf_page_start": 14,
+          "pdf_page_end": 14,
+          "token_count": 38,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "gjb_3243a_2021:c_9465d0659db2e71dd4f14c85",
+          "section_path": [
+            "附录C PCB基板材料属性"
+          ],
+          "pdf_page_start": 37,
+          "pdf_page_end": 38,
+          "token_count": 792,
+          "unit_kinds": [
+            "text",
+            "table",
+            "formula"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\gjb_3243a_2021.chunks.jsonl"
+    },
+    {
+      "source_id": "solder_paste_printing_critical_parameters",
+      "title": "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction",
+      "page_count": 13,
+      "page_status_counts": {
+        "success": 13
+      },
+      "chunk_count": 33,
+      "schema_valid_chunks": 33,
+      "section_count": 27,
+      "cross_page_chunks": 4,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 12,
+      "chunks_300_to_600": 16,
+      "chunks_601_to_800": 5,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 9,
+        "p50": 343,
+        "p95": 788,
+        "maximum": 795
+      },
+      "eligible_block_count": 1032,
+      "covered_block_count": 1032,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 0,
+      "rejected_heading_counts": {},
+      "semantic_unit_counts": {
+        "text": 35,
+        "title": 26
+      },
+      "non_chunk_page_reasons": {},
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "section_path": [
+            "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 1,
+          "token_count": 536,
+          "unit_kinds": [
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7490ee32d4ccd5bef4b2c7e7",
+          "section_path": [
+            "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction",
+            "3. The effects of process parameters, stencil and PCB designs on transfer ratio during solder paste printing",
+            "3.3 PCB design parameters",
+            "3.3.2 Bonding pad definition"
+          ],
+          "pdf_page_start": 7,
+          "pdf_page_end": 7,
+          "token_count": 365,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "solder_paste_printing_critical_parameters:c_deda09f06f7330eec6cf6226",
+          "section_path": [
+            "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction",
+            "References"
+          ],
+          "pdf_page_start": 13,
+          "pdf_page_end": 13,
+          "token_count": 441,
+          "unit_kinds": [
+            "text"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\solder_paste_printing_critical_parameters.chunks.jsonl"
+    },
+    {
+      "source_id": "lead_free_reflow_defects",
+      "title": "Reflow Defects with Lead-Free Soldering Moisture Sensitive Components",
+      "page_count": 11,
+      "page_status_counts": {
+        "success": 11
+      },
+      "chunk_count": 13,
+      "schema_valid_chunks": 13,
+      "section_count": 10,
+      "cross_page_chunks": 5,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 5,
+      "chunks_300_to_600": 4,
+      "chunks_601_to_800": 4,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 74,
+        "p50": 378,
+        "p95": 743,
+        "maximum": 743
+      },
+      "eligible_block_count": 577,
+      "covered_block_count": 577,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 0,
+      "rejected_heading_counts": {},
+      "semantic_unit_counts": {
+        "text": 19,
+        "title": 9
+      },
+      "non_chunk_page_reasons": {},
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "lead_free_reflow_defects:c_6c1d4395a25d4d64be1d26df",
+          "section_path": [
+            "Reflow Defects with Lead-Free Soldering Moisture Sensitive Components"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 1,
+          "token_count": 74,
+          "unit_kinds": [
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "lead_free_reflow_defects:c_fe6072e3731deffc04d1c34e",
+          "section_path": [
+            "Reflow Defects with Lead-Free Soldering Moisture Sensitive Components",
+            "1. Influence of soldering and material conditions on finished SMD quality",
+            "1.1 Results",
+            "1.1.1 Wetting"
+          ],
+          "pdf_page_start": 4,
+          "pdf_page_end": 6,
+          "token_count": 614,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "lead_free_reflow_defects:c_6dead798c693faabd0260b1d",
+          "section_path": [
+            "Reflow Defects with Lead-Free Soldering Moisture Sensitive Components",
+            "2. Thermal stability of moisture-sensitive components during soldering",
+            "2.2 Summary"
+          ],
+          "pdf_page_start": 11,
+          "pdf_page_end": 11,
+          "token_count": 276,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\lead_free_reflow_defects.chunks.jsonl"
+    },
+    {
+      "source_id": "fine_pitch_csp_assembly_processes",
+      "title": "Study of SMT Assembly Processes for Fine Pitch CSP Packages",
+      "page_count": 10,
+      "page_status_counts": {
+        "success": 10
+      },
+      "chunk_count": 16,
+      "schema_valid_chunks": 16,
+      "section_count": 14,
+      "cross_page_chunks": 6,
+      "empty_chunks": 0,
+      "short_chunks_below_300": 5,
+      "chunks_300_to_600": 9,
+      "chunks_601_to_800": 2,
+      "chunks_over_800": 0,
+      "oversized_atomic_chunks": 0,
+      "oversized_chunks": [],
+      "token_statistics": {
+        "minimum": 35,
+        "p50": 373,
+        "p95": 724,
+        "maximum": 724
+      },
+      "eligible_block_count": 353,
+      "covered_block_count": 353,
+      "no_silent_block_loss": true,
+      "missing_block_ids": [],
+      "excluded_block_count": 0,
+      "rejected_heading_counts": {},
+      "semantic_unit_counts": {
+        "text": 23,
+        "title": 13
+      },
+      "non_chunk_page_reasons": {},
+      "stable_ids_match_on_rebuild": true,
+      "section_boundary_violations": 0,
+      "structure_split_violations": {
+        "table": 0,
+        "list": 0,
+        "formula": 0
+      },
+      "representative_chunks": [
+        {
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_9783840c70bf6d9331f91626",
+          "section_path": [
+            "Study of SMT Assembly Processes for Fine Pitch CSP Packages"
+          ],
+          "pdf_page_start": 1,
+          "pdf_page_end": 1,
+          "token_count": 50,
+          "unit_kinds": [
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_fda05f7c8d530b435e507cb4",
+          "section_path": [
+            "Study of SMT Assembly Processes for Fine Pitch CSP Packages",
+            "Screen Printing Process"
+          ],
+          "pdf_page_start": 6,
+          "pdf_page_end": 6,
+          "token_count": 633,
+          "unit_kinds": [
+            "text"
+          ]
+        },
+        {
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_50b8316fa454e0378eaee12a",
+          "section_path": [
+            "Study of SMT Assembly Processes for Fine Pitch CSP Packages",
+            "References"
+          ],
+          "pdf_page_start": 10,
+          "pdf_page_end": 10,
+          "token_count": 380,
+          "unit_kinds": [
+            "title",
+            "text"
+          ]
+        }
+      ],
+      "output_path": "rag\\data\\processed\\chunks\\fine_pitch_csp_assembly_processes.chunks.jsonl"
+    }
+  ],
+  "elapsed_seconds": 5.242
+}

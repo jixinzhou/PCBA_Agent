@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.7",
+  "index_version": "0.1.0",
+  "pipeline_version": "pcba-rag-qdrant/0.1.0",
+  "collection_name": "pcba_industrial_knowledge_v0_1",
+  "qdrant_url": "http://127.0.0.1:6333",
+  "qdrant_server_version": "1.18.2",
+  "qdrant_client_version": "1.19.0",
+  "collection_existed": true,
+  "collection_recreated": false,
+  "stale_points_removed": 0,
+  "input_records": 183,
+  "dense_vector": {
+    "name": "dense",
+    "size": 1024,
+    "distance": "Cosine"
+  },
+  "sparse_vector": {
+    "name": "sparse",
+    "modifier": null
+  },
+  "point_id_strategy": "UUIDv5(fixed_namespace, chunk_id)",
+  "uuid_namespace": "47f34039-c059-520b-86a4-005439334549",
+  "validation": {
+    "exact_point_count": 183,
+    "unique_point_ids": 183,
+    "sample_readback_count": 5,
+    "dense_self_query_passed": true,
+    "sparse_self_query_passed": true,
+    "payload_index_fields": [
+      "metadata.defect_ids",
+      "metadata.document_type",
+      "metadata.evidence_roles",
+      "metadata.language",
+      "metadata.process_ids",
+      "semantic_tag_excluded",
+      "source_id"
+    ],
+    "payload_filter_checks": {
+      "source_id": {
+        "sample_value": "gjb_3243a_2021",
+        "expected_count": 85,
+        "actual_count": 85,
+        "passed": true
+      },
+      "metadata.process_ids": {
+        "sample_value": "reflow",
+        "expected_count": 52,
+        "actual_count": 52,
+        "passed": true
+      },
+      "metadata.defect_ids": {
+        "sample_value": "insufficient_solder",
+        "expected_count": 9,
+        "actual_count": 9,
+        "passed": true
+      },
+      "metadata.evidence_roles": {
+        "sample_value": "normative_requirement",
+        "expected_count": 82,
+        "actual_count": 82,
+        "passed": true
+      },
+      "metadata.language": {
+        "sample_value": "zh-CN",
+        "expected_count": 87,
+        "actual_count": 87,
+        "passed": true
+      },
+      "metadata.document_type": {
+        "sample_value": "standard",
+        "expected_count": 87,
+        "actual_count": 87,
+        "passed": true
+      },
+      "semantic_tag_excluded": {
+        "sample_value": true,
+        "expected_count": 20,
+        "actual_count": 20,
+        "passed": true
+      }
+    },
+    "semantic_tag_included_points": 163,
+    "semantic_tag_excluded_points": 20,
+    "expected_fingerprint": "83897aa1288b51731884728c3e892ef59bb95fedeae3b1634aab288ecc1b3e66",
+    "actual_fingerprint": "83897aa1288b51731884728c3e892ef59bb95fedeae3b1634aab288ecc1b3e66",
+    "fingerprint_matches": true
+  },
+  "runtime_seconds": 1.938,
+  "acceptance_checks_passed": true
+}

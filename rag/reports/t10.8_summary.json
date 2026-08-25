@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.8",
+  "retrieval_schema_version": "1.1.0",
+  "retriever_version": "pcba-rag-retriever/0.1.0",
+  "collection_name": "pcba_industrial_knowledge_v0_1",
+  "query_model": "BAAI/bge-m3",
+  "query_model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "validation_cases": [
+    {
+      "case_id": "zh_insufficient_solder",
+      "normalized_query": "焊膏印刷少锡的常见原因和排查方法",
+      "query_token_count": 15,
+      "filters": {
+        "source_ids": [],
+        "process_ids": [
+          "printing"
+        ],
+        "defect_ids": [
+          "insufficient_solder"
+        ],
+        "evidence_roles": [],
+        "languages": [],
+        "document_types": []
+      },
+      "dense": {
+        "result_count": 5,
+        "filter_compliance": true,
+        "top_chunk_ids": [
+          "solder_paste_print_inspection_guide:c_48aa0ff663136f76c0a6f570",
+          "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "solder_paste_print_inspection_guide:c_3a24339f16bc02b883a8b7ec",
+          "solder_paste_print_inspection_guide:c_68ac747f44ca13921c86fa5b",
+          "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4"
+        ],
+        "scores": [
+          0.5786238,
+          0.56753623,
+          0.5532403,
+          0.547564,
+          0.54344344
+        ],
+        "retrieval_time_ms": 18688.06
+      },
+      "sparse": {
+        "result_count": 0,
+        "filter_compliance": true,
+        "top_chunk_ids": [],
+        "scores": [],
+        "retrieval_time_ms": 7.965
+      }
+    },
+    {
+      "case_id": "en_printing_bridge",
+      "normalized_query": "What causes solder paste bridging during printing?",
+      "query_token_count": 14,
+      "filters": {
+        "source_ids": [],
+        "process_ids": [
+          "printing"
+        ],
+        "defect_ids": [
+          "short"
+        ],
+        "evidence_roles": [],
+        "languages": [
+          "en"
+        ],
+        "document_types": []
+      },
+      "dense": {
+        "result_count": 2,
+        "filter_compliance": true,
+        "top_chunk_ids": [
+          "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "solder_paste_print_inspection_guide:c_1263a3555c53ba5737748a8e"
+        ],
+        "scores": [
+          0.6656469,
+          0.550541
+        ],
+        "retrieval_time_ms": 59.456
+      },
+      "sparse": {
+        "result_count": 2,
+        "filter_compliance": true,
+        "top_chunk_ids": [
+          "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "solder_paste_print_inspection_guide:c_1263a3555c53ba5737748a8e"
+        ],
+        "scores": [
+          0.17463595,
+          0.10535857
+        ],
+        "retrieval_time_ms": 18.71
+      }
+    },
+    {
+      "case_id": "zh_shifted_component",
+      "normalized_query": "元件偏移与回流热不均或润湿不同步有什么关系",
+      "query_token_count": 19,
+      "filters": {
+        "source_ids": [],
+        "process_ids": [],
+        "defect_ids": [
+          "shifted_component"
+        ],
+        "evidence_roles": [],
+        "languages": [],
+        "document_types": []
+      },
+      "dense": {
+        "result_count": 5,
+        "filter_compliance": true,
+        "top_chunk_ids": [
+          "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "indium_solder_defects_2021:c_da7b4712412e775cff90a74d",
+          "indium_solder_defects_2021:c_4e85c6bcd3aaaafdf49e8229"
+        ],
+        "scores": [
+          0.5621952,
+          0.5308751,
+          0.52114874,
+          0.5002331,
+          0.4973671
+        ],
+        "retrieval_time_ms": 65.277
+      },
+      "sparse": {
+        "result_count": 3,
+        "filter_compliance": true,
+        "top_chunk_ids": [
+          "indium_solder_defects_2021:c_da7b4712412e775cff90a74d",
+          "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410"
+        ],
+        "scores": [
+          4.008616e-06,
+          5.0218887e-07,
+          3.92115e-07
+        ],
+        "retrieval_time_ms": 7.042
+      }
+    }
+  ],
+  "empty_sparse_cases": [
+    "zh_insufficient_solder"
+  ],
+  "empty_results_are_valid": true,
+  "total_runtime_seconds": 19.123,
+  "acceptance_checks_passed": true
+}

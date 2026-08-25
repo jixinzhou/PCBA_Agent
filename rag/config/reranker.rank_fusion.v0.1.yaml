@@ -1,0 +1,15 @@
+experiment_version: pcba-reranker-rank-fusion/0.1.0
+base_evaluation_config: rag/config/reranker.full_evaluation.v0.1.yaml
+fusion:
+  rrf_k: 60
+  reranker_weight_start: 0.00
+  reranker_weight_end: 1.00
+  reranker_weight_step: 0.01
+  primary_metric: macro_recall_at_5
+  tie_break_metrics:
+    - micro_rel2_recall_at_5
+    - mrr_at_10
+    - ndcg_at_10
+  final_tie_break: lower_reranker_weight
+output:
+  results: rag/evaluation/reranker_rank_fusion_results.json

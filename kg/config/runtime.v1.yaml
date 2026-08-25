@@ -1,0 +1,46 @@
+runtime_version: "1.0.0"
+
+neo4j:
+  edition: community
+  image: neo4j:2026.07.1
+  python_driver: neo4j==6.2.0
+  compose_file: kg/docker-compose.neo4j.yml
+  env_file: kg/.env
+  named_volume: pcba_neo4j_data
+  connection:
+    uri_env: PCBA_NEO4J_URI
+    user_env: PCBA_NEO4J_USER
+    password_env: PCBA_NEO4J_PASSWORD
+    database_env: PCBA_NEO4J_DATABASE
+    default_uri: bolt://127.0.0.1:7687
+    default_user: neo4j
+    default_database: neo4j
+
+import:
+  ontology_path: ontology/pcba_defect_causality.v1.1.yaml
+  mapping_path: kg/config/neo4j_mapping.v1.yaml
+  schema_path: kg/cypher/schema.v1.cypher
+  mode: deterministic_merge
+  delete_existing_data: false
+  allow_llm_extraction: false
+  allow_rag_evidence_promotion: false
+
+expected_graph:
+  total_nodes: 28
+  total_relationships: 40
+  nodes:
+    Process: 3
+    Defect: 4
+    CandidateCause: 5
+    QualityMetric: 7
+    Tool: 4
+    CausalHypothesis: 5
+  relationships:
+    HAS_HYPOTHESIS: 5
+    PROPOSES_CAUSE: 5
+    BELONGS_TO: 16
+    REQUIRES_METRIC: 8
+    VALIDATED_BY: 3
+    OPTIMIZED_BY: 3
+  unverified_hypotheses: 2
+  shifted_component_hypotheses: 2

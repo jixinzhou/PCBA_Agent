@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedding_record.v1.schema.json",
+  "title": "PCBA RAG Embedding Record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "chunk_id",
+    "source_id",
+    "text_hash",
+    "embedding_input_hash",
+    "embedding_input_token_count",
+    "semantic_tag_excluded",
+    "model",
+    "dense",
+    "sparse"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "text_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "embedding_input_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "embedding_input_token_count": {"type": "integer", "minimum": 1},
+    "semantic_tag_excluded": {"type": "boolean"},
+    "model": {"$ref": "#/$defs/model"},
+    "dense": {"$ref": "#/$defs/dense"},
+    "sparse": {"$ref": "#/$defs/sparse"}
+  },
+  "$defs": {
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "revision",
+        "embedding_config_version",
+        "implementation",
+        "implementation_version",
+        "device",
+        "inference_dtype",
+        "storage_dtype",
+        "max_length",
+        "normalized"
+      ],
+      "properties": {
+        "name": {"const": "BAAI/bge-m3"},
+        "revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "embedding_config_version": {"type": "string", "minLength": 1},
+        "implementation": {"const": "FlagEmbedding.BGEM3FlagModel"},
+        "implementation_version": {"type": "string", "minLength": 1},
+        "device": {"enum": ["cuda:0", "cpu"]},
+        "inference_dtype": {"enum": ["float16", "float32"]},
+        "storage_dtype": {"const": "float32"},
+        "max_length": {"type": "integer", "minimum": 1, "maximum": 8192},
+        "normalized": {"type": "boolean"}
+      }
+    },
+    "dense": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension", "values"],
+      "properties": {
+        "dimension": {"const": 1024},
+        "values": {
+          "type": "array",
+          "items": {"type": "number"},
+          "minItems": 1024,
+          "maxItems": 1024
+        }
+      }
+    },
+    "sparse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["indices", "values", "nnz"],
+      "properties": {
+        "indices": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "values": {
+          "type": "array",
+          "items": {"type": "number", "exclusiveMinimum": 0},
+          "minItems": 1
+        },
+        "nnz": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

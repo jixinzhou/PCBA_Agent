@@ -11,6 +11,9 @@
 # Local environments and secrets.
 .env
 .env.*
+!/rag/evaluation/.env.example
+!/kg/.env.example
+!/agent/.env.example
 .venv/
 venv/
 
@@ -19,8 +22,18 @@ venv/
 *.pid
 *.tmp
 
+# RAG generated data and local stores.
+/rag/data/processed/
+/rag/storage/
+/rag/cache/
+/rag/logs/
+/agent/storage/
+
 # IDE and operating-system files.
 .idea/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local scratch notes.
+/test.md

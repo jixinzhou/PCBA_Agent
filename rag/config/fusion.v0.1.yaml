@@ -1,0 +1,55 @@
+schema_version: "1.2.0"
+fusion_version: "pcba-rag-fusion/0.1.0"
+
+dependencies:
+  retriever_config: "rag/config/retriever.v0.1.yaml"
+
+candidates:
+  per_channel_top_k: 20
+
+rrf:
+  k: 60
+  dense_weight: 1.0
+  sparse_weight: 1.0
+
+ranking:
+  fusion_top_k: 10
+  default_final_top_k: 5
+  maximum_final_top_k: 10
+  deduplication_key: "chunk_id"
+  tie_breakers: [best_channel_rank, chunk_id]
+  enforce_source_diversity: false
+
+validation:
+  report_path: "rag/reports/T10.9_FUSION_VALIDATION.md"
+  cases:
+    - case_id: "unfiltered_printing"
+      query: "How can solder paste printing defects be reduced?"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: []
+        defect_ids: []
+        evidence_roles: []
+        languages: []
+        document_types: []
+    - case_id: "en_printing_bridge"
+      query: "What causes solder paste bridging during printing?"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: [printing]
+        defect_ids: [short]
+        evidence_roles: []
+        languages: [en]
+        document_types: []
+    - case_id: "zh_insufficient_solder"
+      query: "焊膏印刷少锡的常见原因和排查方法"
+      top_k: 5
+      filters:
+        source_ids: []
+        process_ids: [printing]
+        defect_ids: [insufficient_solder]
+        evidence_roles: []
+        languages: []
+        document_types: []

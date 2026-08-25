@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metadata.v1.1.schema.json",
+  "title": "PCBA RAG Metadata V1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_title",
+    "organization",
+    "document_type",
+    "language",
+    "rights_status",
+    "dictionary_version",
+    "ontology_version",
+    "mapping_version",
+    "process_ids",
+    "process_entities",
+    "defect_ids",
+    "defect_entities",
+    "evidence_roles",
+    "tag_origin",
+    "parser_version",
+    "mapper_version",
+    "ocr_used"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "source_title": {"type": "string", "minLength": 1},
+    "organization": {"type": ["string", "null"]},
+    "document_type": {"enum": ["standard", "vendor_guide", "industry_guide"]},
+    "language": {"enum": ["zh-CN", "en", "mixed"]},
+    "rights_status": {"enum": ["pending_confirmation", "restricted", "cleared", "unknown"]},
+    "dictionary_version": {"type": "string", "minLength": 1},
+    "ontology_version": {"type": "string", "minLength": 1},
+    "mapping_version": {"type": "string", "minLength": 1},
+    "process_ids": {
+      "type": "array",
+      "items": {"enum": ["printing", "placement", "reflow"]},
+      "uniqueItems": true
+    },
+    "process_entities": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/process_entity"},
+      "uniqueItems": true
+    },
+    "defect_ids": {
+      "type": "array",
+      "items": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component"]},
+      "uniqueItems": true
+    },
+    "defect_entities": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/defect_entity"},
+      "uniqueItems": true
+    },
+    "evidence_roles": {
+      "type": "array",
+      "items": {"enum": ["defect_mechanism", "troubleshooting_guidance", "process_guideline", "normative_requirement"]},
+      "uniqueItems": true
+    },
+    "tag_origin": {"enum": ["none", "rule", "curated", "mixed"]},
+    "parser_version": {"type": "string", "minLength": 1},
+    "mapper_version": {"type": "string", "minLength": 1},
+    "ocr_used": {"type": "boolean"}
+  },
+  "$defs": {
+    "process_entity": {
+      "oneOf": [
+        {"const": {"entity_id": "PROCESS-PRINTING", "canonical_name": "printing", "display_name_zh": "焊膏印刷"}},
+        {"const": {"entity_id": "PROCESS-PLACEMENT", "canonical_name": "placement", "display_name_zh": "元器件贴装"}},
+        {"const": {"entity_id": "PROCESS-REFLOW", "canonical_name": "reflow", "display_name_zh": "回流焊"}}
+      ]
+    },
+    "defect_entity": {
+      "oneOf": [
+        {"const": {"entity_id": "DEFECT-INSUFFICIENT-SOLDER", "canonical_name": "insufficient_solder", "display_name_zh": "少锡"}},
+        {"const": {"entity_id": "DEFECT-EXCESSIVE-SOLDER", "canonical_name": "excessive_solder", "display_name_zh": "多锡"}},
+        {"const": {"entity_id": "DEFECT-SHORT", "canonical_name": "short", "display_name_zh": "短路"}},
+        {"const": {"entity_id": "DEFECT-SHIFTED-COMPONENT", "canonical_name": "shifted_component", "display_name_zh": "元件偏移"}}
+      ]
+    }
+  }
+}

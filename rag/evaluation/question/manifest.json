@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "source_dataset": "E:\\PCBA智能体\\rag\\evaluation\\archive\\legacy_labeled\\evaluation_final.json",
+  "formal_retriever_goal": "retriever_main",
+  "formal_retriever_goal_query_count": 16,
+  "query_overrides": {
+    "Q019": "为什么过大的焊膏沉积量可能在印刷和贴装后未出现桥连，却在回流后形成桥连？",
+    "Q024": "为什么回流过程中总焊料量相对于焊点间距过大会导致桥连？",
+    "Q036": "Can an initial component placement offset change during reflow due to solder self-alignment"
+  },
+  "groups": {
+    "retriever_main": {
+      "query_count": 16,
+      "query_ids": [
+        "Q002",
+        "Q003",
+        "Q005",
+        "Q011",
+        "Q012",
+        "Q015",
+        "Q018",
+        "Q019",
+        "Q021",
+        "Q022",
+        "Q024",
+        "Q026",
+        "Q028",
+        "Q031",
+        "Q035",
+        "Q036"
+      ],
+      "path": "E:\\PCBA智能体\\rag\\evaluation\\question\\retriever_main.json"
+    },
+    "multi_evidence": {
+      "query_count": 3,
+      "query_ids": [
+        "Q001",
+        "Q009",
+        "Q029"
+      ],
+      "path": "E:\\PCBA智能体\\rag\\evaluation\\question\\multi_evidence.json"
+    },
+    "agent_kg": {
+      "query_count": 2,
+      "query_ids": [
+        "Q038",
+        "Q039"
+      ],
+      "path": "E:\\PCBA智能体\\rag\\evaluation\\question\\agent_kg.json"
+    },
+    "no_answer_abstention": {
+      "query_count": 3,
+      "query_ids": [
+        "Q041",
+        "Q043",
+        "Q048"
+      ],
+      "path": "E:\\PCBA智能体\\rag\\evaluation\\question\\no_answer_abstention.json"
+    }
+  },
+  "selected_query_count": 24
+}

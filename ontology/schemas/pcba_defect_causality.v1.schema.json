@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pcba_defect_causality.v1.schema.json",
+  "title": "PCBA Defect Causality Ontology V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ontology_id",
+    "ontology_version",
+    "status",
+    "scope",
+    "processes",
+    "defects",
+    "candidate_causes",
+    "validation_metrics",
+    "tools",
+    "relationships",
+    "system_principles"
+  ],
+  "properties": {
+    "ontology_id": {"const": "pcba_defect_causality"},
+    "ontology_version": {"const": "1.1.0"},
+    "status": {"const": "frozen"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defect_ids", "process_ids", "relationship_count"],
+      "properties": {
+        "defect_ids": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "insufficient_solder",
+              "excessive_solder",
+              "short",
+              "shifted_component"
+            ]
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "process_ids": {
+          "type": "array",
+          "items": {"enum": ["printing", "placement", "reflow"]},
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "relationship_count": {"const": 5}
+      }
+    },
+    "processes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entity"},
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "defects": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entity"},
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "candidate_causes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/cause"},
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "validation_metrics": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/metric"},
+      "minItems": 7,
+      "uniqueItems": true
+    },
+    "tools": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/tool"},
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "relationships": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/relationship"},
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "system_principles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_not_confirmed_root_cause",
+        "unverified_relations_are_retained",
+        "optimization_requires_prediction_revalidation"
+      ],
+      "properties": {
+        "candidate_not_confirmed_root_cause": {"const": true},
+        "unverified_relations_are_retained": {"const": true},
+        "optimization_requires_prediction_revalidation": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "canonical_name", "display_name_zh", "aliases"],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "display_name_zh": {"type": "string", "minLength": 1},
+        "aliases": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "cause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "canonical_name", "display_name_zh", "aliases", "process_id"],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "display_name_zh": {"type": "string", "minLength": 1},
+        "aliases": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "process_id": {"enum": ["printing", "placement", "reflow"]}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "canonical_name",
+        "display_name_zh",
+        "aliases",
+        "process_id",
+        "tool_observable",
+        "api_field"
+      ],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "display_name_zh": {"type": "string", "minLength": 1},
+        "aliases": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "process_id": {"enum": ["printing", "placement", "reflow"]},
+        "tool_observable": {"type": "boolean"},
+        "api_field": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "canonical_name", "display_name_zh", "process_id", "tool_role"],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {
+          "enum": [
+            "spi_vte_prediction",
+            "spi_parameter_optimization",
+            "reflow_profile_prediction",
+            "reflow_parameter_optimization"
+          ]
+        },
+        "display_name_zh": {"type": "string", "minLength": 1},
+        "process_id": {"enum": ["printing", "reflow"]},
+        "tool_role": {"enum": ["prediction", "optimization"]}
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship_id",
+        "defect_id",
+        "candidate_cause_id",
+        "process_id",
+        "validation_metric_ids",
+        "validation_tool",
+        "optimization_tool",
+        "relation_strength",
+        "verification_status",
+        "interpretation"
+      ],
+      "properties": {
+        "relationship_id": {"type": "string", "pattern": "^REL-[A-Z0-9-]+$"},
+        "defect_id": {
+          "enum": [
+            "insufficient_solder",
+            "excessive_solder",
+            "short",
+            "shifted_component"
+          ]
+        },
+        "candidate_cause_id": {"type": "string", "minLength": 1},
+        "process_id": {"enum": ["printing", "placement", "reflow"]},
+        "validation_metric_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "validation_tool": {
+          "type": ["string", "null"],
+          "enum": ["spi_vte_prediction", "reflow_profile_prediction", null]
+        },
+        "optimization_tool": {
+          "type": ["string", "null"],
+          "enum": ["spi_parameter_optimization", "reflow_parameter_optimization", null]
+        },
+        "relation_strength": {"enum": ["strong", "medium_strong", "conditional"]},
+        "verification_status": {"enum": ["tool_supported", "unverified"]},
+        "interpretation": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"verification_status": {"const": "unverified"}}},
+          "then": {
+            "properties": {
+              "validation_tool": {"type": "null"},
+              "optimization_tool": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"verification_status": {"const": "tool_supported"}}},
+          "then": {
+            "properties": {
+              "validation_tool": {"type": "string"},
+              "optimization_tool": {"type": "string"}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

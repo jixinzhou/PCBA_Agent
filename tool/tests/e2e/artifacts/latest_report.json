@@ -73,34 +73,34 @@
   "tools": {
     "pcba_defect_classification": {
       "passed": true,
-      "wall_time_ms": 795,
+      "wall_time_ms": 1277,
       "request_id": "E2E-AOI-001",
-      "execution_time_ms": 431
+      "execution_time_ms": 953
     },
     "spi_vte_prediction": {
       "passed": true,
-      "wall_time_ms": 80,
+      "wall_time_ms": 168,
       "request_id": "E2E-SPI-PRED-001",
-      "execution_time_ms": 45
+      "execution_time_ms": 146
     },
     "spi_parameter_optimization": {
       "passed": true,
-      "wall_time_ms": 8198,
+      "wall_time_ms": 10296,
       "request_id": "E2E-SPI-OPT-001",
-      "execution_time_ms": 8164,
+      "execution_time_ms": 10253,
       "verified_by_prediction": true
     },
     "reflow_profile_prediction": {
       "passed": true,
-      "wall_time_ms": 70,
+      "wall_time_ms": 104,
       "request_id": "E2E-REFLOW-PRED-001",
-      "execution_time_ms": 54
+      "execution_time_ms": 84
     },
     "reflow_parameter_optimization": {
       "passed": true,
-      "wall_time_ms": 1278,
+      "wall_time_ms": 1342,
       "request_id": "E2E-REFLOW-OPT-001",
-      "execution_time_ms": 1262,
+      "execution_time_ms": 1312,
       "verified_by_prediction": true
     }
   },

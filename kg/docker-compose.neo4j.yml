@@ -1,0 +1,31 @@
+name: pcba-kg
+
+services:
+  neo4j:
+    image: neo4j:2026.07.1
+    container_name: pcba-neo4j
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: "neo4j/${PCBA_NEO4J_PASSWORD:?PCBA_NEO4J_PASSWORD must be set}"
+      NEO4J_server_memory_heap_initial__size: 256m
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 256m
+    ports:
+      - "127.0.0.1:${PCBA_NEO4J_HTTP_PORT:-7474}:7474"
+      - "127.0.0.1:${PCBA_NEO4J_BOLT_PORT:-7687}:7687"
+    volumes:
+      - pcba_neo4j_data:/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          cypher-shell -u neo4j -p '${PCBA_NEO4J_PASSWORD}'
+          'RETURN 1' >/dev/null 2>&1 || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+volumes:
+  pcba_neo4j_data:
+    name: pcba_neo4j_data

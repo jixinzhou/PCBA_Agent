@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_name": "pcba_multi_evidence_v1",
+  "description": "Multi-evidence questions evaluated separately from Retriever primary metrics",
+  "query_count": 3,
+  "items": [
+    {
+      "query_id": "Q001",
+      "query": "焊膏印刷量不足可能导致哪些典型焊接缺陷？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "direct_fact",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "multi_evidence"
+    },
+    {
+      "query_id": "Q009",
+      "query": "少锡可能由印刷、贴装和回流中的哪些因素共同造成？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "rrf",
+        "ndcg"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "multi_evidence"
+    },
+    {
+      "query_id": "Q029",
+      "query": "从印刷、贴装到回流，哪些异常可能共同形成焊点短路？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "ndcg",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "multi_evidence"
+    }
+  ]
+}

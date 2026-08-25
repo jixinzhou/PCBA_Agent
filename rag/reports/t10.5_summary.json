@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.5",
+  "chunk_schema_version": "1.1.0",
+  "metadata_schema_version": "1.1.0",
+  "mapping_version": "0.1.0",
+  "mapper_version": "pcba-rag-metadata-mapper/1.0.0",
+  "dictionary_version": "1.1.0",
+  "ontology_version": "1.1.0",
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "pypdf": "6.15.0",
+      "cryptography": "50.0.0",
+      "pypdfium2": "5.13.0",
+      "rapidocr": "3.9.2",
+      "onnxruntime": "1.28.0",
+      "jsonschema": "4.26.0",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3",
+      "Pillow": "12.2.0",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.4",
+      "torch": "2.6.0+cu118",
+      "transformers": "4.57.6",
+      "huggingface-hub": "0.36.2",
+      "sentencepiece": "0.2.2"
+    },
+    "pip_check_ok": true,
+    "pip_check_output": "No broken requirements found."
+  },
+  "total_sources": 7,
+  "input_chunks": 245,
+  "output_chunks": 245,
+  "trace_records": 245,
+  "schema_valid_chunks": 245,
+  "schema_valid_traces": 245,
+  "unique_chunk_ids": 245,
+  "immutable_fields_preserved": true,
+  "excluded_section_tag_violations": 0,
+  "chunks_with_process": 173,
+  "chunks_with_defect": 31,
+  "chunks_with_evidence_role": 220,
+  "multi_process_chunks": 69,
+  "multi_defect_chunks": 4,
+  "process_counts": {
+    "printing": 129,
+    "placement": 49,
+    "reflow": 90
+  },
+  "defect_counts": {
+    "insufficient_solder": 12,
+    "excessive_solder": 10,
+    "short": 5,
+    "shifted_component": 8
+  },
+  "evidence_role_counts": {
+    "defect_mechanism": 94,
+    "troubleshooting_guidance": 107,
+    "process_guideline": 125,
+    "normative_requirement": 82
+  },
+  "match_category_counts": {
+    "candidate_cause": 2,
+    "curated_default": 208,
+    "evidence_role_rule": 332,
+    "process_term": 467,
+    "related_term": 31,
+    "synonym": 15
+  },
+  "disabled_bare_terms": [
+    "short",
+    "bridge",
+    "profile",
+    "placement",
+    "wetting",
+    "润湿"
+  ],
+  "ambiguous_term_chunk_counts": {
+    "short": 10,
+    "bridge": 1,
+    "profile": 17,
+    "placement": 16,
+    "wetting": 16,
+    "润湿": 4
+  },
+  "sources": [
+    {
+      "source_id": "fine_pitch_csp_assembly_processes",
+      "chunk_count": 16,
+      "schema_valid_chunks": 16,
+      "trace_count": 16,
+      "excluded_structural_chunks": 1,
+      "chunks_with_process": 15,
+      "chunks_with_defect": 1,
+      "chunks_with_evidence_role": 15,
+      "multi_process_chunks": 15,
+      "multi_defect_chunks": 0,
+      "process_counts": {
+        "printing": 15,
+        "placement": 15,
+        "reflow": 15
+      },
+      "defect_counts": {
+        "insufficient_solder": 1,
+        "excessive_solder": 0,
+        "short": 0,
+        "shifted_component": 0
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 15,
+        "troubleshooting_guidance": 2,
+        "process_guideline": 15,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "curated_default": 15,
+        "evidence_role_rule": 11,
+        "process_term": 34,
+        "synonym": 1
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\fine_pitch_csp_assembly_processes.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\fine_pitch_csp_assembly_processes.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "chunk_count": 85,
+      "schema_valid_chunks": 85,
+      "trace_count": 85,
+      "excluded_structural_chunks": 3,
+      "chunks_with_process": 33,
+      "chunks_with_defect": 0,
+      "chunks_with_evidence_role": 82,
+      "multi_process_chunks": 2,
+      "multi_defect_chunks": 0,
+      "process_counts": {
+        "printing": 6,
+        "placement": 21,
+        "reflow": 9
+      },
+      "defect_counts": {
+        "insufficient_solder": 0,
+        "excessive_solder": 0,
+        "short": 0,
+        "shifted_component": 0
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 3,
+        "troubleshooting_guidance": 20,
+        "process_guideline": 8,
+        "normative_requirement": 82
+      },
+      "match_category_counts": {
+        "curated_default": 94,
+        "evidence_role_rule": 130,
+        "process_term": 60
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\gjb_3243a_2021.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\gjb_3243a_2021.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "indium_solder_defects_2021",
+      "chunk_count": 32,
+      "schema_valid_chunks": 32,
+      "trace_count": 32,
+      "excluded_structural_chunks": 6,
+      "chunks_with_process": 26,
+      "chunks_with_defect": 11,
+      "chunks_with_evidence_role": 24,
+      "multi_process_chunks": 19,
+      "multi_defect_chunks": 1,
+      "process_counts": {
+        "printing": 23,
+        "placement": 6,
+        "reflow": 22
+      },
+      "defect_counts": {
+        "insufficient_solder": 5,
+        "excessive_solder": 3,
+        "short": 0,
+        "shifted_component": 4
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 19,
+        "troubleshooting_guidance": 17,
+        "process_guideline": 14,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "evidence_role_rule": 80,
+        "process_term": 110,
+        "related_term": 12,
+        "synonym": 6
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\indium_solder_defects_2021.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\indium_solder_defects_2021.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "chunk_count": 2,
+      "schema_valid_chunks": 2,
+      "trace_count": 2,
+      "excluded_structural_chunks": 1,
+      "chunks_with_process": 1,
+      "chunks_with_defect": 0,
+      "chunks_with_evidence_role": 1,
+      "multi_process_chunks": 0,
+      "multi_defect_chunks": 0,
+      "process_counts": {
+        "printing": 0,
+        "placement": 0,
+        "reflow": 1
+      },
+      "defect_counts": {
+        "insufficient_solder": 0,
+        "excessive_solder": 0,
+        "short": 0,
+        "shifted_component": 0
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 0,
+        "troubleshooting_guidance": 0,
+        "process_guideline": 1,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "curated_default": 1,
+        "evidence_role_rule": 1,
+        "process_term": 3
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\ipc_7530_zh.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\ipc_7530_zh.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "lead_free_reflow_defects",
+      "chunk_count": 13,
+      "schema_valid_chunks": 13,
+      "trace_count": 13,
+      "excluded_structural_chunks": 0,
+      "chunks_with_process": 13,
+      "chunks_with_defect": 2,
+      "chunks_with_evidence_role": 13,
+      "multi_process_chunks": 2,
+      "multi_defect_chunks": 0,
+      "process_counts": {
+        "printing": 0,
+        "placement": 2,
+        "reflow": 13
+      },
+      "defect_counts": {
+        "insufficient_solder": 0,
+        "excessive_solder": 0,
+        "short": 0,
+        "shifted_component": 2
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 13,
+        "troubleshooting_guidance": 13,
+        "process_guideline": 2,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "curated_default": 13,
+        "evidence_role_rule": 5,
+        "process_term": 19,
+        "related_term": 2
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\lead_free_reflow_defects.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\lead_free_reflow_defects.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "chunk_count": 64,
+      "schema_valid_chunks": 64,
+      "trace_count": 64,
+      "excluded_structural_chunks": 10,
+      "chunks_with_process": 54,
+      "chunks_with_defect": 10,
+      "chunks_with_evidence_role": 54,
+      "multi_process_chunks": 21,
+      "multi_defect_chunks": 1,
+      "process_counts": {
+        "printing": 54,
+        "placement": 3,
+        "reflow": 20
+      },
+      "defect_counts": {
+        "insufficient_solder": 4,
+        "excessive_solder": 4,
+        "short": 2,
+        "shifted_component": 1
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 13,
+        "troubleshooting_guidance": 54,
+        "process_guideline": 54,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "candidate_cause": 2,
+        "curated_default": 54,
+        "evidence_role_rule": 82,
+        "process_term": 118,
+        "related_term": 14,
+        "synonym": 2
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\solder_paste_print_inspection_guide.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\solder_paste_print_inspection_guide.mapping-trace.jsonl"
+    },
+    {
+      "source_id": "solder_paste_printing_critical_parameters",
+      "chunk_count": 33,
+      "schema_valid_chunks": 33,
+      "trace_count": 33,
+      "excluded_structural_chunks": 2,
+      "chunks_with_process": 31,
+      "chunks_with_defect": 7,
+      "chunks_with_evidence_role": 31,
+      "multi_process_chunks": 10,
+      "multi_defect_chunks": 2,
+      "process_counts": {
+        "printing": 31,
+        "placement": 2,
+        "reflow": 10
+      },
+      "defect_counts": {
+        "insufficient_solder": 2,
+        "excessive_solder": 3,
+        "short": 3,
+        "shifted_component": 1
+      },
+      "evidence_role_counts": {
+        "defect_mechanism": 31,
+        "troubleshooting_guidance": 1,
+        "process_guideline": 31,
+        "normative_requirement": 0
+      },
+      "match_category_counts": {
+        "curated_default": 31,
+        "evidence_role_rule": 23,
+        "process_term": 123,
+        "related_term": 3,
+        "synonym": 6
+      },
+      "output_path": "rag\\data\\processed\\chunks_enriched\\solder_paste_printing_critical_parameters.chunks.v1.1.jsonl",
+      "trace_path": "rag\\data\\processed\\metadata_traces\\solder_paste_printing_critical_parameters.mapping-trace.jsonl"
+    }
+  ],
+  "acceptance_checks_passed": true,
+  "elapsed_seconds": 2.261
+}

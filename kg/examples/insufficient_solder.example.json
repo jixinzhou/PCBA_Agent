@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "ontology": {
+    "ontology_id": "pcba_defect_causality",
+    "ontology_version": "1.1.0",
+    "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+    "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6"
+  },
+  "defect": {
+    "entity_id": "DEFECT-INSUFFICIENT-SOLDER",
+    "canonical_name": "insufficient_solder",
+    "display_name_zh": "少锡"
+  },
+  "candidates": [
+    {
+      "relationship_id": "REL-INSUFFICIENT-SOLDER-PRINTING",
+      "candidate_cause": {
+        "entity_id": "CAUSE-INSUFFICIENT-SOLDER-DEPOSITION",
+        "canonical_name": "insufficient_solder_paste_deposition",
+        "display_name_zh": "焊膏沉积或转移不足"
+      },
+      "process": {
+        "entity_id": "PROCESS-PRINTING",
+        "canonical_name": "printing",
+        "display_name_zh": "焊膏印刷"
+      },
+      "relation_strength": "strong",
+      "verification_capability": "tool_supported",
+      "assessment_status": "not_evaluated",
+      "interpretation": "SPI VTE异常可支持该候选原因，但不单独确认唯一真实根因。",
+      "validation_metrics": [
+        {
+          "entity_id": "METRIC-SPI-VTE-MEAN",
+          "canonical_name": "vte_mean",
+          "display_name_zh": "VTE均值",
+          "tool_observable": true,
+          "api_field": "vte_mean"
+        }
+      ],
+      "validation_action": {
+        "action_type": "request_missing_data",
+        "tool_name": "spi_vte_prediction",
+        "required_inputs": [
+          "input.squeegee_pressure_kgf",
+          "input.squeegee_speed_m_s",
+          "input.separation_speed_m_s",
+          "input.separation_distance_mm"
+        ],
+        "missing_inputs": [
+          "input.squeegee_pressure_kgf",
+          "input.squeegee_speed_m_s",
+          "input.separation_speed_m_s",
+          "input.separation_distance_mm"
+        ],
+        "reason": "需要当前印刷参数才能执行SPI VTE预测。"
+      },
+      "optimization_action": {
+        "action_type": "not_available",
+        "tool_name": "spi_parameter_optimization",
+        "required_inputs": [],
+        "missing_inputs": [],
+        "reason": "必须先完成预测并确认异常，才能进入参数优化。"
+      },
+      "revalidation_required": true,
+      "provenance": {
+        "source_type": "ontology",
+        "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+        "ontology_version": "1.1.0",
+        "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6",
+        "evidence_status": "ontology_only"
+      },
+      "evidence_refs": [],
+      "limitations": [
+        "存在验证Tool不表示当前案例已经得到Tool支持。",
+        "当前没有经过审核的关系到RAG Chunk证据映射。"
+      ]
+    }
+  ],
+  "required_controls": [
+    {
+      "metric_id": "METRIC-SPI-VTE-MEAN",
+      "canonical_name": "vte_mean",
+      "process_id": "printing",
+      "validation_tool": "spi_vte_prediction",
+      "source_relationship_ids": ["REL-INSUFFICIENT-SOLDER-PRINTING"]
+    }
+  ],
+  "warnings": ["候选致因不代表已确认的唯一真实根因。"]
+}

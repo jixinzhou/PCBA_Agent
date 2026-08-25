@@ -1,0 +1,15 @@
+experiment_version: pcba-retriever-main-rank-fusion/0.1.0
+base_evaluation_config: rag/config/retriever_main_reranker.v0.1.yaml
+fusion:
+  rrf_k: 60
+  reranker_weight_start: 0.00
+  reranker_weight_end: 1.00
+  reranker_weight_step: 0.01
+  primary_metric: macro_recall_at_5
+  tie_break_metrics:
+    - micro_rel2_recall_at_5
+    - mrr_at_10
+    - ndcg_at_10
+  final_tie_break: lower_reranker_weight
+output:
+  results: rag/evaluation/question/retriever_main_rank_fusion_metrics.json

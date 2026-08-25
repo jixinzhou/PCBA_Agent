@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page.v1.1.schema.json",
+  "title": "PCBA RAG Page V1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "page_id",
+    "source_id",
+    "source_sha256",
+    "pdf_page_index",
+    "pdf_page_number",
+    "printed_page_label",
+    "printed_page_source",
+    "printed_page_confidence",
+    "status",
+    "text",
+    "blocks",
+    "extraction_method",
+    "parser",
+    "ocr",
+    "quality",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "page_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "pdf_page_index": {"type": "integer", "minimum": 0},
+    "pdf_page_number": {"type": "integer", "minimum": 1},
+    "printed_page_label": {"type": ["string", "null"], "minLength": 1},
+    "printed_page_source": {"enum": ["native", "ocr", "inferred", "none"]},
+    "printed_page_confidence": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "status": {"enum": ["success", "partial", "blank", "failed"]},
+    "text": {"type": "string"},
+    "blocks": {
+      "type": "array",
+      "items": {"$ref": "block.v1.schema.json"}
+    },
+    "extraction_method": {"enum": ["native", "ocr", "mixed", "none", "failed"]},
+    "parser": {"$ref": "#/$defs/parser"},
+    "ocr": {"$ref": "#/$defs/ocr"},
+    "quality": {"$ref": "#/$defs/quality"},
+    "error": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/error"}]}
+  },
+  "$defs": {
+    "parser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "ocr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["used", "average_score", "line_count", "elapsed_seconds"],
+      "properties": {
+        "used": {"type": "boolean"},
+        "average_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "line_count": {"type": ["integer", "null"], "minimum": 0},
+        "elapsed_seconds": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assessment", "text_char_count", "flags"],
+      "properties": {
+        "assessment": {"enum": ["pass", "warn", "fail", "not_applicable"]},
+        "text_char_count": {"type": "integer", "minimum": 0},
+        "flags": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "message"],
+      "properties": {
+        "type": {"type": "string", "minLength": 1},
+        "message": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

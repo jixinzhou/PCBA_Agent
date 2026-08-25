@@ -1,0 +1,208 @@
+ontology_id: pcba_defect_causality
+ontology_version: "1.1.0"
+status: frozen
+
+scope:
+  defect_ids:
+    - insufficient_solder
+    - excessive_solder
+    - short
+    - shifted_component
+  process_ids:
+    - printing
+    - placement
+    - reflow
+  relationship_count: 5
+
+processes:
+  - entity_id: PROCESS-PRINTING
+    canonical_name: printing
+    display_name_zh: 焊膏印刷
+    aliases: [锡膏印刷, 印刷工序]
+  - entity_id: PROCESS-PLACEMENT
+    canonical_name: placement
+    display_name_zh: 元器件贴装
+    aliases: [贴片, 贴装工序]
+  - entity_id: PROCESS-REFLOW
+    canonical_name: reflow
+    display_name_zh: 回流焊
+    aliases: [再流焊, 回流工序]
+
+defects:
+  - entity_id: DEFECT-INSUFFICIENT-SOLDER
+    canonical_name: insufficient_solder
+    display_name_zh: 少锡
+    aliases: [焊料不足, 锡量不足, 焊锡不足, insufficient solder]
+  - entity_id: DEFECT-EXCESSIVE-SOLDER
+    canonical_name: excessive_solder
+    display_name_zh: 多锡
+    aliases: [焊料过多, 锡量过多, 焊锡过多, excess solder, excessive solder]
+  - entity_id: DEFECT-SHORT
+    canonical_name: short
+    display_name_zh: 短路
+    aliases: [焊锡短路, solder short, short circuit]
+  - entity_id: DEFECT-SHIFTED-COMPONENT
+    canonical_name: shifted_component
+    display_name_zh: 元件偏移
+    aliases: [元件移位, 器件偏移, component shift, component misalignment]
+
+candidate_causes:
+  - entity_id: CAUSE-INSUFFICIENT-SOLDER-DEPOSITION
+    canonical_name: insufficient_solder_paste_deposition
+    display_name_zh: 焊膏沉积或转移不足
+    aliases: [焊膏沉积不足, 焊膏转移效率不足, VTE偏低, low solder paste transfer]
+    process_id: printing
+  - entity_id: CAUSE-EXCESSIVE-SOLDER-DEPOSITION
+    canonical_name: excessive_solder_paste_deposition
+    display_name_zh: 焊膏沉积量过大
+    aliases: [焊膏过量, 锡膏沉积过多, excessive paste deposit]
+    process_id: printing
+  - entity_id: CAUSE-WET-PASTE-BRIDGING
+    canonical_name: wet_solder_paste_bridging
+    display_name_zh: 湿焊膏桥连
+    aliases: [锡膏桥连, 湿锡膏桥连, paste bridging, wet paste short]
+    process_id: printing
+  - entity_id: CAUSE-PLACEMENT-OFFSET
+    canonical_name: placement_offset
+    display_name_zh: 贴装位置偏差
+    aliases: [贴装偏移, 元件偏位, 贴片偏移, placement misalignment]
+    process_id: placement
+  - entity_id: CAUSE-REFLOW-THERMAL-IMBALANCE
+    canonical_name: reflow_thermal_imbalance
+    display_name_zh: 回流热不均或润湿不同步
+    aliases: [两端受热不均, 润湿不同步, 不平衡表面张力, thermal imbalance, asynchronous wetting]
+    process_id: reflow
+
+validation_metrics:
+  - entity_id: METRIC-SPI-VTE-MEAN
+    canonical_name: vte_mean
+    display_name_zh: VTE均值
+    aliases: [焊膏转移效率均值, 体积转移效率均值]
+    process_id: printing
+    tool_observable: true
+    api_field: vte_mean
+  - entity_id: METRIC-PASTE-BRIDGE
+    canonical_name: paste_bridge
+    display_name_zh: 湿焊膏桥连检查
+    aliases: [锡膏桥连检查, 湿短路检查]
+    process_id: printing
+    tool_observable: false
+    api_field: null
+  - entity_id: METRIC-PLACEMENT-OFFSET-XYTHETA
+    canonical_name: placement_offset_x_y_theta
+    display_name_zh: 贴装X/Y/θ偏差
+    aliases: [贴装坐标偏差, 贴装角度偏差]
+    process_id: placement
+    tool_observable: false
+    api_field: null
+  - entity_id: METRIC-REFLOW-PEAK-TEMP
+    canonical_name: peak_temperature_c
+    display_name_zh: 峰值温度
+    aliases: [最高温度, 回流峰值温度]
+    process_id: reflow
+    tool_observable: true
+    api_field: peak_temperature_c
+  - entity_id: METRIC-REFLOW-TAL
+    canonical_name: time_above_217_s
+    display_name_zh: 217℃以上时间
+    aliases: [液相线以上时间, TAL, 217℃以上停留时间]
+    process_id: reflow
+    tool_observable: true
+    api_field: time_above_217_s
+  - entity_id: METRIC-REFLOW-PWI
+    canonical_name: pwi
+    display_name_zh: PWI
+    aliases: [工艺窗口指数, Process Window Index]
+    process_id: reflow
+    tool_observable: true
+    api_field: pwi
+  - entity_id: METRIC-REFLOW-THERMAL-DELTA
+    canonical_name: reflow_point_temperature_difference
+    display_name_zh: 不同测点温度差异
+    aliases: [测点热差异, 多测点温差, thermal delta]
+    process_id: reflow
+    tool_observable: true
+    api_field: point_results
+
+tools:
+  - entity_id: TOOL-SPI-PRED
+    canonical_name: spi_vte_prediction
+    display_name_zh: SPI VTE预测工具
+    process_id: printing
+    tool_role: prediction
+  - entity_id: TOOL-SPI-OPT
+    canonical_name: spi_parameter_optimization
+    display_name_zh: SPI参数优化工具
+    process_id: printing
+    tool_role: optimization
+  - entity_id: TOOL-REFLOW-PRED
+    canonical_name: reflow_profile_prediction
+    display_name_zh: 回流曲线预测工具
+    process_id: reflow
+    tool_role: prediction
+  - entity_id: TOOL-REFLOW-OPT
+    canonical_name: reflow_parameter_optimization
+    display_name_zh: 回流参数优化工具
+    process_id: reflow
+    tool_role: optimization
+
+relationships:
+  - relationship_id: REL-INSUFFICIENT-SOLDER-PRINTING
+    defect_id: insufficient_solder
+    candidate_cause_id: CAUSE-INSUFFICIENT-SOLDER-DEPOSITION
+    process_id: printing
+    validation_metric_ids: [METRIC-SPI-VTE-MEAN]
+    validation_tool: spi_vte_prediction
+    optimization_tool: spi_parameter_optimization
+    relation_strength: strong
+    verification_status: tool_supported
+    interpretation: SPI VTE异常可支持该候选原因，但不单独确认唯一真实根因。
+  - relationship_id: REL-EXCESSIVE-SOLDER-PRINTING
+    defect_id: excessive_solder
+    candidate_cause_id: CAUSE-EXCESSIVE-SOLDER-DEPOSITION
+    process_id: printing
+    validation_metric_ids: [METRIC-SPI-VTE-MEAN]
+    validation_tool: spi_vte_prediction
+    optimization_tool: spi_parameter_optimization
+    relation_strength: medium_strong
+    verification_status: tool_supported
+    interpretation: SPI VTE偏高可支持焊膏沉积过量候选原因，优化后必须再次预测验证。
+  - relationship_id: REL-SHORT-WET-PASTE-BRIDGING
+    defect_id: short
+    candidate_cause_id: CAUSE-WET-PASTE-BRIDGING
+    process_id: printing
+    validation_metric_ids: [METRIC-PASTE-BRIDGE]
+    validation_tool: null
+    optimization_tool: null
+    relation_strength: strong
+    verification_status: unverified
+    interpretation: 该强候选关系当前无直接 Tool，必须保留并标记为未工具验证。
+  - relationship_id: REL-SHIFTED-COMPONENT-PLACEMENT
+    defect_id: shifted_component
+    candidate_cause_id: CAUSE-PLACEMENT-OFFSET
+    process_id: placement
+    validation_metric_ids: [METRIC-PLACEMENT-OFFSET-XYTHETA]
+    validation_tool: null
+    optimization_tool: null
+    relation_strength: strong
+    verification_status: unverified
+    interpretation: 贴装位置偏差是强候选原因，当前无贴装预测 Tool，保留为未工具验证因素。
+  - relationship_id: REL-SHIFTED-COMPONENT-REFLOW
+    defect_id: shifted_component
+    candidate_cause_id: CAUSE-REFLOW-THERMAL-IMBALANCE
+    process_id: reflow
+    validation_metric_ids:
+      - METRIC-REFLOW-PEAK-TEMP
+      - METRIC-REFLOW-TAL
+      - METRIC-REFLOW-PWI
+      - METRIC-REFLOW-THERMAL-DELTA
+    validation_tool: reflow_profile_prediction
+    optimization_tool: reflow_parameter_optimization
+    relation_strength: conditional
+    verification_status: tool_supported
+    interpretation: 回流热不均或润湿不同步仅作为条件性候选原因，不得表述为元件偏移的必然根因。
+
+system_principles:
+  candidate_not_confirmed_root_cause: true
+  unverified_relations_are_retained: true
+  optimization_requires_prediction_revalidation: true

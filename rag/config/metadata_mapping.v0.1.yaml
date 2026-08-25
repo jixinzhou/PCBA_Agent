@@ -1,0 +1,227 @@
+schema_version: "1.0.0"
+mapping_version: "0.1.0"
+mapper_version: pcba-rag-metadata-mapper/1.0.0
+metadata_schema_version: "1.1.0"
+chunk_schema_version: "1.1.0"
+dictionary_path: rag/schemas/entity_dictionary.json
+ontology_path: ontology/pcba_defect_causality.v1.1.yaml
+
+input:
+  chunks_directory: rag/data/processed/chunks
+
+output:
+  chunks_directory: rag/data/processed/chunks_enriched
+  traces_directory: rag/data/processed/metadata_traces
+  summary_path: rag/reports/t10.5_summary.json
+  report_path: rag/reports/T10.5_METADATA_VALIDATION.md
+
+matching:
+  normalize_unicode: NFKC
+  case_sensitive: false
+  longest_term_first: true
+  english_word_boundaries: true
+  # These words are too ambiguous to be accepted alone. Longer phrases such as
+  # "short circuit" and "thermal profile" remain eligible.
+  disabled_bare_terms:
+    - short
+    - bridge
+    - profile
+    - placement
+    - wetting
+    - 润湿
+
+excluded_sections:
+  exact:
+    - Front Matter
+    - Contents
+    - Advertisement
+    - References
+    - Authors Profile
+    - Back Matter
+    - About Indium Corporation
+    - GJB 3243A-2021 电子元器件表面安装要求
+    - IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版
+    - 目录
+    - 前言
+
+# Related terms improve retrieval recall but are not promoted to ontology
+# synonyms or candidate causes.
+related_terms:
+  - rule_id: related-insufficient-deposit
+    terms:
+      - solder paste insufficients
+      - incomplete paste deposit
+      - missing paste deposit
+      - incomplete paste fill
+      - incomplete print
+    defect_ids: [insufficient_solder]
+    process_ids: [printing]
+  - rule_id: related-excess-deposit
+    terms:
+      - paste over printing
+      - overprinting
+      - solder paste bleed
+      - excessive paste
+    defect_ids: [excessive_solder]
+    process_ids: [printing]
+  - rule_id: related-paste-short
+    terms:
+      - solder paste shorts
+      - solder paste wet shorts
+      - wet short
+      - paste short
+      - solder bridging
+    defect_ids: [short]
+    process_ids: [printing]
+  - rule_id: related-component-displacement
+    terms:
+      - tombstoning
+      - t ombstoning
+      - component lift
+      - component movement
+      - component skew
+    defect_ids: [shifted_component]
+    process_ids: [placement, reflow]
+
+process_terms:
+  - rule_id: process-printing-terms
+    process_id: printing
+    terms:
+      - solder paste printing
+      - solder paste print
+      - stencil printing
+      - paste deposit
+      - paste transfer
+      - transfer efficiency
+      - squeegee
+      - stencil
+      - aperture
+      - vte
+      - 焊膏涂覆
+      - 焊膏印刷
+      - 锡膏印刷
+      - 钢网
+      - 模板印刷
+      - 刮刀
+      - 脱模
+  - rule_id: process-placement-terms
+    process_id: placement
+    terms:
+      - component placement
+      - pick and place
+      - placement offset
+      - placement misalignment
+      - 贴装
+      - 贴片
+      - 贴装偏差
+  - rule_id: process-reflow-terms
+    process_id: reflow
+    terms:
+      - reflow soldering
+      - reflow oven
+      - reflow process
+      - thermal profile
+      - temperature profile
+      - time above liquidus
+      - process window index
+      - peak temperature
+      - 再流焊
+      - 回流焊
+      - 炉温曲线
+      - 温度曲线
+      - 液相线以上时间
+      - 峰值温度
+
+evidence_role_rules:
+  - rule_id: evidence-mechanism
+    evidence_role: defect_mechanism
+    terms:
+      - caused by
+      - causes
+      - due to
+      - results in
+      - resulting in
+      - because
+      - mechanism
+      - surface tension
+      - 原因
+      - 导致
+      - 由于
+      - 机理
+      - 表面张力
+  - rule_id: evidence-troubleshooting
+    evidence_role: troubleshooting_guidance
+    terms:
+      - check
+      - inspect
+      - ensure
+      - avoid
+      - reduce
+      - prevent
+      - clean
+      - corrective action
+      - adjust
+      - 检查
+      - 排查
+      - 避免
+      - 减少
+      - 防止
+      - 清洗
+      - 调整
+  - rule_id: evidence-process-guideline
+    evidence_role: process_guideline
+    terms:
+      - recommended
+      - should
+      - shall
+      - must
+      - procedure
+      - process parameter
+      - guideline
+      - 建议
+      - 工艺参数
+      - 指南
+      - 程序
+  - rule_id: evidence-normative
+    evidence_role: normative_requirement
+    terms:
+      - 应符合
+      - 应按
+      - 不应
+      - 不得
+      - 必须
+      - 要求
+
+source_defaults:
+  solder_paste_print_inspection_guide:
+    process_ids: [printing]
+    evidence_roles: [troubleshooting_guidance, process_guideline]
+  ipc_7530_zh:
+    process_ids: [reflow]
+    evidence_roles: [process_guideline]
+  gjb_3243a_2021:
+    process_ids: []
+    evidence_roles: [normative_requirement]
+  solder_paste_printing_critical_parameters:
+    process_ids: [printing]
+    evidence_roles: [defect_mechanism, process_guideline]
+  lead_free_reflow_defects:
+    process_ids: [reflow]
+    evidence_roles: [defect_mechanism, troubleshooting_guidance]
+  fine_pitch_csp_assembly_processes:
+    process_ids: [printing, placement, reflow]
+    evidence_roles: [defect_mechanism, process_guideline]
+
+section_rules:
+  - rule_id: section-gjb-printing
+    source_id: gjb_3243a_2021
+    section_contains: 6.2.2 焊膏涂覆
+    process_ids: [printing]
+  - rule_id: section-gjb-placement
+    source_id: gjb_3243a_2021
+    section_contains: 6.2.4 贴装
+    process_ids: [placement]
+  - rule_id: section-gjb-reflow
+    source_id: gjb_3243a_2021
+    section_contains: 6.2.6.1 再流焊
+    process_ids: [reflow]

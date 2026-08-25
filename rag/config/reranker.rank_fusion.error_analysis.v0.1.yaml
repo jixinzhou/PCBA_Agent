@@ -1,0 +1,9 @@
+analysis_version: pcba-reranker-rank-fusion-error-analysis/0.1.0
+base_evaluation_config: rag/config/reranker.full_evaluation.v0.1.yaml
+fusion:
+  reranker_weight: 0.73
+  rrf_k: 60
+output:
+  query_summary_csv: rag/evaluation/reranker_rank_fusion_w073_query_summary.csv
+  rel2_details_csv: rag/evaluation/reranker_rank_fusion_w073_rel2_details.csv
+  analysis_json: rag/evaluation/reranker_rank_fusion_w073_error_analysis.json

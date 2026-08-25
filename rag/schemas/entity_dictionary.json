@@ -1,0 +1,489 @@
+{
+  "dictionary_version": "1.1.0",
+  "ontology_source": "ontology/pcba_defect_causality.v1.1.yaml",
+  "ontology_version": "1.1.0",
+  "normalization_rules": {
+    "case_sensitive": false,
+    "unit_normalization": true,
+    "prefer_existing_entity": true
+  },
+  "entities": [
+    {
+      "entity_id": "PROCESS-PRINTING",
+      "entity_type": "Process",
+      "canonical_name": "printing",
+      "display_name_zh": "焊膏印刷",
+      "aliases": [
+        "锡膏印刷",
+        "印刷工序"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "PROCESS-PLACEMENT",
+      "entity_type": "Process",
+      "canonical_name": "placement",
+      "display_name_zh": "元器件贴装",
+      "aliases": [
+        "贴片",
+        "贴装工序"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "PROCESS-REFLOW",
+      "entity_type": "Process",
+      "canonical_name": "reflow",
+      "display_name_zh": "回流焊",
+      "aliases": [
+        "再流焊",
+        "回流工序"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "PARAM-SPI-PRESSURE",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "squeegee_pressure_kgf",
+      "display_name_zh": "刮刀压力",
+      "aliases": [
+        "印刷压力",
+        "锡膏印刷压力"
+      ],
+      "properties": {
+        "process": "printing",
+        "unit": "kgf",
+        "api_field": "squeegee_pressure_kgf"
+      }
+    },
+    {
+      "entity_id": "PARAM-SPI-SPEED",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "squeegee_speed_m_s",
+      "display_name_zh": "刮刀速度",
+      "aliases": [
+        "印刷速度",
+        "刮刀运行速度"
+      ],
+      "properties": {
+        "process": "printing",
+        "unit": "m/s",
+        "api_field": "squeegee_speed_m_s"
+      }
+    },
+    {
+      "entity_id": "PARAM-SPI-SEPARATION-SPEED",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "separation_speed_m_s",
+      "display_name_zh": "脱模速度",
+      "aliases": [
+        "分离速度",
+        "脱板速度"
+      ],
+      "properties": {
+        "process": "printing",
+        "unit": "m/s",
+        "api_field": "separation_speed_m_s"
+      }
+    },
+    {
+      "entity_id": "PARAM-SPI-SEPARATION-DISTANCE",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "separation_distance_mm",
+      "display_name_zh": "脱模距离",
+      "aliases": [
+        "分离距离",
+        "脱板距离"
+      ],
+      "properties": {
+        "process": "printing",
+        "unit": "mm",
+        "api_field": "separation_distance_mm"
+      }
+    },
+    {
+      "entity_id": "METRIC-SPI-VTE-MEAN",
+      "entity_type": "QualityMetric",
+      "canonical_name": "vte_mean",
+      "display_name_zh": "VTE均值",
+      "aliases": [
+        "焊膏转移效率均值",
+        "体积转移效率均值"
+      ],
+      "properties": {
+        "process": "printing",
+        "tool_observable": true,
+        "unit": "ratio",
+        "api_field": "vte_mean"
+      }
+    },
+    {
+      "entity_id": "METRIC-SPI-VTE-VARIANCE",
+      "entity_type": "QualityMetric",
+      "canonical_name": "vte_variance",
+      "display_name_zh": "VTE方差",
+      "aliases": [
+        "焊膏转移效率方差",
+        "VTE离散度"
+      ],
+      "properties": {
+        "process": "printing",
+        "unit": "ratio_squared",
+        "api_field": "vte_variance",
+        "definition": "待工艺专家确认统计口径"
+      }
+    },
+    {
+      "entity_id": "PARAM-REFLOW-ZONE-TEMP",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "zone_means_c",
+      "display_name_zh": "温区设定温度",
+      "aliases": [
+        "炉温设定",
+        "温区均值"
+      ],
+      "properties": {
+        "process": "reflow",
+        "unit": "°C",
+        "api_field": "zone_means_c",
+        "structure": "13维数组"
+      }
+    },
+    {
+      "entity_id": "PARAM-REFLOW-BELT-SPEED",
+      "entity_type": "ProcessParameter",
+      "canonical_name": "belt_speed_cm_min",
+      "display_name_zh": "链速",
+      "aliases": [
+        "传送速度",
+        "传送带速度"
+      ],
+      "properties": {
+        "process": "reflow",
+        "unit": "cm/min",
+        "api_field": "belt_speed_cm_min"
+      }
+    },
+    {
+      "entity_id": "METRIC-REFLOW-PEAK-TEMP",
+      "entity_type": "QualityMetric",
+      "canonical_name": "peak_temperature_c",
+      "display_name_zh": "峰值温度",
+      "aliases": [
+        "最高温度",
+        "回流峰值温度"
+      ],
+      "properties": {
+        "process": "reflow",
+        "tool_observable": true,
+        "unit": "°C",
+        "api_field": "peak_temperature_c"
+      }
+    },
+    {
+      "entity_id": "METRIC-REFLOW-TAL",
+      "entity_type": "QualityMetric",
+      "canonical_name": "time_above_217_s",
+      "display_name_zh": "217℃以上时间",
+      "aliases": [
+        "液相线以上时间",
+        "TAL",
+        "217℃以上停留时间"
+      ],
+      "properties": {
+        "process": "reflow",
+        "tool_observable": true,
+        "unit": "s",
+        "api_field": "time_above_217_s",
+        "condition": "当前项目液相线按217℃定义"
+      }
+    },
+    {
+      "entity_id": "METRIC-REFLOW-PWI",
+      "entity_type": "QualityMetric",
+      "canonical_name": "pwi",
+      "display_name_zh": "PWI",
+      "aliases": [
+        "工艺窗口指数",
+        "Process Window Index"
+      ],
+      "properties": {
+        "process": "reflow",
+        "tool_observable": true,
+        "unit": "score",
+        "api_field": "pwi"
+      }
+    },
+    {
+      "entity_id": "METRIC-PASTE-BRIDGE",
+      "entity_type": "QualityMetric",
+      "canonical_name": "paste_bridge",
+      "display_name_zh": "湿焊膏桥连检查",
+      "aliases": [
+        "锡膏桥连检查",
+        "湿短路检查"
+      ],
+      "properties": {
+        "process": "printing",
+        "tool_observable": false,
+        "api_field": null
+      }
+    },
+    {
+      "entity_id": "METRIC-PLACEMENT-OFFSET-XYTHETA",
+      "entity_type": "QualityMetric",
+      "canonical_name": "placement_offset_x_y_theta",
+      "display_name_zh": "贴装X/Y/θ偏差",
+      "aliases": [
+        "贴装坐标偏差",
+        "贴装角度偏差"
+      ],
+      "properties": {
+        "process": "placement",
+        "tool_observable": false,
+        "api_field": null
+      }
+    },
+    {
+      "entity_id": "METRIC-REFLOW-THERMAL-DELTA",
+      "entity_type": "QualityMetric",
+      "canonical_name": "reflow_point_temperature_difference",
+      "display_name_zh": "不同测点温度差异",
+      "aliases": [
+        "测点热差异",
+        "多测点温差",
+        "thermal delta"
+      ],
+      "properties": {
+        "process": "reflow",
+        "tool_observable": true,
+        "api_field": "point_results"
+      }
+    },
+    {
+      "entity_id": "DEFECT-INSUFFICIENT-SOLDER",
+      "entity_type": "Defect",
+      "canonical_name": "insufficient_solder",
+      "display_name_zh": "少锡",
+      "aliases": [
+        "焊料不足",
+        "锡量不足",
+        "焊锡不足",
+        "insufficient solder"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "DEFECT-EXCESSIVE-SOLDER",
+      "entity_type": "Defect",
+      "canonical_name": "excessive_solder",
+      "display_name_zh": "多锡",
+      "aliases": [
+        "焊料过多",
+        "锡量过多",
+        "焊锡过多",
+        "excess solder",
+        "excessive solder"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "DEFECT-SHORT",
+      "entity_type": "Defect",
+      "canonical_name": "short",
+      "display_name_zh": "短路",
+      "aliases": [
+        "焊锡短路",
+        "solder short",
+        "short circuit"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "DEFECT-SHIFTED-COMPONENT",
+      "entity_type": "Defect",
+      "canonical_name": "shifted_component",
+      "display_name_zh": "元件偏移",
+      "aliases": [
+        "元件移位",
+        "器件偏移",
+        "component shift",
+        "component misalignment"
+      ],
+      "properties": {}
+    },
+    {
+      "entity_id": "CAUSE-INSUFFICIENT-SOLDER-DEPOSITION",
+      "entity_type": "CandidateCause",
+      "canonical_name": "insufficient_solder_paste_deposition",
+      "display_name_zh": "焊膏沉积或转移不足",
+      "aliases": [
+        "焊膏沉积不足",
+        "焊膏转移效率不足",
+        "VTE偏低",
+        "low solder paste transfer"
+      ],
+      "properties": {
+        "process": "printing"
+      }
+    },
+    {
+      "entity_id": "CAUSE-EXCESSIVE-SOLDER-DEPOSITION",
+      "entity_type": "CandidateCause",
+      "canonical_name": "excessive_solder_paste_deposition",
+      "display_name_zh": "焊膏沉积量过大",
+      "aliases": [
+        "焊膏过量",
+        "锡膏沉积过多",
+        "excessive paste deposit"
+      ],
+      "properties": {
+        "process": "printing"
+      }
+    },
+    {
+      "entity_id": "CAUSE-WET-PASTE-BRIDGING",
+      "entity_type": "CandidateCause",
+      "canonical_name": "wet_solder_paste_bridging",
+      "display_name_zh": "湿焊膏桥连",
+      "aliases": [
+        "锡膏桥连",
+        "湿锡膏桥连",
+        "paste bridging",
+        "wet paste short"
+      ],
+      "properties": {
+        "process": "printing"
+      }
+    },
+    {
+      "entity_id": "CAUSE-PLACEMENT-OFFSET",
+      "entity_type": "CandidateCause",
+      "canonical_name": "placement_offset",
+      "display_name_zh": "贴装位置偏差",
+      "aliases": [
+        "贴装偏移",
+        "元件偏位",
+        "贴片偏移",
+        "placement misalignment"
+      ],
+      "properties": {
+        "process": "placement"
+      }
+    },
+    {
+      "entity_id": "CAUSE-REFLOW-THERMAL-IMBALANCE",
+      "entity_type": "CandidateCause",
+      "canonical_name": "reflow_thermal_imbalance",
+      "display_name_zh": "回流热不均或润湿不同步",
+      "aliases": [
+        "两端受热不均",
+        "润湿不同步",
+        "不平衡表面张力",
+        "thermal imbalance",
+        "asynchronous wetting"
+      ],
+      "properties": {
+        "process": "reflow"
+      }
+    },
+    {
+      "entity_id": "ACTION-OPTIMIZE-SPI",
+      "entity_type": "AdjustmentAction",
+      "canonical_name": "optimize_spi_parameters",
+      "display_name_zh": "优化印刷参数",
+      "aliases": [
+        "调整印刷参数"
+      ],
+      "properties": {
+        "process": "printing"
+      }
+    },
+    {
+      "entity_id": "ACTION-OPTIMIZE-REFLOW",
+      "entity_type": "AdjustmentAction",
+      "canonical_name": "optimize_reflow_parameters",
+      "display_name_zh": "优化温区和链速",
+      "aliases": [
+        "炉温参数优化",
+        "回流参数调整"
+      ],
+      "properties": {
+        "process": "reflow"
+      }
+    },
+    {
+      "entity_id": "TOOL-SPI-PRED",
+      "entity_type": "ValidationTool",
+      "canonical_name": "spi_vte_prediction",
+      "display_name_zh": "SPI VTE预测工具",
+      "aliases": [],
+      "properties": {
+        "process": "printing",
+        "tool_type": "prediction",
+        "api_path": "/api/v1/tools/spi/predict"
+      }
+    },
+    {
+      "entity_id": "TOOL-SPI-OPT",
+      "entity_type": "ValidationTool",
+      "canonical_name": "spi_parameter_optimization",
+      "display_name_zh": "SPI参数优化工具",
+      "aliases": [],
+      "properties": {
+        "process": "printing",
+        "tool_type": "optimization",
+        "api_path": "/api/v1/tools/spi/optimize"
+      }
+    },
+    {
+      "entity_id": "TOOL-REFLOW-PRED",
+      "entity_type": "ValidationTool",
+      "canonical_name": "reflow_profile_prediction",
+      "display_name_zh": "回流曲线预测工具",
+      "aliases": [],
+      "properties": {
+        "process": "reflow",
+        "tool_type": "prediction",
+        "api_path": "/api/v1/tools/reflow/predict"
+      }
+    },
+    {
+      "entity_id": "TOOL-REFLOW-OPT",
+      "entity_type": "ValidationTool",
+      "canonical_name": "reflow_parameter_optimization",
+      "display_name_zh": "回流参数优化工具",
+      "aliases": [],
+      "properties": {
+        "process": "reflow",
+        "tool_type": "optimization",
+        "api_path": "/api/v1/tools/reflow/optimize"
+      }
+    },
+    {
+      "entity_id": "CRITERION-VTE-TARGET",
+      "entity_type": "AcceptanceCriterion",
+      "canonical_name": "vte_target_window",
+      "display_name_zh": "VTE目标窗口",
+      "aliases": [],
+      "properties": {
+        "source_type": "project_configuration",
+        "lower": 0.95,
+        "upper": 1.05,
+        "status": "待工艺确认"
+      }
+    },
+    {
+      "entity_id": "CRITERION-PWI-UPPER",
+      "entity_type": "AcceptanceCriterion",
+      "canonical_name": "pwi_upper_limit",
+      "display_name_zh": "PWI上限",
+      "aliases": [],
+      "properties": {
+        "source_type": "project_configuration",
+        "upper": 100,
+        "status": "待项目确认"
+      }
+    }
+  ]
+}

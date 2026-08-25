@@ -1,0 +1,44 @@
+index_version: "0.3.0"
+pipeline_version: "pcba-rag-qdrant/0.1.0"
+
+input:
+  chunks_directory: "rag/data/processed/chunks_enriched"
+  embeddings_directory: "rag/data/processed/embeddings"
+
+qdrant:
+  url: "http://127.0.0.1:6333"
+  timeout_seconds: 20
+  readiness_attempts: 30
+  readiness_interval_seconds: 1
+  server_version: "1.18.2"
+  client_version: "1.19.0"
+
+collection:
+  name: "pcba_industrial_knowledge_v0_3"
+  dense_vector: {name: "dense", size: 1024, distance: "Cosine"}
+  sparse_vector: {name: "sparse", modifier: null}
+  shard_number: 1
+  replication_factor: 1
+  write_consistency_factor: 1
+  on_disk_payload: false
+
+point:
+  uuid_namespace: "47f34039-c059-520b-86a4-005439334549"
+  batch_size: 32
+
+payload_indexes:
+  source_id: keyword
+  metadata.process_ids: keyword
+  metadata.defect_ids: keyword
+  metadata.evidence_roles: keyword
+  metadata.language: keyword
+  metadata.document_type: keyword
+  semantic_tag_excluded: bool
+
+validation:
+  sample_size: 5
+  vector_absolute_tolerance: 0.000001
+  require_exact_count: null
+
+output:
+  summary_path: "rag/reports/t10.7_v0.3_summary.json"

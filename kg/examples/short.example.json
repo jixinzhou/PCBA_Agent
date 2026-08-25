@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "ontology": {
+    "ontology_id": "pcba_defect_causality",
+    "ontology_version": "1.1.0",
+    "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+    "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6"
+  },
+  "defect": {
+    "entity_id": "DEFECT-SHORT",
+    "canonical_name": "short",
+    "display_name_zh": "短路"
+  },
+  "candidates": [
+    {
+      "relationship_id": "REL-SHORT-WET-PASTE-BRIDGING",
+      "candidate_cause": {
+        "entity_id": "CAUSE-WET-PASTE-BRIDGING",
+        "canonical_name": "wet_solder_paste_bridging",
+        "display_name_zh": "湿焊膏桥连"
+      },
+      "process": {
+        "entity_id": "PROCESS-PRINTING",
+        "canonical_name": "printing",
+        "display_name_zh": "焊膏印刷"
+      },
+      "relation_strength": "strong",
+      "verification_capability": "unverified",
+      "assessment_status": "not_evaluated",
+      "interpretation": "该强候选关系当前无直接 Tool，必须保留并标记为未工具验证。",
+      "validation_metrics": [
+        {
+          "entity_id": "METRIC-PASTE-BRIDGE",
+          "canonical_name": "paste_bridge",
+          "display_name_zh": "湿焊膏桥连检查",
+          "tool_observable": false,
+          "api_field": null
+        }
+      ],
+      "validation_action": {
+        "action_type": "manual_inspection",
+        "tool_name": null,
+        "required_inputs": ["manual_observation.paste_bridge"],
+        "missing_inputs": ["manual_observation.paste_bridge"],
+        "reason": "当前没有湿焊膏桥连验证Tool，需要人工检查。"
+      },
+      "optimization_action": {
+        "action_type": "not_available",
+        "tool_name": null,
+        "required_inputs": [],
+        "missing_inputs": [],
+        "reason": "当前候选路径没有正式优化Tool。"
+      },
+      "revalidation_required": false,
+      "provenance": {
+        "source_type": "ontology",
+        "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+        "ontology_version": "1.1.0",
+        "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6",
+        "evidence_status": "ontology_only"
+      },
+      "evidence_refs": [],
+      "limitations": [
+        "无Tool关系必须保留为unverified。",
+        "人工检查完成前不能宣称该候选原因已被验证。"
+      ]
+    }
+  ],
+  "required_controls": [
+    {
+      "metric_id": "METRIC-PASTE-BRIDGE",
+      "canonical_name": "paste_bridge",
+      "process_id": "printing",
+      "validation_tool": null,
+      "source_relationship_ids": ["REL-SHORT-WET-PASTE-BRIDGING"]
+    }
+  ],
+  "warnings": ["该候选路径当前只能通过人工检查继续验证。"]
+}

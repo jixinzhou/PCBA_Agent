@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.7",
+  "index_version": "0.2.0",
+  "pipeline_version": "pcba-rag-qdrant/0.1.0",
+  "collection_name": "pcba_industrial_knowledge_v0_2",
+  "qdrant_url": "http://127.0.0.1:6333",
+  "qdrant_server_version": "1.18.2",
+  "qdrant_client_version": "1.19.0",
+  "collection_existed": false,
+  "collection_recreated": false,
+  "stale_points_removed": 0,
+  "input_records": 215,
+  "dense_vector": {
+    "name": "dense",
+    "size": 1024,
+    "distance": "Cosine"
+  },
+  "sparse_vector": {
+    "name": "sparse",
+    "modifier": null
+  },
+  "point_id_strategy": "UUIDv5(fixed_namespace, chunk_id)",
+  "uuid_namespace": "47f34039-c059-520b-86a4-005439334549",
+  "validation": {
+    "exact_point_count": 215,
+    "unique_point_ids": 215,
+    "sample_readback_count": 5,
+    "dense_self_query_passed": true,
+    "sparse_self_query_passed": true,
+    "payload_index_fields": [
+      "metadata.defect_ids",
+      "metadata.document_type",
+      "metadata.evidence_roles",
+      "metadata.language",
+      "metadata.process_ids",
+      "semantic_tag_excluded",
+      "source_id"
+    ],
+    "payload_filter_checks": {
+      "source_id": {
+        "sample_value": "fine_pitch_csp_assembly_processes",
+        "expected_count": 10,
+        "actual_count": 10,
+        "passed": true
+      },
+      "metadata.process_ids": {
+        "sample_value": "printing",
+        "expected_count": 107,
+        "actual_count": 107,
+        "passed": true
+      },
+      "metadata.defect_ids": {
+        "sample_value": "insufficient_solder",
+        "expected_count": 10,
+        "actual_count": 10,
+        "passed": true
+      },
+      "metadata.evidence_roles": {
+        "sample_value": "defect_mechanism",
+        "expected_count": 67,
+        "actual_count": 67,
+        "passed": true
+      },
+      "metadata.language": {
+        "sample_value": "en",
+        "expected_count": 128,
+        "actual_count": 128,
+        "passed": true
+      },
+      "metadata.document_type": {
+        "sample_value": "industry_guide",
+        "expected_count": 96,
+        "actual_count": 96,
+        "passed": true
+      },
+      "semantic_tag_excluded": {
+        "sample_value": false,
+        "expected_count": 195,
+        "actual_count": 195,
+        "passed": true
+      }
+    },
+    "semantic_tag_included_points": 195,
+    "semantic_tag_excluded_points": 20,
+    "expected_fingerprint": "c2a7d3ba35b75c024a165a762ddd570c67fc9537e5d64326614031755eedc986",
+    "actual_fingerprint": "c2a7d3ba35b75c024a165a762ddd570c67fc9537e5d64326614031755eedc986",
+    "fingerprint_matches": true
+  },
+  "runtime_seconds": 3.671,
+  "acceptance_checks_passed": true
+}

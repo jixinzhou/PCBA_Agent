@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page.v1.schema.json",
+  "title": "PCBA RAG Page V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "page_id",
+    "source_id",
+    "source_sha256",
+    "pdf_page_index",
+    "pdf_page_number",
+    "status",
+    "text",
+    "extraction_method",
+    "parser",
+    "ocr",
+    "quality"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "page_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "pdf_page_index": {"type": "integer", "minimum": 0},
+    "pdf_page_number": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["success", "partial", "failed"]},
+    "text": {"type": "string"},
+    "extraction_method": {"enum": ["native", "ocr", "mixed", "failed"]},
+    "parser": {"$ref": "#/$defs/parser"},
+    "ocr": {"$ref": "#/$defs/ocr"},
+    "quality": {"$ref": "#/$defs/quality"}
+  },
+  "$defs": {
+    "parser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "ocr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["used"],
+      "properties": {
+        "used": {"type": "boolean"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assessment", "text_char_count", "flags"],
+      "properties": {
+        "assessment": {"enum": ["pass", "warn", "fail"]},
+        "text_char_count": {"type": "integer", "minimum": 0},
+        "flags": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

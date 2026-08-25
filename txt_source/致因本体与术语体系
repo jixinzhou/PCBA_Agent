@@ -1,0 +1,142 @@
+
+
+## 我建议最终把四类缺陷表冻结成这个版本
+
+| 缺陷                       | 候选原因              | 工序 | 验证指标                      | Tool                        | 优化 Tool                         | 关系强度          |
+| ------------------------ | ----------------- | -- | ------------------------- | --------------------------- | ------------------------------- | ------------- |
+| 少锡 `insufficient_solder` | 焊膏沉积不足 / 转移效率不足   | 印刷 | VTE均值                     | `spi_vte_prediction`        | `spi_parameter_optimization`    | **强**         |
+| 多锡 `excessive_solder`    | 焊膏沉积量过大           | 印刷 | VTE均值偏高                   | `spi_vte_prediction`        | `spi_parameter_optimization`    | **中-强**       |
+| 短路 `short`               | 湿焊膏桥连             | 印刷 | paste bridge              | 当前无直接验证 Tool                | 无                               | **强，但不可工具验证** |
+| 元件偏移 `shifted_component` | 贴装位置偏差            | 贴装 | X/Y/θ                     | 无                           | 无                               | **强**         |
+| 元件偏移 `shifted_component` | **回流热不均导致元件运动异常** | 回流 | 温度曲线、Peak、TAL、PWI、不同测点热差异 | `reflow_profile_prediction` | `reflow_parameter_optimization` | **条件性**       |
+
+最后这一条就是我们把**回流焊正式融进闭环**的关键。
+
+Indium 对立碑问题明确说明：两端焊膏如果不能同时进入液相，会产生不平衡的润湿/表面张力；采用 soak 型回流曲线可以改善两端热平衡，降低 tombstoning。它同时要求检查贴装压力、Z-height、元件 skew，以及 SPI 两端焊膏量一致性。
+
+因此我们不能写：
+
+> “回流异常必然导致 shifted_component。”
+
+但完全可以写成：
+
+> **“对于元件偏移类异常，回流过程中的热不均和润湿不同步作为条件性候选原因进行检查。”**
+
+这已经足够支撑项目。
+
+---
+
+## 这样你的智能体闭环就真正成立了
+
+### 闭环 A：少锡
+
+```text
+AOI图片
+↓
+pcba_defect_classification
+↓
+识别：少锡
+↓
+KG查询
+↓
+候选原因：焊膏转移效率不足
+↓
+spi_vte_prediction
+↓
+VTE异常
+↓
+spi_parameter_optimization
+↓
+获得新印刷参数
+↓
+再次 spi_vte_prediction
+↓
+VTE改善
+↓
+诊断报告
+```
+
+这是最漂亮、最扎实的一条。
+
+---
+
+### 闭环 B：多锡
+
+```text
+AOI图片
+↓
+多锡
+↓
+KG
+↓
+焊膏沉积量过大
+↓
+SPI预测
+↓
+VTE偏高
+↓
+SPI优化
+↓
+推荐印刷参数
+↓
+重新预测
+↓
+改善
+```
+
+Indium 资料也明确提到，印刷/贴装压力过大会导致 solder paste bleed-out，从而形成 excess solder paste；这些多余焊膏在回流过程中还可能形成焊球。
+
+这条也能闭环。
+
+---
+
+### 闭环 C：元件偏移——专门给回流模型
+
+这是我们重点设计的一条：
+
+```text
+AOI图片
+↓
+shifted_component
+↓
+KG产生两个候选原因
+
+① 贴装位置偏差
+② 回流热不均 / 润湿不同步
+```
+
+Agent发现：
+
+```text
+贴装：
+没有 Tool
+→ unverified
+
+回流：
+有 Tool
+→ 可以进一步验证
+```
+
+于是：
+
+```text
+reflow_profile_prediction
+↓
+分析 Peak / TAL / PWI / 多测点温度差异
+↓
+发现当前热过程异常
+↓
+候选原因：
+reflow_thermal_imbalance
+evidence_level = conditional
+↓
+reflow_parameter_optimization
+↓
+调整温区 + 链速
+↓
+再次 reflow_profile_prediction
+↓
+温度曲线改善 / PWI降低
+↓
+输出建议
+```

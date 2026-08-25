@@ -1,0 +1,40 @@
+schema_version: "1.0.0"
+embedding_config_version: "0.1.0"
+pipeline_version: pcba-rag-embedding/1.0.0
+
+input:
+  chunks_directory: rag/data/processed/chunks_enriched
+  traces_directory: rag/data/processed/metadata_traces
+  text_fields: [section_path, text]
+  section_separator: " > "
+  section_body_separator: "\n\n"
+
+model:
+  name: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  local_directory: rag/cache/bge-m3-model
+  implementation: FlagEmbedding.BGEM3FlagModel
+  implementation_version: "1.4.0"
+  preferred_device: cuda:0
+  allow_cpu_fallback: true
+  use_fp16_on_cuda: true
+  normalize_embeddings: true
+  max_length: 1024
+  batch_size: 1
+  return_dense: true
+  return_sparse: true
+  return_colbert_vecs: false
+  dense_dimension: 1024
+
+output:
+  storage_dtype: float32
+  embeddings_directory: rag/data/processed/embeddings
+  summary_path: rag/reports/t10.6_summary.json
+  report_path: rag/reports/T10.6_EMBEDDING_VALIDATION.md
+
+validation:
+  dense_norm_tolerance: 0.02
+  reproducibility_sample_size: 5
+  reproducibility_atol: 0.0001
+  require_zero_truncation: true
+  require_nonempty_sparse: true

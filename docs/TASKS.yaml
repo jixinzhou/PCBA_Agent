@@ -34,15 +34,317 @@ tasks:
 
 - id: T09
   name: 定义缺陷致因本体与术语体系
-  status: todo
+  status: done
+
+- id: T09.1
+  parent: T09
+  name: 修订并冻结缺陷致因本体V1.1
+  status: done
+  depends_on: [T09]
+  review_required: true
+  deliverables:
+    - T09 V1.1唯一权威本体YAML与JSON Schema
+    - 与权威本体一致的实体词典
+    - 本体、词典、Tool和Metadata一致性自动化测试
+  acceptance:
+    - 仅包含insufficient_solder、excessive_solder、short、shifted_component四类缺陷
+    - 固化五条候选致因关系并区分strong、medium_strong和conditional
+    - short和贴装位置偏差在无Tool时仍以unverified关系保留
+    - 实体词典不得包含已移出正式范围的cold_solder_joint和tombstoning
 
 - id: T10
   name: 构建工业知识RAG知识库
-  status: todo
+  status: done
+  execution_policy: sequential_user_review
+  completion_rule: 每个子任务经用户检查通过后，才允许开始下一个子任务
+
+- id: T10.1
+  parent: T10
+  name: 固化RAG V0.1范围与数据契约
+  status: done
+  depends_on: [T09]
+  review_required: true
+  deliverables:
+    - 四份核心PDF显式白名单与来源清单
+    - Page、Chunk、Metadata和Retriever返回Schema
+    - RAG目录、配置和派生产物管理方案
+  acceptance:
+    - V0.1只允许四份已确认核心资料进入处理链路
+    - Schema包含稳定ID、来源、页码、证据角色、解析方式和版本追踪字段
+    - 不创建解析结果、Embedding或向量索引
+
+- id: T10.2
+  parent: T10
+  name: 验证四份PDF解析与OCR最小链路
+  status: done
+  depends_on: [T10.1]
+  review_required: true
+  deliverables:
+    - 四份PDF代表页解析样本
+    - Indium AES读取验证结果
+    - GJB中文OCR验证结果
+    - 解析依赖与质量评估报告
+  acceptance:
+    - 每份PDF选择3至5个代表页完成验证
+    - 原生解析与OCR页面均保留正确来源和页码
+    - 依赖在PCB_Agent环境完成最小可运行验证
+
+- id: T10.3
+  parent: T10
+  name: 全量解析四份核心PDF并生成页面数据
+  status: done
+  depends_on: [T10.2]
+  review_required: true
+  deliverables:
+    - 四份PDF的页面级规范化数据
+    - 标题、段落、列表、表格和公式等页面级Blocks
+    - 全量解析与OCR状态报告
+  acceptance:
+    - 四份白名单PDF的每一页均有成功或明确失败状态
+    - 不存在静默丢页
+    - 页面数据保留PDF页码、印刷页码、解析方式和质量信息
+    - 空白页与解析失败明确区分，Blocks保留阅读顺序和归一化坐标
+
+- id: T10.4
+  parent: T10
+  name: 实现结构化Chunk与稳定Chunk ID
+  status: done
+  depends_on: [T10.3]
+  review_required: true
+  deliverables:
+    - 章节感知的Chunk处理流程
+    - 四份资料的Chunk数据与统计报告
+  acceptance:
+    - Chunk不跨文档且原则上不跨章节
+    - 表格、列表和标题关系得到保留
+    - 无空Chunk且相同输入可生成相同Chunk ID
+
+- id: T10.5
+  parent: T10
+  name: 完成Chunk元数据与T09术语映射
+  status: done
+  depends_on: [T10.4, T09.1]
+  review_required: true
+  deliverables:
+    - 完整Metadata记录
+    - T09别名、相关术语和候选原因映射配置
+  acceptance:
+    - 每个Chunk均可追溯到来源、章节和页码
+    - 区分同义词、相关术语与候选原因
+    - 区分机理、排查建议、工艺指南和规范要求等证据角色
+
+- id: T10.6
+  parent: T10
+  name: 生成RAG V0.1 Embedding
+  status: done
+  depends_on: [T10.5]
+  review_required: true
+  deliverables:
+    - BGE-M3本地Embedding流程
+    - Dense与Sparse向量化结果及统计
+  acceptance:
+    - Chunk数与向量记录数一致
+    - 记录模型名称、revision、维度、配置和文本哈希
+    - Embedding可在PCB_Agent环境重建
+
+- id: T10.7
+  parent: T10
+  name: 构建Qdrant V0.1向量索引
+  status: done
+  depends_on: [T10.6]
+  review_required: true
+  deliverables:
+    - pcba_industrial_knowledge_v0_1 Collection
+    - 索引构建、重建和一致性检查结果
+  acceptance:
+    - Qdrant Point数与Embedding记录数一致
+    - Dense、Sparse和Metadata Payload可正确读取
+    - 向量库作为可重建派生产物，不作为唯一数据源
+
+- id: T10.8
+  parent: T10
+  name: 实现框架无关Retriever
+  status: done
+  depends_on: [T10.7]
+  review_required: true
+  deliverables:
+    - Retriever输入输出Schema与Python接口
+    - 查询规范化、Dense检索和Sparse检索结果
+  acceptance:
+    - Retriever不依赖LangGraph或模型服务内部代码
+    - 返回Chunk文本、来源、页码、分数和索引版本
+    - 可按来源、工序和缺陷元数据筛选
+
+- id: T10.9
+  parent: T10
+  name: 实现Top-K融合、去重与引用返回
+  status: done
+  depends_on: [T10.8]
+  review_required: true
+  deliverables:
+    - Dense与Sparse候选的RRF融合流程
+    - 重叠Chunk去重与最终Top-K结果
+  acceptance:
+    - 默认流程为双路Top-20、融合Top-10、最终Top-5
+    - 不强行为不相关结果增加来源多样性
+    - 每个最终结果均包含完整引用与检索轨迹
+
+- id: T10.10
+  parent: T10
+  name: 构建Retrieval Evaluation数据集与评测脚本
+  status: done
+  progress_state: frozen_and_accepted
+  progress:
+    - 已按当前T10.9双路Top-20与RRF规则生成48题评测专用RRF Top-20候选池
+    - 唯一权威文件为rag/evaluation/evaluation_top20.csv，共960行，旧人工标签全部作废
+    - qwen3.8-max已完成全部48题标注，相关性0、1、2分别为668、236和56条
+    - 已冻结带CSV SHA256的Chunk、Source和Page级Gold；22题进入主指标，26题单独统计
+    - 已重新运行生产Hybrid Top-10并生成指标与最简报告，Top-10未标注返回项为0
+    - 当前基线Recall@5为0.510606、MRR@10为0.679924、nDCG@10为0.645312、Source Hit@5为0.863636、Page Hit@5为0.818182
+    - 四份资料均有候选和至少一条相关证据，但IPC仅有1条辅助证据且无直接Gold，四来源直接Gold覆盖尚未满足
+    - 26题Top-50隔离实验已完成，共复用520条旧标签并标注780条新增候选；相关性0、1、2分别为674、93和13条
+    - 13条初判直接证据中3条通过严格复核，恢复Q012、Q014和Q029共3/26题，IPC仍无直接Gold
+    - 实验结论为不建议将正式候选池全局扩展到Top-50；正式Top-20、冻结Gold和基线指标均未修改
+    - 已提取Top-50后仍未解决的23题并生成业务必要性人工审查清单，其中17题原设计可回答、6题原设计为无答案负样本
+    - 业务审查已确认15个正样本和6个负样本保留，Q027与Q037删除；负样本不参与知识补充核查
+    - 已对15个正样本独立检索全部183条Chunk和136个非空Page，共生成60条完整／部分知识候选并形成PDF页码人工核对报告
+    - 9题检出候选，Q007、Q010、Q017、Q030、Q033、Q034未检出核心关键词；等待人工裁决后再修Retriever、补资料或调整评测集
+    - 最终删除Q010、Q027、Q030、Q037并保留Q020，评测集收敛为44题
+    - 新增3份补充资料、34页和32条Chunk，知识库V0.2合计7来源、216页、215条Chunk
+    - 仅对32条新增Chunk生成Embedding，并建立215 Point的pcba_industrial_knowledge_v0_2 Collection；V0.1保留
+    - 44题Top-20共880条候选，精确复用769条旧标签并由Qwen标注111条新增候选，全部完成
+    - 已冻结最终Gold并重新运行生产Hybrid Top-10，未标注返回项为0
+    - 最终Recall@5为0.451449、MRR@10为0.577899、nDCG@10为0.600400、Source Hit@5为0.826087、Page Hit@5为0.782609
+    - 最终指标报告已生成，等待用户验收；Recall和MRR未达到T10.11冻结门槛
+    - 三篇补充论文已按显式真实小标题和原生逻辑顺序重切，章节数为27、10、14，补充Chunk由32条调整为62条
+    - V0.3共245条Chunk与Point，Metadata、变化Embedding及pcba_industrial_knowledge_v0_3 Collection均通过校验
+    - V0.3的44题Top-20共880条候选，712条精确复用旧标签，168条变化候选进入增量标注
+    - Qwen已完成全部168条变化候选，最终880条候选无空标签或错误
+    - 已冻结gold_dataset_final_v3.json并重跑生产Hybrid Top-10，Top-10未标注返回项为0
+    - V0.3的27个可回答问题指标为Recall@5 0.415226、MRR@10 0.554733、nDCG@10 0.592216、Source Hit@5 0.814815、Page Hit@5 0.777778
+    - 共同23题口径下MRR与Source/Page Hit较V0.2上升，Recall与nDCG小幅下降；Q011、Q012、Q014、Q048新增直接Gold
+    - 唯一最终指标报告已更新，等待用户审核；Recall与MRR仍未达到T10.11门槛
+    - 已生成44题失败归因表，结果为18题success、8题ranking_failure、12题knowledge_or_question_gap、3题knowledge_gap、3题rewrite
+    - 8个ranking_failure为Q011、Q012、Q014、Q018、Q021、Q022、Q024、Q025；人工确认负样本覆盖后无recall_failure
+    - 已提取12个knowledge_or_question_gap问题及代表性辅助证据，形成待人工填写的多证据/改写/删除/知识缺口审查清单
+    - 已用固定revision的bge-reranker-v2-m3执行8题Top-20到Top-5隔离实验，直接答案命中由0/8提升到6/8，MRR@5由0提升到0.5104
+    - Q024与Q025重排后分别位于第6和第12；160对输入无截断，峰值显存约1109.79MB，生产Retriever未修改
+    - 用户最终删除Q001、Q004、Q007、Q008、Q009、Q013、Q017、Q020、Q029、Q033、Q034共11题，并保留改写后的Q019，实验范围收敛为33题
+    - 已对33题660个原RRF Top-20候选执行全量Reranker并复用原V0.3 Gold，27个可回答问题的Macro Recall@5为0.641534、Micro rel=2 Recall@5为0.526316（40/76）、MRR@10为0.595062、nDCG@10为0.732433
+    - Source Hit@5与Page Hit@5均为0.962963，直接答案Top-5覆盖25/27、Top-10覆盖26/27；Q024未进Top-5、Q025未进Top-10
+    - 全量实验无输入截断且峰值显存约1113.06MB，生产Retriever未修改；Recall与MRR仍未达到T10.11门槛
+    - 已完成RRF/Reranker排名融合0.00至1.00权重扫描；Recall优先w=0.73时Macro/Micro Recall@5为0.695032/0.592105（45/76），w=0.91在保持纯Reranker Recall不变时将MRR@10/nDCG@10提升至0.601235/0.738846，生产配置未修改
+    - w=0.73逐题错误分析已完成，融合救回7条并挤出2条rel=2，净增5条来自Q003、Q005、Q023、Q032、Q040；已保存27题汇总、76条rel=2三层rank/score明细及JSON归因
+    - 已完成54组排名分歧门控融合扫描；Recall最优门控未超过固定w=0.73，阈值7/偏移0.20则相对纯Reranker同时提升Macro/Micro Recall@5、MRR@10与nDCG@10至0.672399/0.565789/0.637390/0.742639，生产配置未修改
+    - 已在rag/evaluation/question按用途保存Retriever主评测16题、多证据3题、Agent/KG 2题及No-answer 3题；Q019、Q024、Q036使用确认后的改写
+    - 16题已重建V0.3 RRF Top-20并完成320条标签；Q019与Q024无rel=2，主排序指标严格覆盖14题、43条rel=2
+    - 14题RRF、纯Reranker与固定w=0.73融合的Macro Recall@5为0.362528、0.736395、0.762188，Micro rel=2 Recall@5为17/43、25/43、27/43
+    - w=0.73融合Top-5直接答案覆盖14/14，MRR@10为0.585714、nDCG@10为0.772454；生产配置未修改
+    - 用户已验收并冻结当前评测方式；权威说明和哈希清单位于rag/evaluation/README.md与FROZEN_MANIFEST.json，旧标注数据已归档且非必要派生产物已清理
+  depends_on: [T10.9]
+  review_required: true
+  deliverables:
+    - 按用途拆分的16题Retriever主评测及8题独立评测题集
+    - 320条完整标注候选池与冻结Source/Page级Gold
+    - RRF、Reranker和固定w=0.73排名融合指标
+    - 完整评测README、冻结哈希清单和验证脚本
+  acceptance:
+    - 16题正式目标与多证据、Agent/KG、No-answer题集分开保存
+    - Recall、MRR、nDCG、Source Hit和Page Hit口径明确且可复现
+    - 无rel=2问题单列，不强行计入排序主指标
+    - 冻结文件哈希、模型revision、RRF和融合参数完整记录
+
+- id: T10.11
+  parent: T10
+  name: 完成检索对比评测并冻结RAG V0.1
+  status: done
+  completion_mode: accepted_metric_exception
+  depends_on: [T10.10]
+  review_required: true
+  deliverables:
+    - Dense、Sparse、Hybrid和可选Reranker对比报告
+    - RAG V0.1最终配置与验收报告
+  target:
+    - Recall@5不低于0.85且MRR@10不低于0.70
+  acceptance:
+    - 冻结方案Macro Recall@5为0.762188、MRR@10为0.585714，未达到原目标并如实保留
+    - 来源与页码元数据完整率为100%
+    - 已冻结w=0.73的RRF与Reranker排名融合方案并同步项目状态文档
+    - 用户接受当前数据规模与Gold质量下的指标例外，T10不再阻塞T11
 
 - id: T11
   name: 抽取并构建Neo4j缺陷致因知识图谱
-  status: todo
+  status: done
+  execution_policy: operational_kg_before_agent_ui
+  current_subtask: T11.3
+  acceptance:
+    - 图谱以T09 V1.1权威本体为唯一事实源且可重复幂等构建
+    - 查询结果包含候选原因、工序、验证指标、Tool映射、关系强度、验证状态和来源
+    - 无Tool关系必须保留为unverified并向Agent暴露缺失观测量
+    - Neo4j可视化或静态节点展示不能单独作为完成依据
+
+- id: T11.1
+  parent: T11
+  name: 定义可运行知识图谱契约与Neo4j映射
+  status: done
+  progress_state: accepted
+  review_required: true
+  depends_on: [T09.1]
+  core_principles:
+    - 单一事实源与确定性映射：T09 V1.1本体是缺陷、原因、工序、指标和Tool关系的唯一权威来源，导入必须幂等、可校验且不得由LLM临时发明实体或关系
+    - 面向决策而非展示：图谱查询必须返回可供Agent直接消费的因果候选路径、关系强度、验证状态、所需输入和下一验证动作，接口保持框架无关
+    - 证据可追溯且不确定性显式化：每条候选关系必须保留来源与解释，不把候选原因冒充唯一根因，无Tool或证据不足的关系继续以unverified返回，优化后必须要求重新预测验证
+  deliverables:
+    - 节点、关系、唯一约束和索引定义
+    - 因果候选与下一验证动作查询返回Schema
+    - 本体字段到Neo4j属性的确定性映射
+    - SPI Tool、无Tool人工检查及shifted_component双路径示例
+    - 本体、映射、Schema、示例和Tool名称一致性测试
+  acceptance:
+    - 使用CausalHypothesis表达候选致因，不创建确定性的CAUSED_BY关系
+    - 四类缺陷和五条权威路径完整映射，shifted_component同时返回两条候选路径
+    - tool_supported只表示具备验证能力，运行初始状态固定为not_evaluated
+    - required_controls支持一个缺陷汇总多个工序指标，但不新增T09之外的事实
+    - 无Tool关系保留为unverified并返回manual_inspection
+    - 不连接Neo4j、不自动关联RAG Chunk、不启用待确认阈值
+    - 13项T11.1契约测试及T09本体回归测试通过
+
+- id: T11.2
+  parent: T11
+  name: 实现T09本体的Neo4j幂等导入与一致性验证
+  status: done
+  progress_state: accepted
+  review_required: true
+  depends_on: [T11.1]
+  deliverables:
+    - 固定版本的Neo4j Community Docker Compose与本地环境模板
+    - T09 V1.1确定性GraphPlan、Neo4j MERGE导入器和真实验证逻辑
+    - 28节点、40关系的两轮幂等导入结果与验收记录
+  acceptance:
+    - Neo4j Community 2026.07.1容器健康且官方Driver 6.2.0安装在PCB_Agent
+    - 两轮导入后的节点、关系和完整图指纹一致
+    - 四类缺陷、五条候选路径、两条unverified路径与Tool映射符合T09
+    - shifted_component在真实图中同时保留贴装和回流两条路径
+    - 凭据不进入Git且named volume中的图可从T09权威本体重建
+    - 不导入本体外实体、未确认阈值或未经审核的RAG证据
+
+- id: T11.3
+  parent: T11
+  name: 实现框架无关KG查询接口
+  status: done
+  progress_state: accepted
+  depends_on: [T11.2]
+  deliverables:
+    - 参数化只读Neo4j路径查询与框架无关Python服务
+    - 按缺陷或relationship_id查询的独立命令行入口
+    - 缺失输入、下一验证动作、稳定排序与required_controls组装逻辑
+    - 四类缺陷和五条真实路径的单元及Neo4j验收记录
+  acceptance:
+    - 四类缺陷均可查询，shifted_component按strong到conditional返回两条路径
+    - 可区分tool_supported与unverified并返回request_missing_data、invoke_tool或manual_inspection
+    - 输入数据只决定验证准备度，不调用Tool且assessment_status保持not_evaluated
+    - 支持按relationship_id查看单条权威路径，未知输入关闭式报错
+    - LangGraph之外可独立调用，32项KG测试及真实Neo4j查询通过
 
 - id: T12
   name: 将模型API封装为Agent Tools
@@ -50,15 +352,59 @@ tasks:
 
 - id: T13
   name: 使用LangGraph实现智能体任务编排
-  status: todo
+  status: done
+  progress_state: implemented_and_validated
+  llm_policy:
+    provider: qwen_openai_compatible_api
+    model: qwen3.7-flash-2026-07-15
+    responsibilities: [input_extraction, clarification_generation, report_synthesis]
+    deterministic_routing: true
+  optimization_policy:
+    trigger: user_goal_is_diagnose_and_optimize_and_prediction_supports_anomaly
+    apply_to_equipment: false
+    prediction_revalidation_required: true
+  deliverables:
+    - agent_request与agent_result JSON Schema及Pydantic状态契约
+    - Qwen OpenAI兼容结构化输出适配器
+    - 确定性LangGraph条件编排与SQLite checkpoint恢复
+    - 冻结RAG排名融合、KG查询和五个HTTP Tool适配
+    - CLI、诊断轨迹、11项自动化测试和真实组件验证脚本
+  validation:
+    agent_tests: 11/11
+    kg_regression_tests: 32/32
+    real_rag_rank_fusion: passed
+    real_shifted_component_graph: passed
+    report: agent/reports/T13_VALIDATION.md
+  acceptance:
+    - 根据缺失数据、证据强度、验证状态和Tool结果走条件分支
+    - 不允许把全部Tool按固定顺序无条件调用
+    - 每个候选原因保留knowledge_supported、tool_supported、unverified或contradicted状态
+    - Reranker不可用时可显式降级到RRF并在诊断轨迹中记录
 
 - id: T14
   name: 打通缺陷诊断完整闭环
-  status: todo
+  status: done
+  progress_state: accepted
+  validation:
+    short_diagnosis: passed
+    shifted_component_optimization: passed
+    pwi_before: 105.46
+    pwi_after: 24.23
+    optimization_revalidation: passed
+    report: agent/reports/T14_SAMPLE_VALIDATION.md
+  acceptance:
+    - 输出多个有证据的候选原因而非伪造唯一根因
+    - 缺少必要工艺参数时先补问，证据不足时允许拒答或保留未验证结论
+    - 任何参数优化后必须再次调用对应预测Tool验证
+    - 诊断结果可追溯到RAG引用、KG路径和Tool调用结果
 
 - id: T15
   name: 构建测试集并完成智能体系统评测
   status: todo
+  acceptance:
+    - 评测Tool选择正确率、不必要Tool调用率和缺失数据识别率
+    - 评测证据引用完整率、因果一致性、优化后复验率和拒答正确性
+    - 至少覆盖四类缺陷、无Tool关系、Tool失败和证据不足场景
 
 - id: T16
   name: Docker部署与项目文档整理
@@ -67,3 +413,12 @@ tasks:
 - id: T17
   name: 初始化并发布GitHub仓库
   status: done
+
+- id: T18
+  name: 瘦身启动必读项目文档并归档历史内容
+  status: done
+  deliverables:
+    - 精简版docs/STATUS.md
+    - 精简版docs/DECISIONS.md
+    - docs/archive中的长版历史归档
+    - AGENTS.md启动读取规则更新

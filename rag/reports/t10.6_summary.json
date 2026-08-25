@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.6",
+  "embedding_record_schema_version": "1.0.0",
+  "embedding_config_version": "0.1.0",
+  "pipeline_version": "pcba-rag-embedding/1.0.0",
+  "model": {
+    "name": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "local_directory": "rag/cache/bge-m3-model",
+    "implementation": "FlagEmbedding.BGEM3FlagModel",
+    "implementation_version": "1.4.0",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "inference_dtype": "float16",
+    "storage_dtype": "float32",
+    "max_length": 1024,
+    "batch_size": 1,
+    "normalize_embeddings": true,
+    "return_dense": true,
+    "return_sparse": true,
+    "return_colbert_vecs": false
+  },
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "pypdf": "6.15.0",
+      "cryptography": "50.0.0",
+      "pypdfium2": "5.13.0",
+      "rapidocr": "3.9.2",
+      "onnxruntime": "1.28.0",
+      "jsonschema": "4.26.0",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3",
+      "Pillow": "12.2.0",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.4",
+      "torch": "2.6.0+cu118",
+      "transformers": "4.57.6",
+      "huggingface-hub": "0.36.2",
+      "sentencepiece": "0.2.2",
+      "FlagEmbedding": "1.4.0"
+    },
+    "pip_check_ok": true,
+    "pip_check_output": "No broken requirements found."
+  },
+  "input_sources": 3,
+  "input_chunks": 62,
+  "embedding_records": 62,
+  "schema_valid_records": 62,
+  "unique_chunk_ids": 62,
+  "dense_dimension": 1024,
+  "dense_norm_statistics": {
+    "minimum": 0.999698,
+    "maximum": 1.000273
+  },
+  "nonempty_sparse_records": 62,
+  "token_statistics": {
+    "minimum": 56,
+    "p50": 397,
+    "p95": 765,
+    "maximum": 827
+  },
+  "sparse_nnz_statistics": {
+    "minimum": 30,
+    "p50": 124,
+    "p95": 277,
+    "maximum": 330
+  },
+  "truncated_inputs": 0,
+  "semantic_tag_excluded_records": 3,
+  "source_counts": {
+    "fine_pitch_csp_assembly_processes": 16,
+    "lead_free_reflow_defects": 13,
+    "solder_paste_printing_critical_parameters": 33
+  },
+  "output_paths": {
+    "fine_pitch_csp_assembly_processes": "rag\\data\\processed\\embeddings\\fine_pitch_csp_assembly_processes.embeddings.jsonl",
+    "lead_free_reflow_defects": "rag\\data\\processed\\embeddings\\lead_free_reflow_defects.embeddings.jsonl",
+    "solder_paste_printing_critical_parameters": "rag\\data\\processed\\embeddings\\solder_paste_printing_critical_parameters.embeddings.jsonl"
+  },
+  "reproducibility": {
+    "sample_size": 5,
+    "positions": [
+      0,
+      15,
+      30,
+      46,
+      61
+    ],
+    "dense_allclose": true,
+    "sparse_allclose": true,
+    "absolute_tolerance": 0.0001
+  },
+  "runtime": {
+    "embedding_seconds": 3.854,
+    "total_seconds": 15.837,
+    "peak_gpu_allocated_mb": 1111.9,
+    "peak_gpu_reserved_mb": 1136.0
+  },
+  "acceptance_checks_passed": true
+}

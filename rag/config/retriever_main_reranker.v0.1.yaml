@@ -1,0 +1,20 @@
+experiment_version: pcba-retriever-main-reranker/0.1.0
+model:
+  model_id: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  implementation: FlagEmbedding.FlagReranker
+  use_fp16: true
+  device: cuda:0
+  batch_size: 1
+  max_length: 1024
+  normalize_score: false
+input:
+  candidate_pool: rag/evaluation/question/retriever_main_top20_v0.3.csv
+  original_gold: rag/evaluation/question/retriever_main_gold_v0.3.json
+  candidate_count_per_query: 20
+  excluded_query_ids: []
+  query_overrides: {}
+output:
+  reranked_top_k: 10
+  final_top_k: 5
+  report: rag/evaluation/question/retriever_main_reranker_metrics.md

@@ -1,0 +1,38 @@
+runtime_version: "1.0.0"
+
+llm:
+  provider: qwen_openai_compatible
+  model: qwen3.7-flash-2026-07-15
+  api_key_env: QWEN_API_KEY
+  base_url_env: QWEN_BASE_URL
+  timeout_seconds_env: QWEN_TIMEOUT_SECONDS
+  max_retries_env: QWEN_MAX_RETRIES
+  extraction_temperature: 0.0
+  generation_temperature: 0.2
+  enable_thinking: false
+
+checkpoint:
+  backend: sqlite
+  path: agent/storage/checkpoints.sqlite3
+  strict_msgpack: true
+
+rag:
+  knowledge_base_version: "0.3"
+  candidate_pool_top_k: 20
+  final_top_k: 5
+  reranker_weight: 0.73
+  retriever_weight: 0.27
+  rrf_k: 60
+  reranker_config: rag/config/retriever_main_reranker.v0.1.yaml
+  fallback: rrf
+
+routing:
+  supported_defects:
+    - insufficient_solder
+    - excessive_solder
+    - short
+    - shifted_component
+  tool_failure_status: inconclusive
+  optimization_requires_supported_prediction: true
+  optimization_requires_revalidation: true
+  write_to_equipment: false

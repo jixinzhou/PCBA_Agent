@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "source_title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+  "organization": "IPC",
+  "document_type": "standard",
+  "language": "zh-CN",
+  "rights_status": "pending_confirmation",
+  "process_ids": ["reflow"],
+  "defect_ids": ["shifted_component"],
+  "evidence_roles": ["process_guideline"],
+  "tag_origin": "curated",
+  "parser_version": "example-parser/0.0.0",
+  "ocr_used": false
+}

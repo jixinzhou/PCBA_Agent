@@ -1,0 +1,192 @@
+schema_version: "1.0.0"
+chunker_version: "pcba-rag-chunker/1.0.0"
+
+input:
+  pages_directory: rag/data/processed/pages
+
+output:
+  chunks_directory: rag/data/processed/chunks
+  summary_path: rag/reports/t10.4_summary.json
+  report_path: rag/reports/T10.4_CHUNK_VALIDATION.md
+
+tokenizer:
+  model_name: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  local_directory: rag/cache/bge-m3-tokenizer
+  add_special_tokens: false
+
+size:
+  minimum_tokens: 300
+  target_tokens: 600
+  hard_max_tokens: 800
+
+content:
+  excluded_block_types:
+    - header
+    - footer
+    - page_number
+
+heading:
+  maximum_characters: 100
+  source_policies:
+    gjb_3243a_2021:
+      allow_unnumbered_headings: false
+    ipc_7530_zh:
+      allow_unnumbered_headings: false
+    solder_paste_printing_critical_parameters:
+      allow_unnumbered_headings: false
+    lead_free_reflow_defects:
+      allow_unnumbered_headings: false
+    fine_pitch_csp_assembly_processes:
+      allow_unnumbered_headings: false
+  page_section_overrides:
+    indium_solder_defects_2021:
+      1: &indium_front
+        title: Front Matter
+        suppress_detected_headings: true
+      2: *indium_front
+      3: *indium_front
+      4: *indium_front
+      5: *indium_front
+      6: *indium_front
+      7:
+        title: Contents
+        suppress_detected_headings: true
+      8:
+        title: Contents
+        suppress_detected_headings: true
+      52:
+        title: Back Matter
+        suppress_detected_headings: true
+    solder_paste_print_inspection_guide:
+      1: &print_front
+        title: Front Matter
+        suppress_detected_headings: true
+      2: *print_front
+      3:
+        title: Contents
+        suppress_detected_headings: true
+      20: &print_ad
+        title: Advertisement
+        suppress_detected_headings: true
+      21: *print_ad
+      25: *print_ad
+      29: *print_ad
+      36: *print_ad
+      37: *print_ad
+      41:
+        title: References
+        suppress_detected_headings: true
+      44:
+        title: Back Matter
+        suppress_detected_headings: true
+    ipc_7530_zh:
+      5:
+        title: 群焊工艺温度曲线指南（再流焊和波峰焊）
+        suppress_detected_headings: true
+    gjb_3243a_2021:
+      2:
+        title: 目录
+        suppress_detected_headings: true
+      3:
+        title: 前言
+        suppress_detected_headings: true
+      30: &gjb_appendix_a
+        title: 附录A 常用表面安装元器件连接盘伸出量和贴装区冗余量要求
+        suppress_detected_headings: true
+      31: *gjb_appendix_a
+      32: *gjb_appendix_a
+      33: *gjb_appendix_a
+      34: *gjb_appendix_a
+      35: &gjb_appendix_b
+        title: 附录B PCB基板对比
+        suppress_detected_headings: true
+      36: *gjb_appendix_b
+      37: &gjb_appendix_c
+        title: 附录C PCB基板材料属性
+        suppress_detected_headings: true
+      38: *gjb_appendix_c
+  article_text_sources:
+    solder_paste_printing_critical_parameters:
+      excluded_line_patterns:
+        - '^The solder paste printing process$'
+        - '^Soldering & Surface Mount T ?echnology$'
+        - '^V ?olume 23.*$'
+        - '^Chien-Yi Huang, Yueh-Hsun Lin, Kuo-Ching Ying and Chen-Liang Ku$'
+        - '^\d{3}$'
+      headings:
+        - {page_number: 1, marker: '1. Introduction', title: '1. Introduction', level: 2}
+        - {page_number: 2, marker: '2. Research objective and methodology', title: '2. Research objective and methodology', level: 2}
+        - page_number: 2
+          marker: '3. The effects of process parameters, stencil and'
+          title: '3. The effects of process parameters, stencil and PCB designs on transfer ratio during solder paste printing'
+          level: 2
+          consume_following_lines: 2
+        - {page_number: 2, marker: '3.1 Printing process parameters', title: '3.1 Printing process parameters', level: 3}
+        - {page_number: 3, marker: '3.1.1 Printing pressure', title: '3.1.1 Printing pressure', level: 4}
+        - {page_number: 3, marker: '3.1.2 Front/rear squeegee', title: '3.1.2 Front/rear squeegee', level: 4}
+        - {page_number: 3, marker: '3.1.3 Distances to the initial printing location', title: '3.1.3 Distances to the initial printing location', level: 4}
+        - {page_number: 4, marker: '3.1.4 Distances to the board edge', title: '3.1.4 Distances to the board edge', level: 4}
+        - {page_number: 5, marker: '3.2 Stencil design parameters', title: '3.2 Stencil design parameters', level: 3}
+        - {page_number: 6, marker: '3.2.1 V ariation in stencil thickness', title: '3.2.1 Variation in stencil thickness', level: 4}
+        - {page_number: 6, marker: '3.2.2 Directions of stencil aperture', title: '3.2.2 Directions of stencil aperture', level: 4}
+        - {page_number: 6, marker: '3.2.3 Aspect ratio and area ratio of stencil aperture design', title: '3.2.3 Aspect ratio and area ratio of stencil aperture design', level: 4}
+        - {page_number: 6, marker: '3.3 PCB design parameters', title: '3.3 PCB design parameters', level: 3}
+        - {page_number: 6, marker: '3.3.1 Solder mask thickness', title: '3.3.1 Solder mask thickness', level: 4}
+        - {page_number: 7, marker: '3.3.2 Bonding pad deﬁnition', title: '3.3.2 Bonding pad definition', level: 4}
+        - page_number: 8
+          marker: '4. The correlation between the solder deposition'
+          title: '4. The correlation between the solder deposition and occurrence of post-reflow defects'
+          level: 2
+          consume_following_lines: 1
+        - {page_number: 8, marker: '4.1 T ombstoning', title: '4.1 Tombstoning', level: 3}
+        - {page_number: 8, marker: '4.2 Solder opens', title: '4.2 Solder opens', level: 3}
+        - {page_number: 8, marker: '4.3 Solder shorts', title: '4.3 Solder shorts', level: 3}
+        - {page_number: 9, marker: '5. Research on SPI speciﬁcations', title: '5. Research on SPI specifications', level: 2}
+        - {page_number: 9, marker: '5.1 Adjusting the SPI speciﬁcations', title: '5.1 Adjusting the SPI specifications', level: 3}
+        - {page_number: 9, marker: '5.1.1 Solder thickness speciﬁcation', title: '5.1.1 Solder thickness specification', level: 4}
+        - {page_number: 9, marker: '5.1.2 Solder area speciﬁcation', title: '5.1.2 Solder area specification', level: 4}
+        - {page_number: 10, marker: '5.2 Establish SPI speciﬁcation based on the CoPQ', title: '5.2 Establish SPI specification based on the CoPQ', level: 3}
+        - {page_number: 12, marker: '6. Conclusions', title: '6. Conclusions', level: 2}
+        - {page_number: 13, marker: 'References', title: 'References', level: 2}
+    lead_free_reflow_defects:
+      excluded_line_patterns: []
+      headings:
+        - {page_number: 1, marker: 'Abstract', title: 'Abstract', level: 2}
+        - page_number: 1
+          marker: '1. The influence of various soldering and material conditions on the quality of finished SMD components.'
+          title: '1. Influence of soldering and material conditions on finished SMD quality'
+          level: 2
+        - {page_number: 4, marker: 'Results', title: '1.1 Results', level: 3}
+        - {page_number: 4, marker: 'Wetting', occurrence: 2, title: '1.1.1 Wetting', level: 4}
+        - {page_number: 6, marker: 'Voids', title: '1.1.2 Voids', level: 4}
+        - {page_number: 6, marker: 'Summary of Results', title: '1.2 Summary of Results', level: 3}
+        - page_number: 7
+          marker: '2. Thermal stability of moistu re sensitive components during the soldering process'
+          title: '2. Thermal stability of moisture-sensitive components during soldering'
+          level: 2
+        - {page_number: 9, marker: 'Results', title: '2.1 Results', level: 3}
+        - {page_number: 11, marker: 'Summary', title: '2.2 Summary', level: 3}
+    fine_pitch_csp_assembly_processes:
+      excluded_line_patterns:
+        - '^S07-1-\d+$'
+        - '^Presented at IPC Printed Circuits Expo®$'
+        - '^SMEMA Council APEX®$'
+        - '^Designers Summit 04$'
+      headings:
+        - {page_number: 1, marker: 'Abstract', title: 'Abstract', level: 2}
+        - {page_number: 1, marker: 'Introduction', title: 'Introduction', level: 2}
+        - {page_number: 1, marker: 'Test Vehicle and Components', title: 'Test Vehicle and Components', level: 2}
+        - {page_number: 3, marker: 'Solder Pastes and Stencils', title: 'Solder Pastes and Stencils', level: 2}
+        - {page_number: 4, marker: 'Reflow Process', title: 'Reflow Process', level: 2}
+        - {page_number: 4, marker: 'Printed Circuit Board Design Considerations', title: 'Printed Circuit Board Design Considerations', level: 2}
+        - {page_number: 5, marker: 'Screen Printing Process', title: 'Screen Printing Process', level: 2}
+        - {page_number: 6, marker: 'PCB Design', title: 'PCB Design', level: 2}
+        - {page_number: 7, marker: 'Pick & Place Process', title: 'Pick & Place Process', level: 2}
+        - {page_number: 8, marker: 'Required Placement Accuracy', title: 'Required Placement Accuracy', level: 2}
+        - {page_number: 10, marker: 'Conclusions', title: 'Conclusions', level: 2}
+        - {page_number: 10, marker: 'Acknowledgements', title: 'Acknowledgements', level: 2}
+        - {page_number: 10, marker: 'References', title: 'References', level: 2}
+
+stable_id:
+  digest_hex_characters: 24

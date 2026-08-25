@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.1.0",
+  "page_id": "gjb_3243a_2021:p0020",
+  "source_id": "gjb_3243a_2021",
+  "source_sha256": "d4429e339e3772286ad5395b719e0b78135ba04c69bdeb0495bb1a18eb9569af",
+  "pdf_page_index": 19,
+  "pdf_page_number": 20,
+  "printed_page_label": "17",
+  "printed_page_source": "ocr",
+  "printed_page_confidence": 0.99,
+  "status": "success",
+  "text": "6.2.6 焊接",
+  "blocks": [
+    {
+      "schema_version": "1.0.0",
+      "block_id": "gjb_3243a_2021:p0020:b0001",
+      "block_type": "heading",
+      "text": "6.2.6 焊接",
+      "reading_order": 0,
+      "bbox": [0.08, 0.12, 0.62, 0.16],
+      "heading_level": 3,
+      "extraction_source": "ocr",
+      "confidence": 0.99,
+      "quality_flags": []
+    }
+  ],
+  "extraction_method": "ocr",
+  "parser": {"name": "rapidocr", "version": "3.9.2"},
+  "ocr": {
+    "used": true,
+    "average_score": 0.99,
+    "line_count": 1,
+    "elapsed_seconds": 0.1
+  },
+  "quality": {"assessment": "pass", "text_char_count": 10, "flags": []},
+  "error": null
+}

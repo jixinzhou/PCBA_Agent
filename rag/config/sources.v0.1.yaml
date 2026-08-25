@@ -1,0 +1,62 @@
+schema_version: "1.0.0"
+knowledge_base_id: pcba_industrial_knowledge
+knowledge_base_version: "0.1.0"
+
+sources:
+  - source_id: indium_solder_defects_2021
+    file_path: txt_source/indium-guide-to-minimizing-solder-defects-2021-tpcag2sd.pdf
+    enabled: true
+    title: A Guide to Minimizing Solder Defects
+    organization: Indium Corporation
+    document_type: vendor_guide
+    language: en
+    evidence_roles:
+      - defect_mechanism
+      - troubleshooting_guidance
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 1d02c788b82011b13d668f291c5959dae65c043728f1c71619c1e21d9feee6b5
+
+  - source_id: solder_paste_print_inspection_guide
+    file_path: txt_source/Solder-Paste-Print-Inspection-Defect-Guide.pdf
+    enabled: true
+    title: Solder Paste Print Inspection Defect Guide
+    organization: null
+    document_type: industry_guide
+    language: en
+    evidence_roles:
+      - troubleshooting_guidance
+      - process_guideline
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 14f4510bc509bf82aba837b71f2a86f00bf2ebe608aa9062815cd0b115ab18c6
+
+  - source_id: ipc_7530_zh
+    file_path: txt_source/IPC-7530+焊工艺温度曲线指南(回流焊和波峰焊)+中文版.pdf
+    enabled: true
+    title: IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版
+    organization: IPC
+    document_type: standard
+    language: zh-CN
+    evidence_roles:
+      - process_guideline
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 780d61706c312e447225066a83bdd5abc7c98ccde800d24a7e1b8c5bfaffdea6
+
+  - source_id: gjb_3243a_2021
+    file_path: txt_source/GJB_3243A-2021_电子元器件表面安装要求.pdf
+    enabled: true
+    title: GJB 3243A-2021 电子元器件表面安装要求
+    organization: null
+    document_type: standard
+    language: zh-CN
+    evidence_roles:
+      - normative_requirement
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: d4429e339e3772286ad5395b719e0b78135ba04c69bdeb0495bb1a18eb9569af

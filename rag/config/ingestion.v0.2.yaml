@@ -1,0 +1,42 @@
+schema_version: "1.1.0"
+
+output:
+  pages_directory: rag/data/processed/pages
+  checkpoints_directory: rag/data/processed/checkpoints
+  summary_path: rag/reports/t10.3_summary.json
+  report_path: rag/reports/T10.3_FULL_PAGE_VALIDATION.md
+
+native_extraction:
+  parser: pypdf
+
+ocr:
+  engine: rapidocr
+  backend: onnxruntime
+  render_dpi: 200
+  trigger_below_chars: 80
+  force_source_ids:
+    - gjb_3243a_2021
+  force_layout_source_ids:
+    - ipc_7530_zh
+
+quality:
+  minimum_text_chars: 80
+  maximum_replacement_ratio: 0.01
+
+blocks:
+  header_ratio: 0.08
+  footer_ratio: 0.92
+  paragraph_gap_ratio: 0.035
+
+printed_page:
+  disabled_source_ids:
+    - ipc_7530_zh
+
+blank_page:
+  confirmed_pdf_page_ranges:
+    ipc_7530_zh:
+      - [7, 48]
+  ignored_patterns:
+    - "(?i)^page\\s*\\(\\s*\\d+\\s*/\\s*\\d+\\s*\\)$"
+    - "^100%$"
+    - "^-?\\s*100%\\s*\\+?$"

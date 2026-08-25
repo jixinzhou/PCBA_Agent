@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_result.v1.schema.json",
+  "title": "PCBA Agent Result V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"enum": ["completed", "needs_input", "failed"]},
+    "request_id": {"type": "string"},
+    "thread_id": {"type": "string"},
+    "defect": {"type": ["object", "null"]},
+    "candidates": {"type": "array", "items": {"type": "object"}},
+    "rag_evidence": {"type": "array", "items": {"type": "object"}},
+    "pending_inputs": {"type": "array", "items": {"type": "string"}},
+    "pending_prompt": {"type": ["string", "null"]},
+    "tool_trace": {"type": "array", "items": {"type": "object"}},
+    "degradation_trace": {"type": "array", "items": {"type": "object"}},
+    "errors": {"type": "array", "items": {"type": "object"}},
+    "response_text": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["schema_version", "status", "request_id", "thread_id", "candidates", "rag_evidence", "pending_inputs", "tool_trace", "degradation_trace", "errors", "response_text", "limitations"]
+}

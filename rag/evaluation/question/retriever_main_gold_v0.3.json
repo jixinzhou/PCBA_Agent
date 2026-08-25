@@ -1,0 +1,4366 @@
+{
+  "schema_version": "1.0.0",
+  "gold_version": "pcba-retrieval-gold/1.0.0",
+  "frozen_at_utc": "2026-08-19T07:47:52+00:00",
+  "source": {
+    "path": "rag\\evaluation\\question\\retriever_main_top20_v0.3.csv",
+    "sha256": "fc3fdd23849bf2c0bcf693a91e86382834240e32cfcd4af9a505dcde2cd54059",
+    "pool_version": "pcba-retrieval-eval-top20/1.0.0",
+    "dataset_name": "pcba_retriever_main_v1",
+    "dataset_sha256": "c08d69c386e3ead93375e210a1bbdd7fcfd5ce2a1e0594ac81084d93a55daafa"
+  },
+  "provenance": {
+    "knowledge_base_version": "0.3.0",
+    "index_version": "0.3.0",
+    "collection_name": "pcba_industrial_knowledge_v0_3",
+    "retriever_version": "pcba-rag-retriever/0.3.0",
+    "fusion_version": "pcba-rag-fusion/0.1.0",
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "annotation_models": [
+      "qwen3.8-max"
+    ],
+    "annotation_prompt_sha256s": [
+      "67e58bb23cf799d86e3fea1606909186b881c6307b29e8cac74c4b443ef6af4f",
+      "8374eb0fca991434dc9b337fb17c7b1fa298a102e209d602edb58b8e3c5958c9"
+    ]
+  },
+  "policy": {
+    "direct_relevance": 2,
+    "supporting_relevance": 1,
+    "irrelevant_relevance": 0,
+    "recall_mrr_hit_threshold": 2,
+    "ndcg_gain": "2^relevance-1",
+    "primary_query_scope": "candidate_answerable=true",
+    "source_hit_k": 5,
+    "page_hit_k": 5,
+    "page_match": "same_source_and_page_range_overlap",
+    "unanswerable_queries_reported_separately": true
+  },
+  "summary": {
+    "query_count": 16,
+    "candidate_count": 320,
+    "candidate_answerable_count": 14,
+    "candidate_unanswerable_count": 2,
+    "supporting_only_count": 2,
+    "all_zero_count": 0,
+    "relevance_counts": {
+      "0": 185,
+      "1": 92,
+      "2": 43
+    }
+  },
+  "queries": [
+    {
+      "query_id": "Q002",
+      "query": "哪些印刷工艺因素可能造成焊料不足？",
+      "language": "zh",
+      "query_type": "cause_retrieval",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q002-Ac15dffff61a2",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q002-A43a4105958f0",
+          "chunk_id": "solder_paste_print_inspection_guide:c_68ac747f44ca13921c86fa5b",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q002-A48d06c973cfb",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q002-A3ae4db810900",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q002-Aeb4d640f3711",
+          "chunk_id": "solder_paste_print_inspection_guide:c_48aa0ff663136f76c0a6f570",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q002-A9525891a0c45",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q002-A7782ccc2a7fb",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q002-Af20d05084bfa",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q002-Ac15dffff61a2",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q002-Af20d05084bfa",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q002-A758f0dbfe067",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q002-Ad7cf2b720bf0",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q002-Ad67a4c166d0c",
+          "chunk_id": "ipc_7530_zh:c_9b271bad791c23f32da6b866",
+          "relevance": 0,
+          "source_id": "ipc_7530_zh",
+          "pdf_page_start": 5,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q002-A6d137739149b",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q002-A43a4105958f0",
+          "chunk_id": "solder_paste_print_inspection_guide:c_68ac747f44ca13921c86fa5b",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q002-A9df3a53d545b",
+          "chunk_id": "gjb_3243a_2021:c_70adb3a538fdb8e2be133b83",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q002-A48d06c973cfb",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q002-Ae1ab6e87f9a8",
+          "chunk_id": "gjb_3243a_2021:c_52314b9861174e56fb468b78",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q002-Aa71b87d598c1",
+          "chunk_id": "solder_paste_print_inspection_guide:c_01b7601435738e1906873565",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 14,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q002-Ac3783ee8bea0",
+          "chunk_id": "gjb_3243a_2021:c_68c5ac7ef775c7a37f12b3d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q002-A3ae4db810900",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q002-Abf2bb1bd8c35",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q002-Aeb4d640f3711",
+          "chunk_id": "solder_paste_print_inspection_guide:c_48aa0ff663136f76c0a6f570",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q002-A195b103a8c1d",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q002-A9525891a0c45",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q002-A9af28c5cadc4",
+          "chunk_id": "gjb_3243a_2021:c_55357d2daed71d06cad3353f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q002-A7782ccc2a7fb",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q002-Ab775b098c43a",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        }
+      ],
+      "gold_sources": [
+        "gjb_3243a_2021",
+        "indium_solder_defects_2021",
+        "solder_paste_print_inspection_guide",
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ]
+    },
+    {
+      "query_id": "Q003",
+      "query": "锡膏转移量不足通常与哪些印刷参数有关？",
+      "language": "zh",
+      "query_type": "semantic_paraphrase",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q003-A8f10e94eccf1",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q003-A3a64fe4269a7",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q003-Aca6b4ad9a190",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q003-A3b8d11f92b66",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q003-Abf6e2b9df39a",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q003-A3334272ce9fa",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q003-A0a8fbb9ec10b",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q003-A50673131204d",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7c949debf98f52163ac1f101",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q003-A1e63f2f37b8c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q003-A2fb2f67a735c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_a5629bad988fa4f83f7c481a",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q003-A8f10e94eccf1",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q003-Ab606bc75f410",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q003-A3a64fe4269a7",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q003-Ae000c93b5317",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q003-Aca6b4ad9a190",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q003-Abf6e2b9df39a",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q003-A3b8d11f92b66",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q003-A4aacd16ef106",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q003-A3334272ce9fa",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q003-Abed95b6dc197",
+          "chunk_id": "gjb_3243a_2021:c_55357d2daed71d06cad3353f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q003-A0a8fbb9ec10b",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q003-A1531f773df96",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q003-A09060083075d",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7490ee32d4ccd5bef4b2c7e7",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 7,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q003-A969c55067fe0",
+          "chunk_id": "gjb_3243a_2021:c_228556e8ef3ead93e5870528",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q003-A50673131204d",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7c949debf98f52163ac1f101",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q003-A5990b17cd756",
+          "chunk_id": "gjb_3243a_2021:c_fc6d834f85d88903fdb9d36f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q003-A1e63f2f37b8c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q003-A3fd80d4fbfa6",
+          "chunk_id": "gjb_3243a_2021:c_828a8c4d6ef3b65d6c4bb6ab",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 4,
+          "pdf_page_end": 4
+        },
+        {
+          "candidate_id": "Q003-A2fb2f67a735c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_a5629bad988fa4f83f7c481a",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q003-Aadf6c2fdc8d2",
+          "chunk_id": "gjb_3243a_2021:c_e941d44ecbe9f30c81d36106",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        }
+      ],
+      "gold_sources": [
+        "gjb_3243a_2021",
+        "indium_solder_defects_2021",
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ]
+    },
+    {
+      "query_id": "Q005",
+      "query": "What printing parameters may cause insufficient solder?",
+      "language": "en",
+      "query_type": "cross_language",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q005-Aae05f603d939",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q005-A961d10391015",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q005-A279a37fc86c4",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q005-A024e03a48f6c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-Af07bf30295b0",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-Ac93e19ca13fb",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q005-A8df93c4167ad",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-A73757103ad29",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_a5629bad988fa4f83f7c481a",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q005-A4936383a5647",
+          "chunk_id": "indium_solder_defects_2021:c_169951a51ad6b792918274e6",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 37,
+          "pdf_page_end": 38
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q005-A09ab301b153f",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_908dae4036e79618f7d481c4",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q005-Ab395a88971e7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_ccc1a7030316fca54d7865f8",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q005-A3a05fa3d7bdc",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q005-Ab2f09522e401",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_43a2daeaa2edcd907d93be93",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q005-A05a805f0c049",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q005-A18805c64a0a7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_33012ba6ce9dcc0b0e5e657f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q005-A2defd5e31b84",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_96326219954915eb52025477",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 12,
+          "pdf_page_end": 12
+        },
+        {
+          "candidate_id": "Q005-A7136aafaae59",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q005-A55bafc9ea80e",
+          "chunk_id": "solder_paste_print_inspection_guide:c_f219ecc9452dd0759d0dad43",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 23,
+          "pdf_page_end": 24
+        },
+        {
+          "candidate_id": "Q005-A636c0e769d81",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_9287c7cc3e8447d0d2373dfa",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q005-Ad5e7ed73f59c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_4777da59ecd4579a0740bc7e",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q005-Aae05f603d939",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q005-A961d10391015",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q005-A279a37fc86c4",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q005-A09ab301b153f",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_908dae4036e79618f7d481c4",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q005-A024e03a48f6c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-Ab395a88971e7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_ccc1a7030316fca54d7865f8",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q005-A3a05fa3d7bdc",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q005-Af07bf30295b0",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-Ab2f09522e401",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_43a2daeaa2edcd907d93be93",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q005-A05a805f0c049",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q005-Ac93e19ca13fb",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q005-A18805c64a0a7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_33012ba6ce9dcc0b0e5e657f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q005-A8df93c4167ad",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q005-A2defd5e31b84",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_96326219954915eb52025477",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 12,
+          "pdf_page_end": 12
+        },
+        {
+          "candidate_id": "Q005-A7136aafaae59",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q005-A55bafc9ea80e",
+          "chunk_id": "solder_paste_print_inspection_guide:c_f219ecc9452dd0759d0dad43",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 23,
+          "pdf_page_end": 24
+        },
+        {
+          "candidate_id": "Q005-A73757103ad29",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_a5629bad988fa4f83f7c481a",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q005-A636c0e769d81",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_9287c7cc3e8447d0d2373dfa",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q005-A4936383a5647",
+          "chunk_id": "indium_solder_defects_2021:c_169951a51ad6b792918274e6",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 37,
+          "pdf_page_end": 38
+        },
+        {
+          "candidate_id": "Q005-Ad5e7ed73f59c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_4777da59ecd4579a0740bc7e",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021",
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 37,
+          "pdf_page_end": 38
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ]
+    },
+    {
+      "query_id": "Q011",
+      "query": "焊膏印刷量过多可能导致哪些质量问题？",
+      "language": "zh",
+      "query_type": "direct_fact",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q011-A7e4e19e8ef86",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q011-A7b49da1b00fb",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q011-Aa28dd882d624",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q011-A685b33a53224",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q011-Ab4a952d4e789",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q011-A1cf0acb20993",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q011-Aee7e0e83fd0d",
+          "chunk_id": "solder_paste_print_inspection_guide:c_94bc7ab9080564781ecb1aeb",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q011-Adbd01a766aea",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3bdba3297f9d38b94e5f9e19",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q011-Ab1eb11d8c00d",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q011-Ae6d5803bcabc",
+          "chunk_id": "solder_paste_print_inspection_guide:c_f219ecc9452dd0759d0dad43",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 23,
+          "pdf_page_end": 24
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q011-A7b49da1b00fb",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q011-Aa28dd882d624",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q011-A70fc12ef5bfa",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q011-A91040348c410",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q011-A685b33a53224",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q011-Ab4a952d4e789",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q011-Af6de99cb943c",
+          "chunk_id": "gjb_3243a_2021:c_228556e8ef3ead93e5870528",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q011-A7e4e19e8ef86",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q011-A52061850a14d",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q011-A1cf0acb20993",
+          "chunk_id": "indium_solder_defects_2021:c_a12567521f1fd9dd2021241d",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 35,
+          "pdf_page_end": 36
+        },
+        {
+          "candidate_id": "Q011-Aba81e2c394ac",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q011-Ac26e79a23416",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q011-A0b0b37299e1f",
+          "chunk_id": "gjb_3243a_2021:c_68c5ac7ef775c7a37f12b3d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q011-Aee7e0e83fd0d",
+          "chunk_id": "solder_paste_print_inspection_guide:c_94bc7ab9080564781ecb1aeb",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q011-Af0f1da177139",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q011-Adbd01a766aea",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3bdba3297f9d38b94e5f9e19",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q011-Ab1eb11d8c00d",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q011-Ae6d5803bcabc",
+          "chunk_id": "solder_paste_print_inspection_guide:c_f219ecc9452dd0759d0dad43",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 23,
+          "pdf_page_end": 24
+        },
+        {
+          "candidate_id": "Q011-A1ba3b369d529",
+          "chunk_id": "gjb_3243a_2021:c_20a78d44d4232cfe32cca5a4",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 33,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q011-A86e112a39846",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_33012ba6ce9dcc0b0e5e657f",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        }
+      ],
+      "gold_sources": [
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ]
+    },
+    {
+      "query_id": "Q012",
+      "query": "哪些印刷参数异常容易造成锡膏过量？",
+      "language": "zh",
+      "query_type": "cause_retrieval",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q012-Aafeb5e2a94ed",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q012-A41bdcdd04360",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q012-Ad8c4802ccce5",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q012-A404833d86dea",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q012-A5ccd69a7b596",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q012-Afe3ac6addc7f",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q012-A208ecd9720d9",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q012-A3a6a818e8225",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q012-A0ce2a4ca4bdd",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q012-A41bdcdd04360",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q012-A4c0be68fa11a",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q012-Ad8c4802ccce5",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q012-A404833d86dea",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q012-A5ccd69a7b596",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q012-Afe3ac6addc7f",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q012-A208ecd9720d9",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q012-A3a6a818e8225",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q012-Aafeb5e2a94ed",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q012-Adda61fe129b7",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q012-A918d1f2dd2b6",
+          "chunk_id": "indium_solder_defects_2021:c_efc44490883dba3eb25be8a4",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 36,
+          "pdf_page_end": 37
+        },
+        {
+          "candidate_id": "Q012-A0895a0a7c2cc",
+          "chunk_id": "gjb_3243a_2021:c_55357d2daed71d06cad3353f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q012-Aa01e8a5d76b2",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q012-A457de3278257",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q012-A0ce2a4ca4bdd",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q012-Ad3401dbf83a6",
+          "chunk_id": "gjb_3243a_2021:c_228556e8ef3ead93e5870528",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q012-A537302c8b7fd",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q012-A6044286ecda4",
+          "chunk_id": "gjb_3243a_2021:c_fc6d834f85d88903fdb9d36f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q012-A3208227d4896",
+          "chunk_id": "solder_paste_print_inspection_guide:c_90099f81a92be6f190b4b7c3",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 26
+        },
+        {
+          "candidate_id": "Q012-A2eccc4cfec51",
+          "chunk_id": "gjb_3243a_2021:c_e941d44ecbe9f30c81d36106",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        }
+      ],
+      "gold_sources": [
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        }
+      ]
+    },
+    {
+      "query_id": "Q015",
+      "query": "What printing conditions can lead to excessive solder paste deposition?",
+      "language": "en",
+      "query_type": "cross_language",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q015-Af8f76b24cb4a",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q015-Aff51958037c4",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-A8a08d61d7d64",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q015-Ab9b2afacd9cd",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_9287c7cc3e8447d0d2373dfa",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q015-A1a0720da9881",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-Aa7d4145d7f33",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q015-A211ef0420a59",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q015-Ac0ebdb5abbaf",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-A565c17d5521c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q015-A3d3e6c6a31db",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_908dae4036e79618f7d481c4",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q015-A4b5eb5456f15",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_3e7a31ea5b0a4a7fbb8a9c10",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q015-A56ffebf81dc3",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0af8765670aa8c06df5dc3ed",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 15,
+          "pdf_page_end": 15
+        },
+        {
+          "candidate_id": "Q015-A34ba23dd9c04",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q015-Af8f76b24cb4a",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q015-Ac0ebdb5abbaf",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-Aff51958037c4",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-A8a08d61d7d64",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_03123e9be7cd12216cc6d18d",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q015-Ab9b2afacd9cd",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_9287c7cc3e8447d0d2373dfa",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q015-A565c17d5521c",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q015-A1cd48c941c40",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_43a2daeaa2edcd907d93be93",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q015-A1a0720da9881",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_fa7a5eeee58cc640cadb4932",
+          "relevance": 2,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q015-Aa7d4145d7f33",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q015-Ae7aa966d6ae8",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q015-A3d3e6c6a31db",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_908dae4036e79618f7d481c4",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q015-A211ef0420a59",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q015-A4b5eb5456f15",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_3e7a31ea5b0a4a7fbb8a9c10",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q015-A47267cf8facc",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_96326219954915eb52025477",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 12,
+          "pdf_page_end": 12
+        },
+        {
+          "candidate_id": "Q015-A56ffebf81dc3",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0af8765670aa8c06df5dc3ed",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 15,
+          "pdf_page_end": 15
+        },
+        {
+          "candidate_id": "Q015-A2a3773a8eab8",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d7d02ca32961527f1ceb9936",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q015-A1d0c4ef2ed18",
+          "chunk_id": "solder_paste_print_inspection_guide:c_01b7601435738e1906873565",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 14,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q015-A5d685fe9cbeb",
+          "chunk_id": "solder_paste_print_inspection_guide:c_94bc7ab9080564781ecb1aeb",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q015-A3b65379e296e",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_ef7a759dcdd789d221520535",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q015-A34ba23dd9c04",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021",
+        "solder_paste_print_inspection_guide",
+        "solder_paste_printing_critical_parameters"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ]
+    },
+    {
+      "query_id": "Q018",
+      "query": "回流焊阶段焊料过多可能表现为什么缺陷？",
+      "language": "zh",
+      "query_type": "direct_fact",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q018-Acd84f4deb987",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q018-A43a59a7d2679",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q018-A8a3f75dd8947",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q018-A34e8abba0446",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q018-Ab3bc2e115d53",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q018-A2859fc659604",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q018-A19f738d160d5",
+          "chunk_id": "gjb_3243a_2021:c_e941d44ecbe9f30c81d36106",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q018-A12eff9f5c5db",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q018-A7f5f60526351",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q018-A2d71682e5fec",
+          "chunk_id": "gjb_3243a_2021:c_e8a2525272fc86aea5a3f0e6",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q018-A36a74aea2f2a",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q018-Adee4551d0e94",
+          "chunk_id": "gjb_3243a_2021:c_55357d2daed71d06cad3353f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q018-Af1a74adf5d23",
+          "chunk_id": "gjb_3243a_2021:c_6db07f046e006ac94dd8bcf8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q018-A4e93c5e0fbc7",
+          "chunk_id": "indium_solder_defects_2021:c_4d115faebe5cdb8bb55fd4c6",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q018-Aa872a5174cdc",
+          "chunk_id": "gjb_3243a_2021:c_ce05c273eb121aa8d9b96f38",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 22,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q018-Acd84f4deb987",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q018-Ac3837f3a930a",
+          "chunk_id": "ipc_7530_zh:c_9b271bad791c23f32da6b866",
+          "relevance": 0,
+          "source_id": "ipc_7530_zh",
+          "pdf_page_start": 5,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q018-Ac26cc819b13b",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q018-A79c5814973b5",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q018-A9fe1079a766f",
+          "chunk_id": "gjb_3243a_2021:c_68c5ac7ef775c7a37f12b3d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q018-A43a59a7d2679",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q018-A88abd372ab66",
+          "chunk_id": "solder_paste_print_inspection_guide:c_68ac747f44ca13921c86fa5b",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        }
+      ]
+    },
+    {
+      "query_id": "Q019",
+      "query": "为什么过大的焊膏沉积量可能在印刷和贴装后未出现桥连，却在回流后形成桥连？",
+      "language": "zh",
+      "query_type": "multi_process",
+      "original_answerable": true,
+      "candidate_answerable": false,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing",
+        "reflow"
+      ],
+      "eval_focus": [
+        "recall",
+        "ndcg",
+        "rrf"
+      ],
+      "direct_gold_chunks": [],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q019-Acda4d3c6c83c",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q019-Adc82442ab6a5",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q019-Adb73d19f4eb0",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q019-A66b6303bc3fd",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q019-Aafc6f37693f2",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q019-A57952a14fdb9",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q019-A90055f39445b",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q019-A66394371e07d",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q019-Ac761f11e5734",
+          "chunk_id": "gjb_3243a_2021:c_228556e8ef3ead93e5870528",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q019-A6cb988a360af",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q019-Acda4d3c6c83c",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q019-A8f4fc207868f",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q019-Adc82442ab6a5",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q019-Adb73d19f4eb0",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q019-A6b27ad5f078e",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q019-A6e6740786dd0",
+          "chunk_id": "gjb_3243a_2021:c_68c5ac7ef775c7a37f12b3d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q019-Ae4e488ad697d",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q019-A6179a5a29347",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3bdba3297f9d38b94e5f9e19",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q019-A44a28ac189ab",
+          "chunk_id": "solder_paste_print_inspection_guide:c_48aa0ff663136f76c0a6f570",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q019-A66b6303bc3fd",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q019-Ae32c76b80fa3",
+          "chunk_id": "gjb_3243a_2021:c_6db07f046e006ac94dd8bcf8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q019-A2f817bde3d67",
+          "chunk_id": "indium_solder_defects_2021:c_4d115faebe5cdb8bb55fd4c6",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q019-Af2c2c7da3a71",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e1702977a5acd892a19154a7",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q019-Ab9c884476f25",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        }
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q021",
+      "query": "焊点桥连或短路通常由哪些工艺因素造成？",
+      "language": "zh",
+      "query_type": "cause_retrieval",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q021-A7fe0566b1a92",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q021-Aa81798fe226a",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q021-A617f337deab6",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q021-A2b2e7ca6f984",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q021-A0c11f3d7af4a",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q021-Aa81798fe226a",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q021-A8ac98d758a89",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q021-Ae3ae5fd8cd65",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q021-A555c88d31997",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q021-A617f337deab6",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q021-A785b0bc67b5c",
+          "chunk_id": "gjb_3243a_2021:c_55357d2daed71d06cad3353f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q021-Ae939894f6ffa",
+          "chunk_id": "gjb_3243a_2021:c_52314b9861174e56fb468b78",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q021-Afce06c5393e8",
+          "chunk_id": "gjb_3243a_2021:c_e8a2525272fc86aea5a3f0e6",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q021-Abe63972c7d58",
+          "chunk_id": "gjb_3243a_2021:c_7d05b0fdbf07197aa01db211",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q021-Ae62abb7c383e",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q021-A4ca6c70425e3",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q021-Ae91360787106",
+          "chunk_id": "ipc_7530_zh:c_9b271bad791c23f32da6b866",
+          "relevance": 0,
+          "source_id": "ipc_7530_zh",
+          "pdf_page_start": 5,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q021-A452f35b1e81d",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q021-A2b2e7ca6f984",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q021-A1f542e61845b",
+          "chunk_id": "indium_solder_defects_2021:c_f667b1e32043ce78099d2738",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 24
+        },
+        {
+          "candidate_id": "Q021-Ae6bb97559a56",
+          "chunk_id": "solder_paste_print_inspection_guide:c_c7110117a3b690111d2bb60c",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 12,
+          "pdf_page_end": 12
+        },
+        {
+          "candidate_id": "Q021-Ac2bb28f6260f",
+          "chunk_id": "gjb_3243a_2021:c_20a78d44d4232cfe32cca5a4",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 33,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q021-A6aec40cf389d",
+          "chunk_id": "gjb_3243a_2021:c_f37b6b2ffb7bb196534c6e85",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 22,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q021-A7fe0566b1a92",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ],
+      "gold_sources": [
+        "solder_paste_print_inspection_guide"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ]
+    },
+    {
+      "query_id": "Q022",
+      "query": "锡膏印刷量过多为什么容易引起桥连？",
+      "language": "zh",
+      "query_type": "mechanism",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "short",
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q022-A2deac6e3b315",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q022-A6a4c3701f658",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q022-A45ce93bd0843",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q022-Aca92e73c8e83",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q022-A7cb31fdbddab",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q022-A6ee7fc80ccdf",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q022-A953ff834c023",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q022-A45ce93bd0843",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q022-Aca92e73c8e83",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q022-A7cb31fdbddab",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q022-A3545334fcef1",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3bdba3297f9d38b94e5f9e19",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 19,
+          "pdf_page_end": 19
+        },
+        {
+          "candidate_id": "Q022-A0424ad00da0b",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q022-A6ee7fc80ccdf",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3061a1a4a13a42a57337df48",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q022-Aeeccfb761412",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q022-A2deac6e3b315",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q022-A3261dc8c5ca2",
+          "chunk_id": "gjb_3243a_2021:c_83088edaf80a5e010942e36a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q022-A9694dd97be4b",
+          "chunk_id": "gjb_3243a_2021:c_828a8c4d6ef3b65d6c4bb6ab",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 4,
+          "pdf_page_end": 4
+        },
+        {
+          "candidate_id": "Q022-Acc099e04f705",
+          "chunk_id": "solder_paste_print_inspection_guide:c_90099f81a92be6f190b4b7c3",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 26,
+          "pdf_page_end": 26
+        },
+        {
+          "candidate_id": "Q022-A0f46a527bcbf",
+          "chunk_id": "gjb_3243a_2021:c_5723d6edbd1cb0e47324bc7a",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q022-A953ff834c023",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q022-A6d29844b0554",
+          "chunk_id": "gjb_3243a_2021:c_228556e8ef3ead93e5870528",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q022-A96b1a1a8da65",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_7255d26de01a619917b8dcd2",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q022-A691f8a0cb430",
+          "chunk_id": "gjb_3243a_2021:c_fc6d834f85d88903fdb9d36f",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q022-A138a3bbe3b4b",
+          "chunk_id": "solder_paste_print_inspection_guide:c_3a24339f16bc02b883a8b7ec",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 34,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q022-A805ff45f164c",
+          "chunk_id": "gjb_3243a_2021:c_e941d44ecbe9f30c81d36106",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q022-A6a4c3701f658",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 2,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q022-A44d7c03b01be",
+          "chunk_id": "gjb_3243a_2021:c_70adb3a538fdb8e2be133b83",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021",
+        "solder_paste_print_inspection_guide"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ]
+    },
+    {
+      "query_id": "Q024",
+      "query": "为什么回流过程中总焊料量相对于焊点间距过大会导致桥连？",
+      "language": "zh",
+      "query_type": "cause_retrieval",
+      "original_answerable": true,
+      "candidate_answerable": false,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "direct_gold_chunks": [],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q024-A2548e29c05e5",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q024-A23ea9feb1469",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q024-Aad284411c122",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q024-Ab36c1cd5b18c",
+          "chunk_id": "gjb_3243a_2021:c_20a78d44d4232cfe32cca5a4",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 33,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q024-A5b1ee9235e32",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q024-Ae88a784f3b2b",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q024-Af7fed912ff0f",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q024-A2548e29c05e5",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q024-A384acff89656",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q024-Aa1197cc813d6",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q024-A1f8a88700a22",
+          "chunk_id": "gjb_3243a_2021:c_6db07f046e006ac94dd8bcf8",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q024-Afe127f423593",
+          "chunk_id": "indium_solder_defects_2021:c_4d115faebe5cdb8bb55fd4c6",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 26,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q024-A4cd0d69bd994",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q024-Ac4b6b60909fd",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q024-A8fd8c8a4ae63",
+          "chunk_id": "ipc_7530_zh:c_9b271bad791c23f32da6b866",
+          "relevance": 0,
+          "source_id": "ipc_7530_zh",
+          "pdf_page_start": 5,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q024-Add185f3e30e3",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q024-Ad58993e381c4",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q024-A01ad32db81e1",
+          "chunk_id": "gjb_3243a_2021:c_7d05b0fdbf07197aa01db211",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q024-A856bf66456b6",
+          "chunk_id": "gjb_3243a_2021:c_d33a22aac753fb37dd4a1597",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 4,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q024-Af9efcea3e08c",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a164c87361bdc6d9dd8f3292",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q024-Ab1017bb77741",
+          "chunk_id": "gjb_3243a_2021:c_293124ffbc0eff13f0f87b93",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 25,
+          "pdf_page_end": 27
+        }
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q026",
+      "query": "How can component misalignment contribute to solder bridging or short circuits?",
+      "language": "en",
+      "query_type": "cross_language",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "short",
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q026-A7bf4df36223f",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q026-Ab301e75e035e",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_93a1a1da290c11e559ea1fdc",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q026-A30a2b27a4724",
+          "chunk_id": "indium_solder_defects_2021:c_00dfaf4c61aca5553d3cab7d",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 41,
+          "pdf_page_end": 42
+        },
+        {
+          "candidate_id": "Q026-A9630fef0c720",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_3e7a31ea5b0a4a7fbb8a9c10",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q026-A8ab813b374b7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q026-A72c9b853f9db",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q026-Aea56b46fc8dd",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0f889d9b6dfa53c09911b1b3",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q026-A7f03da20016d",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q026-A567833dbb905",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q026-A639e22e2456b",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q026-A606fbaf47bf3",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a3a33e08e4739612b223cbde",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 35,
+          "pdf_page_end": 35
+        },
+        {
+          "candidate_id": "Q026-A2a934399767a",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q026-Ab301e75e035e",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_93a1a1da290c11e559ea1fdc",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q026-A30a2b27a4724",
+          "chunk_id": "indium_solder_defects_2021:c_00dfaf4c61aca5553d3cab7d",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 41,
+          "pdf_page_end": 42
+        },
+        {
+          "candidate_id": "Q026-A7bf4df36223f",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q026-A9630fef0c720",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_3e7a31ea5b0a4a7fbb8a9c10",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q026-A8ab813b374b7",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 1,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q026-A72c9b853f9db",
+          "chunk_id": "solder_paste_print_inspection_guide:c_4d5301a599a696e07e335a2d",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q026-Aea56b46fc8dd",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0f889d9b6dfa53c09911b1b3",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q026-A954640beb969",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q026-A7f03da20016d",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q026-Aa1130e40a7b8",
+          "chunk_id": "indium_solder_defects_2021:c_4dc77331827a0cd9834b323b",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 12,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q026-A567833dbb905",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q026-Aa50f1adbeaa6",
+          "chunk_id": "indium_solder_defects_2021:c_640089fa5b02ca8c45733473",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 11,
+          "pdf_page_end": 12
+        },
+        {
+          "candidate_id": "Q026-A639e22e2456b",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q026-A3c84d71925dc",
+          "chunk_id": "indium_solder_defects_2021:c_36a233df69ce8f285c806403",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 13,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q026-A606fbaf47bf3",
+          "chunk_id": "solder_paste_print_inspection_guide:c_a3a33e08e4739612b223cbde",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 35,
+          "pdf_page_end": 35
+        },
+        {
+          "candidate_id": "Q026-A2a934399767a",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q026-A45b0b761951f",
+          "chunk_id": "indium_solder_defects_2021:c_bf4f8e87252a8785509c1597",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 48,
+          "pdf_page_end": 48
+        },
+        {
+          "candidate_id": "Q026-A42f7b7dd2916",
+          "chunk_id": "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q026-A1f7bce82a09b",
+          "chunk_id": "indium_solder_defects_2021:c_ba973766ffae9fc647de3ccd",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 25,
+          "pdf_page_end": 25
+        },
+        {
+          "candidate_id": "Q026-A63f24e5b181a",
+          "chunk_id": "solder_paste_print_inspection_guide:c_17ec019c87183d5e0c6fc2fe",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        }
+      ]
+    },
+    {
+      "query_id": "Q028",
+      "query": "相邻焊盘之间出现锡连接，应该重点检查哪些工序？",
+      "language": "zh",
+      "query_type": "semantic_paraphrase",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q028-A6a81f9ed846f",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q028-Ab29332aab8ef",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q028-Ac76db0f71315",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q028-A8b2f00dc726c",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q028-Ae991272e9433",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q028-A2ac0a99ca822",
+          "chunk_id": "gjb_3243a_2021:c_f7d6ff2e06baa4fc6bfccd18",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q028-A4fa452bd0d03",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q028-A1791da074e00",
+          "chunk_id": "gjb_3243a_2021:c_bc940ec3b2fb5ea49e427463",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 25
+        },
+        {
+          "candidate_id": "Q028-A6ebc910198d3",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q028-A9cee9142559e",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q028-A8c4d618fc11f",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q028-A8b2f00dc726c",
+          "chunk_id": "gjb_3243a_2021:c_5b73a0607ac50b4826b099d7",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 27,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q028-Ae991272e9433",
+          "chunk_id": "gjb_3243a_2021:c_d0f768ddb36353163cb83d61",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q028-A6a81f9ed846f",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q028-A2ac0a99ca822",
+          "chunk_id": "gjb_3243a_2021:c_f7d6ff2e06baa4fc6bfccd18",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 22,
+          "pdf_page_end": 23
+        },
+        {
+          "candidate_id": "Q028-Ad2faff6609f6",
+          "chunk_id": "gjb_3243a_2021:c_e941d44ecbe9f30c81d36106",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q028-Ad570be0a3830",
+          "chunk_id": "gjb_3243a_2021:c_e8a2525272fc86aea5a3f0e6",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 22
+        },
+        {
+          "candidate_id": "Q028-Ab29332aab8ef",
+          "chunk_id": "gjb_3243a_2021:c_81b64272175c26a75e560271",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q028-A4fa452bd0d03",
+          "chunk_id": "gjb_3243a_2021:c_014d391e4dd60ae6f5695c23",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 29
+        },
+        {
+          "candidate_id": "Q028-Ac76db0f71315",
+          "chunk_id": "gjb_3243a_2021:c_c4ef590b035a0750024f69cd",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q028-A6876ec90b029",
+          "chunk_id": "gjb_3243a_2021:c_7d05b0fdbf07197aa01db211",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 6,
+          "pdf_page_end": 6
+        },
+        {
+          "candidate_id": "Q028-A1791da074e00",
+          "chunk_id": "gjb_3243a_2021:c_bc940ec3b2fb5ea49e427463",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 23,
+          "pdf_page_end": 25
+        },
+        {
+          "candidate_id": "Q028-A6ebc910198d3",
+          "chunk_id": "gjb_3243a_2021:c_7fe6b64d1e275668b23ef14b",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q028-A4636090a2e53",
+          "chunk_id": "gjb_3243a_2021:c_20a78d44d4232cfe32cca5a4",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 33,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q028-A9cee9142559e",
+          "chunk_id": "gjb_3243a_2021:c_74e5f36c8b929dd0e50c88b8",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 21,
+          "pdf_page_end": 21
+        },
+        {
+          "candidate_id": "Q028-A8c4d618fc11f",
+          "chunk_id": "gjb_3243a_2021:c_d7fe338876d941d89b15eb5b",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 15,
+          "pdf_page_end": 16
+        },
+        {
+          "candidate_id": "Q028-A5521333d7d7d",
+          "chunk_id": "gjb_3243a_2021:c_52314b9861174e56fb468b78",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q028-Aa541b864d3ab",
+          "chunk_id": "gjb_3243a_2021:c_a87440046f80b1b9626514f2",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 13,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q028-A54d957b6a093",
+          "chunk_id": "gjb_3243a_2021:c_6f83735034b9dfa3571e3aab",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q028-Acecc47c4a6b7",
+          "chunk_id": "gjb_3243a_2021:c_996d7b4c4e3aa1ca4f612e42",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q028-Ae11eef0b9cc4",
+          "chunk_id": "solder_paste_print_inspection_guide:c_6a6b5b2a4e31e82988e5f1d5",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        }
+      ],
+      "gold_sources": [
+        "gjb_3243a_2021"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 16,
+          "pdf_page_end": 16
+        },
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        }
+      ]
+    },
+    {
+      "query_id": "Q031",
+      "query": "元器件贴装偏移通常由哪些贴装工艺因素引起？",
+      "language": "zh",
+      "query_type": "cause_retrieval",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q031-Adcf30ee88533",
+          "chunk_id": "gjb_3243a_2021:c_06e88e4ed5eff9d2f9cafa68",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-A66c455e15bd8",
+          "chunk_id": "gjb_3243a_2021:c_8f89bfe22b02ab576fd6ef71",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q031-A81debfdd59be",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q031-Acf2328d6f5f7",
+          "chunk_id": "gjb_3243a_2021:c_a1c799e5edb086553f458a7d",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q031-A87e678486d29",
+          "chunk_id": "gjb_3243a_2021:c_d15f6b14b7e40682841d8a9a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q031-A2787080b67e4",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q031-A3f71601fd568",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0f889d9b6dfa53c09911b1b3",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-Aa35cc3b03217",
+          "chunk_id": "gjb_3243a_2021:c_a4d0e88881bfcce5282c5a6f",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q031-A953474bf455d",
+          "chunk_id": "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 30
+        },
+        {
+          "candidate_id": "Q031-A024bfd92359e",
+          "chunk_id": "gjb_3243a_2021:c_293124ffbc0eff13f0f87b93",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 25,
+          "pdf_page_end": 27
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q031-A81debfdd59be",
+          "chunk_id": "gjb_3243a_2021:c_994536127899ebe9d93ba428",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q031-Adcf30ee88533",
+          "chunk_id": "gjb_3243a_2021:c_06e88e4ed5eff9d2f9cafa68",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-Ad2b75d56ee0d",
+          "chunk_id": "gjb_3243a_2021:c_611cc52e85b72f0987709823",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-Acf2328d6f5f7",
+          "chunk_id": "gjb_3243a_2021:c_a1c799e5edb086553f458a7d",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q031-A87e678486d29",
+          "chunk_id": "gjb_3243a_2021:c_d15f6b14b7e40682841d8a9a",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q031-A66c455e15bd8",
+          "chunk_id": "gjb_3243a_2021:c_8f89bfe22b02ab576fd6ef71",
+          "relevance": 2,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-Ae0ba6d6173d3",
+          "chunk_id": "gjb_3243a_2021:c_b54e43fa050a80b5272b042c",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 31,
+          "pdf_page_end": 32
+        },
+        {
+          "candidate_id": "Q031-A2787080b67e4",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q031-Aad75072d4b6f",
+          "chunk_id": "gjb_3243a_2021:c_8807bd02b4bf1edfd5f8b989",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q031-A0ad4c8a54d70",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_52780d2607be86b77bdda4eb",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 3,
+          "pdf_page_end": 3
+        },
+        {
+          "candidate_id": "Q031-Aa8b658bd4364",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_43a2daeaa2edcd907d93be93",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 5,
+          "pdf_page_end": 5
+        },
+        {
+          "candidate_id": "Q031-Af00181569f49",
+          "chunk_id": "gjb_3243a_2021:c_c10e9e7bff1772ed6c622bca",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 33
+        },
+        {
+          "candidate_id": "Q031-A3f71601fd568",
+          "chunk_id": "solder_paste_print_inspection_guide:c_0f889d9b6dfa53c09911b1b3",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 18
+        },
+        {
+          "candidate_id": "Q031-Aa35cc3b03217",
+          "chunk_id": "gjb_3243a_2021:c_a4d0e88881bfcce5282c5a6f",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 20,
+          "pdf_page_end": 20
+        },
+        {
+          "candidate_id": "Q031-A953474bf455d",
+          "chunk_id": "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 30
+        },
+        {
+          "candidate_id": "Q031-A024bfd92359e",
+          "chunk_id": "gjb_3243a_2021:c_293124ffbc0eff13f0f87b93",
+          "relevance": 1,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 25,
+          "pdf_page_end": 27
+        },
+        {
+          "candidate_id": "Q031-Adee2402b392e",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_1a856c8a9a475fd785193e5b",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q031-Aff8cc5bc0276",
+          "chunk_id": "gjb_3243a_2021:c_6f83735034b9dfa3571e3aab",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q031-Abb248687ee27",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_d8353c9c23cfa8a56622242f",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 13,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q031-Abcff6849828e",
+          "chunk_id": "gjb_3243a_2021:c_c14425061a1ad4d9849eb2f9",
+          "relevance": 0,
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 30,
+          "pdf_page_end": 31
+        }
+      ],
+      "gold_sources": [
+        "gjb_3243a_2021"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "gjb_3243a_2021",
+          "pdf_page_start": 18,
+          "pdf_page_end": 18
+        }
+      ]
+    },
+    {
+      "query_id": "Q035",
+      "query": "What process factors can cause component placement shift?",
+      "language": "en",
+      "query_type": "cross_language",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q035-A7c4bbf0c2e27",
+          "chunk_id": "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q035-A678a23c20e18",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q035-A56e00401456a",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q035-A0426d5b3a4ca",
+          "chunk_id": "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 30
+        },
+        {
+          "candidate_id": "Q035-A955ac1bcb3f9",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q035-A39936fe506c8",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q035-A2fd5e1b75105",
+          "chunk_id": "indium_solder_defects_2021:c_bfca80b829a92ba45a6259d4",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 15
+        },
+        {
+          "candidate_id": "Q035-A04e2c0476ee7",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q035-A8bc802ca59d3",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q035-A678a23c20e18",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q035-A56e00401456a",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q035-A0426d5b3a4ca",
+          "chunk_id": "indium_solder_defects_2021:c_df19157cfb0135ee41a37854",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 29,
+          "pdf_page_end": 30
+        },
+        {
+          "candidate_id": "Q035-A955ac1bcb3f9",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 1,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q035-A7c4bbf0c2e27",
+          "chunk_id": "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "relevance": 2,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q035-A7ced41c11f78",
+          "chunk_id": "lead_free_reflow_defects:c_dd4458a1d42571b9d7a7680b",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q035-A39936fe506c8",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q035-A04d02ad53ddc",
+          "chunk_id": "indium_solder_defects_2021:c_00dfaf4c61aca5553d3cab7d",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 41,
+          "pdf_page_end": 42
+        },
+        {
+          "candidate_id": "Q035-A2fd5e1b75105",
+          "chunk_id": "indium_solder_defects_2021:c_bfca80b829a92ba45a6259d4",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 15
+        },
+        {
+          "candidate_id": "Q035-A9859fd8ca21b",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_908dae4036e79618f7d481c4",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q035-A969683bcaeaf",
+          "chunk_id": "lead_free_reflow_defects:c_1767e669b188e16e9ecfbc25",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q035-A3c7b45581cad",
+          "chunk_id": "lead_free_reflow_defects:c_ab1092e16986da08a36aaa67",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 7,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q035-A04e2c0476ee7",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q035-Af8d6a8782ff8",
+          "chunk_id": "indium_solder_defects_2021:c_4dc77331827a0cd9834b323b",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 12,
+          "pdf_page_end": 13
+        },
+        {
+          "candidate_id": "Q035-A8bc802ca59d3",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q035-A04c6e664b5d9",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_5327504a4a633df4eeaef7be",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q035-Acecf1608cad8",
+          "chunk_id": "lead_free_reflow_defects:c_b1e25726453756317d990867",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 3,
+          "pdf_page_end": 4
+        },
+        {
+          "candidate_id": "Q035-A4eb3b81e2fb3",
+          "chunk_id": "lead_free_reflow_defects:c_405ffaf7333a405e867222d7",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 6,
+          "pdf_page_end": 7
+        },
+        {
+          "candidate_id": "Q035-A653152b5dfda",
+          "chunk_id": "indium_solder_defects_2021:c_36a233df69ce8f285c806403",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 13,
+          "pdf_page_end": 14
+        },
+        {
+          "candidate_id": "Q035-A0d1a529cefb5",
+          "chunk_id": "lead_free_reflow_defects:c_6dead798c693faabd0260b1d",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 11,
+          "pdf_page_end": 11
+        }
+      ],
+      "gold_sources": [
+        "indium_solder_defects_2021"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        }
+      ]
+    },
+    {
+      "query_id": "Q036",
+      "query": "Can an initial component placement offset change during reflow due to solder self-alignment",
+      "language": "en",
+      "query_type": "cross_language",
+      "original_answerable": true,
+      "candidate_answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "direct_gold_chunks": [
+        {
+          "candidate_id": "Q036-A253ec309f072",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q036-A761eb03e0f0b",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q036-A255b252b0646",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        }
+      ],
+      "supporting_chunks": [
+        {
+          "candidate_id": "Q036-A0f5f966cca77",
+          "chunk_id": "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q036-A96d7ad4e08ac",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        }
+      ],
+      "graded_relevance": [
+        {
+          "candidate_id": "Q036-A253ec309f072",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_5ed0ba2dd93768967fa16a3a",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q036-A241c5ef4d82b",
+          "chunk_id": "indium_solder_defects_2021:c_57cb18a9da633ad47548a0ad",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 44,
+          "pdf_page_end": 44
+        },
+        {
+          "candidate_id": "Q036-Af07b317885f6",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e07c2994a554fb7e9e70a410",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 31,
+          "pdf_page_end": 31
+        },
+        {
+          "candidate_id": "Q036-Ab98d8f7d528d",
+          "chunk_id": "lead_free_reflow_defects:c_dd4458a1d42571b9d7a7680b",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q036-A19763dfe05bb",
+          "chunk_id": "solder_paste_printing_critical_parameters:c_93a1a1da290c11e559ea1fdc",
+          "relevance": 0,
+          "source_id": "solder_paste_printing_critical_parameters",
+          "pdf_page_start": 8,
+          "pdf_page_end": 8
+        },
+        {
+          "candidate_id": "Q036-A106fbd65fd71",
+          "chunk_id": "lead_free_reflow_defects:c_1767e669b188e16e9ecfbc25",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 8,
+          "pdf_page_end": 9
+        },
+        {
+          "candidate_id": "Q036-Af0c2f9cae6e1",
+          "chunk_id": "solder_paste_print_inspection_guide:c_1263a3555c53ba5737748a8e",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 17,
+          "pdf_page_end": 17
+        },
+        {
+          "candidate_id": "Q036-A761eb03e0f0b",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_09b5460168c2da8342ab7ba6",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q036-A14b3700e4521",
+          "chunk_id": "lead_free_reflow_defects:c_46dae5b47fce16085c13835b",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 2,
+          "pdf_page_end": 2
+        },
+        {
+          "candidate_id": "Q036-A0f5f966cca77",
+          "chunk_id": "indium_solder_defects_2021:c_5a9a2235aec2e6d5e5bd98d9",
+          "relevance": 1,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 32,
+          "pdf_page_end": 34
+        },
+        {
+          "candidate_id": "Q036-Ac20555bf15ab",
+          "chunk_id": "indium_solder_defects_2021:c_00dfaf4c61aca5553d3cab7d",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 41,
+          "pdf_page_end": 42
+        },
+        {
+          "candidate_id": "Q036-A255b252b0646",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_025e97ebe1ed2caba0d704b2",
+          "relevance": 2,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q036-Aa528ae1bcff9",
+          "chunk_id": "lead_free_reflow_defects:c_6dead798c693faabd0260b1d",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 11,
+          "pdf_page_end": 11
+        },
+        {
+          "candidate_id": "Q036-A96d7ad4e08ac",
+          "chunk_id": "fine_pitch_csp_assembly_processes:c_ea932c63834d5b9674b7facd",
+          "relevance": 1,
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q036-A2f9296dbd113",
+          "chunk_id": "lead_free_reflow_defects:c_412b7eb2f7f37b99c8c6f2cc",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 9,
+          "pdf_page_end": 10
+        },
+        {
+          "candidate_id": "Q036-A08f5241a43a5",
+          "chunk_id": "lead_free_reflow_defects:c_9c7b09ba63ad91e645e2412b",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q036-Ac7c708aaa165",
+          "chunk_id": "indium_solder_defects_2021:c_bfca80b829a92ba45a6259d4",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 14,
+          "pdf_page_end": 15
+        },
+        {
+          "candidate_id": "Q036-A485e62fbd991",
+          "chunk_id": "indium_solder_defects_2021:c_59d5b711cad5338a08d0cf7b",
+          "relevance": 0,
+          "source_id": "indium_solder_defects_2021",
+          "pdf_page_start": 42,
+          "pdf_page_end": 43
+        },
+        {
+          "candidate_id": "Q036-A0e01dedcbb5f",
+          "chunk_id": "lead_free_reflow_defects:c_6c1d4395a25d4d64be1d26df",
+          "relevance": 0,
+          "source_id": "lead_free_reflow_defects",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "candidate_id": "Q036-Adf0ca88b84f5",
+          "chunk_id": "solder_paste_print_inspection_guide:c_e76072afddafbe6c64de9c93",
+          "relevance": 0,
+          "source_id": "solder_paste_print_inspection_guide",
+          "pdf_page_start": 39,
+          "pdf_page_end": 40
+        }
+      ],
+      "gold_sources": [
+        "fine_pitch_csp_assembly_processes"
+      ],
+      "gold_pages": [
+        {
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 1,
+          "pdf_page_end": 1
+        },
+        {
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 7,
+          "pdf_page_end": 8
+        },
+        {
+          "source_id": "fine_pitch_csp_assembly_processes",
+          "pdf_page_start": 10,
+          "pdf_page_end": 10
+        }
+      ]
+    }
+  ]
+}

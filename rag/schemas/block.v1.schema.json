@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "block.v1.schema.json",
+  "title": "PCBA RAG Page Block V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "block_id",
+    "block_type",
+    "text",
+    "reading_order",
+    "bbox",
+    "heading_level",
+    "extraction_source",
+    "confidence",
+    "quality_flags"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "block_id": {"type": "string", "minLength": 1},
+    "block_type": {
+      "enum": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "table",
+        "table_caption",
+        "formula",
+        "figure_caption",
+        "header",
+        "footer",
+        "page_number",
+        "unknown"
+      ]
+    },
+    "text": {"type": "string", "minLength": 1},
+    "reading_order": {"type": "integer", "minimum": 0},
+    "bbox": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "number", "minimum": 0, "maximum": 1},
+        {"type": "number", "minimum": 0, "maximum": 1},
+        {"type": "number", "minimum": 0, "maximum": 1},
+        {"type": "number", "minimum": 0, "maximum": 1}
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "heading_level": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 6
+    },
+    "extraction_source": {"enum": ["native", "ocr", "inferred"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "quality_flags": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

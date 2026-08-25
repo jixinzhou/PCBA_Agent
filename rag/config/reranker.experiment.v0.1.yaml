@@ -1,0 +1,18 @@
+experiment_version: pcba-reranker-experiment/0.1.0
+model:
+  model_id: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  implementation: FlagEmbedding.FlagReranker
+  use_fp16: true
+  device: cuda:0
+  batch_size: 1
+  max_length: 1024
+  normalize_score: false
+input:
+  candidate_pool: rag/evaluation/evaluation_top20_final_v3.csv
+  attribution: rag/evaluation/T10.10_FAILURE_ATTRIBUTION_V0.3.csv
+  failure_type: ranking_failure
+  candidate_count_per_query: 20
+output:
+  top_k: 5
+  report: rag/reports/T10.10_RERANKER_EXPERIMENT.md

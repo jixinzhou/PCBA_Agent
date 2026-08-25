@@ -1,0 +1,855 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_name": "pcba_retrieval_eval_final_v2",
+  "description": "Final PCBA RAG evaluation dataset after approved query removal",
+  "query_count": 44,
+  "items": [
+    {
+      "query_id": "Q001",
+      "query": "焊膏印刷量不足可能导致哪些典型焊接缺陷？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "direct_fact",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q002",
+      "query": "哪些印刷工艺因素可能造成焊料不足？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q003",
+      "query": "锡膏转移量不足通常与哪些印刷参数有关？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "semantic_paraphrase",
+      "eval_focus": [
+        "dense"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q004",
+      "query": "印刷过程中脱模不良为什么可能引起少锡？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "mechanism",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q005",
+      "query": "What printing parameters may cause insufficient solder?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q006",
+      "query": "Insufficient solder can be caused by what problems during solder paste printing?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q007",
+      "query": "贴装偏移是否可能导致最终焊点焊料不足？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder",
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "cross_defect",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q008",
+      "query": "回流焊温度曲线异常是否可能造成焊料不足？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q009",
+      "query": "少锡可能由印刷、贴装和回流中的哪些因素共同造成？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "insufficient_solder"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "rrf",
+        "ndcg"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q011",
+      "query": "焊膏印刷量过多可能导致哪些质量问题？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "direct_fact",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q012",
+      "query": "哪些印刷参数异常容易造成锡膏过量？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q013",
+      "query": "钢网开口或印刷条件异常为什么会造成锡量过多？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "mechanism",
+      "eval_focus": [
+        "dense"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q014",
+      "query": "锡膏沉积过多会对后续焊接产生什么影响？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing",
+        "reflow"
+      ],
+      "query_type": "semantic_paraphrase",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q015",
+      "query": "What printing conditions can lead to excessive solder paste deposition?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q016",
+      "query": "What defects may result from excessive solder during reflow?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "effect_retrieval",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q017",
+      "query": "元器件贴装位置异常会不会加剧焊料过多的问题？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder",
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "query_type": "cross_process",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q018",
+      "query": "回流焊阶段焊料过多可能表现为什么缺陷？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "direct_fact",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q019",
+      "query": "焊料过多从印刷到回流可能经历怎样的缺陷形成路径？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "ndcg",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q020",
+      "query": "相关标准中对于焊料过多或焊料堆积有哪些判定要求？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "excessive_solder"
+      ],
+      "process_ids": [],
+      "query_type": "source_specific",
+      "eval_focus": [
+        "source_hit",
+        "page_hit"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q021",
+      "query": "焊点桥连或短路通常由哪些工艺因素造成？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q022",
+      "query": "锡膏印刷量过多为什么容易引起桥连？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short",
+        "excessive_solder"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "mechanism",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q023",
+      "query": "贴装偏移是否可能导致相邻焊点之间发生短路？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short",
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "cross_defect",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q024",
+      "query": "回流焊过程中哪些因素可能导致焊锡桥连？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q025",
+      "query": "What are the possible causes of solder bridging during reflow?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q026",
+      "query": "How can component misalignment contribute to solder bridging or short circuits?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "short",
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q028",
+      "query": "相邻焊盘之间出现锡连接，应该重点检查哪些工序？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "semantic_paraphrase",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q029",
+      "query": "从印刷、贴装到回流，哪些异常可能共同形成焊点短路？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "ndcg",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q031",
+      "query": "元器件贴装偏移通常由哪些贴装工艺因素引起？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "cause_retrieval",
+      "eval_focus": [
+        "dense",
+        "sparse",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q032",
+      "query": "贴片位置不准可能与哪些设备或工艺参数有关？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "semantic_paraphrase",
+      "eval_focus": [
+        "dense"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q033",
+      "query": "元件初始贴装偏差在回流焊后是否可能进一步变化？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "query_type": "cross_process",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q034",
+      "query": "焊盘上的锡膏分布不均会不会影响元器件回流后的最终位置？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "printing",
+        "reflow"
+      ],
+      "query_type": "mechanism",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q035",
+      "query": "What process factors can cause component placement shift?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "sparse"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q036",
+      "query": "Can reflow soldering increase an existing component misalignment?",
+      "language": "en",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "cross_language",
+      "eval_focus": [
+        "dense",
+        "metadata_filter"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q038",
+      "query": "如果元器件回流后发生偏移，应优先排查印刷、贴装还是回流工序？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "printing",
+        "placement",
+        "reflow"
+      ],
+      "query_type": "multi_process",
+      "eval_focus": [
+        "recall",
+        "rrf",
+        "ndcg"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q039",
+      "query": "贴装精度异常可能进一步引发哪些焊接质量问题？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [
+        "placement",
+        "reflow"
+      ],
+      "query_type": "effect_retrieval",
+      "eval_focus": [
+        "dense",
+        "rrf"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q040",
+      "query": "相关标准中如何判定元器件贴装偏移是否可接受？",
+      "language": "zh",
+      "answerable": true,
+      "defect_ids": [
+        "shifted_component"
+      ],
+      "process_ids": [],
+      "query_type": "source_specific",
+      "eval_focus": [
+        "source_hit",
+        "page_hit"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q041",
+      "query": "波峰焊预热温度应该设置为多少？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "wave_soldering"
+      ],
+      "query_type": "unanswerable_out_of_scope",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q042",
+      "query": "选择性波峰焊喷嘴的最佳移动速度是多少？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "selective_soldering"
+      ],
+      "query_type": "unanswerable_out_of_scope",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q043",
+      "query": "BGA内部空洞率超过多少一定会导致产品失效？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "unanswerable_unsupported_claim",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q044",
+      "query": "What is the optimal wave soldering preheat temperature for every PCB product?",
+      "language": "en",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "wave_soldering"
+      ],
+      "query_type": "unanswerable_out_of_scope",
+      "eval_focus": [
+        "no_answer",
+        "cross_language"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q045",
+      "query": "AOI相机曝光时间应该固定设置为多少毫秒？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "aoi"
+      ],
+      "query_type": "unanswerable_missing_knowledge",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q046",
+      "query": "贴片机吸嘴每运行多少小时必须强制更换？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "placement"
+      ],
+      "query_type": "unanswerable_missing_knowledge",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q047",
+      "query": "所有PCBA产品的最佳回流焊峰值温度是多少？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "unanswerable_overgeneralized",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    },
+    {
+      "query_id": "Q048",
+      "query": "Which solder paste brand can completely eliminate solder bridging?",
+      "language": "en",
+      "answerable": false,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "unanswerable_unsupported_claim",
+      "eval_focus": [
+        "no_answer",
+        "cross_language"
+      ],
+      "gold_sources": [],
+      "gold_pages": []
+    }
+  ],
+  "removed_query_ids": [
+    "Q010",
+    "Q027",
+    "Q030",
+    "Q037"
+  ]
+}

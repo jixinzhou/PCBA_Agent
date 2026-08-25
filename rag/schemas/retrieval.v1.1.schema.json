@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "retrieval.v1.1.schema.json",
+  "title": "PCBA RAG Retrieval V1.1",
+  "oneOf": [
+    {"$ref": "#/$defs/request"},
+    {"$ref": "#/$defs/response"}
+  ],
+  "$defs": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "query", "top_k", "filters"],
+      "properties": {
+        "schema_version": {"const": "1.1.0"},
+        "query": {"type": "string", "minLength": 1},
+        "top_k": {"type": "integer", "minimum": 1, "maximum": 100},
+        "filters": {"$ref": "#/$defs/filters"}
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_id",
+        "query",
+        "normalized_query",
+        "retrieval_mode",
+        "results",
+        "trace"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.1.0"},
+        "request_id": {"type": "string", "format": "uuid"},
+        "query": {"type": "string", "minLength": 1},
+        "normalized_query": {"type": "string", "minLength": 1},
+        "retrieval_mode": {"enum": ["dense", "sparse"]},
+        "results": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/result"}
+        },
+        "trace": {"$ref": "#/$defs/trace"}
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rank",
+        "chunk_id",
+        "text",
+        "citation",
+        "metadata",
+        "dense_score",
+        "sparse_score",
+        "fusion_score",
+        "rerank_score"
+      ],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1},
+        "chunk_id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "citation": {"$ref": "#/$defs/citation"},
+        "metadata": {"$ref": "metadata.v1.1.schema.json"},
+        "dense_score": {"type": ["number", "null"]},
+        "sparse_score": {"type": ["number", "null"]},
+        "fusion_score": {"type": ["number", "null"]},
+        "rerank_score": {"type": ["number", "null"]}
+      }
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_title",
+        "pdf_page_start",
+        "pdf_page_end",
+        "section_path"
+      ],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_title": {"type": "string", "minLength": 1},
+        "pdf_page_start": {"type": "integer", "minimum": 1},
+        "pdf_page_end": {"type": "integer", "minimum": 1},
+        "section_path": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge_base_version",
+        "index_version",
+        "collection_name",
+        "retriever_version",
+        "embedding_model",
+        "embedding_model_revision",
+        "query_token_count",
+        "applied_filters",
+        "system_filters",
+        "retrieval_time_ms"
+      ],
+      "properties": {
+        "knowledge_base_version": {"type": "string", "minLength": 1},
+        "index_version": {"type": "string", "minLength": 1},
+        "collection_name": {"type": "string", "minLength": 1},
+        "retriever_version": {"type": "string", "minLength": 1},
+        "embedding_model": {"type": "string", "minLength": 1},
+        "embedding_model_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "query_token_count": {"type": "integer", "minimum": 1},
+        "applied_filters": {"$ref": "#/$defs/filters"},
+        "system_filters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["semantic_tag_excluded"],
+          "properties": {
+            "semantic_tag_excluded": {"const": false}
+          }
+        },
+        "retrieval_time_ms": {"type": "number", "minimum": 0}
+      }
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ids",
+        "process_ids",
+        "defect_ids",
+        "evidence_roles",
+        "languages",
+        "document_types"
+      ],
+      "properties": {
+        "source_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "process_ids": {
+          "type": "array",
+          "items": {"enum": ["printing", "placement", "reflow"]},
+          "uniqueItems": true
+        },
+        "defect_ids": {
+          "type": "array",
+          "items": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component"]},
+          "uniqueItems": true
+        },
+        "evidence_roles": {
+          "type": "array",
+          "items": {"enum": ["defect_mechanism", "troubleshooting_guidance", "process_guideline", "normative_requirement"]},
+          "uniqueItems": true
+        },
+        "languages": {
+          "type": "array",
+          "items": {"enum": ["zh-CN", "en", "mixed"]},
+          "uniqueItems": true
+        },
+        "document_types": {
+          "type": "array",
+          "items": {"enum": ["standard", "vendor_guide", "industry_guide"]},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

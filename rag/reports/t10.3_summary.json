@@ -1,0 +1,616 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.3",
+  "page_schema_version": "1.1.0",
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "pypdf": "6.15.0",
+      "cryptography": "50.0.0",
+      "pypdfium2": "5.13.0",
+      "rapidocr": "3.9.2",
+      "onnxruntime": "1.28.0",
+      "jsonschema": "4.26.0",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3",
+      "Pillow": "12.2.0",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.4",
+      "torch": "2.6.0+cu118",
+      "transformers": "4.57.6",
+      "huggingface-hub": "0.36.2",
+      "sentencepiece": "0.2.2"
+    },
+    "pip_check_ok": true,
+    "pip_check_output": "No broken requirements found."
+  },
+  "total_sources": 7,
+  "expected_pages": 216,
+  "processed_pages": 216,
+  "schema_valid_pages": 216,
+  "no_silent_page_loss": true,
+  "status_counts": {
+    "blank": 42,
+    "partial": 10,
+    "success": 164
+  },
+  "sources": [
+    {
+      "source_id": "indium_solder_defects_2021",
+      "title": "A Guide to Minimizing Solder Defects",
+      "expected_pages": 52,
+      "processed_pages": 52,
+      "status_counts": {
+        "partial": 9,
+        "success": 43
+      },
+      "extraction_method_counts": {
+        "native": 41,
+        "ocr": 11
+      },
+      "printed_page_labels": 38,
+      "block_counts": {
+        "figure_caption": 2,
+        "footer": 20,
+        "formula": 3,
+        "header": 25,
+        "heading": 45,
+        "list_item": 59,
+        "page_number": 37,
+        "paragraph": 138,
+        "table": 9
+      },
+      "quality_flag_counts": {
+        "empty_text": 4,
+        "low_ocr_confidence": 1,
+        "low_text": 5,
+        "non_text_content": 4
+      },
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [
+        {
+          "pdf_page_number": 6,
+          "quality_flags": [
+            "low_text"
+          ]
+        },
+        {
+          "pdf_page_number": 8,
+          "quality_flags": [
+            "low_text"
+          ]
+        },
+        {
+          "pdf_page_number": 10,
+          "quality_flags": [
+            "empty_text",
+            "non_text_content"
+          ]
+        },
+        {
+          "pdf_page_number": 16,
+          "quality_flags": [
+            "empty_text",
+            "non_text_content"
+          ]
+        },
+        {
+          "pdf_page_number": 22,
+          "quality_flags": [
+            "empty_text",
+            "non_text_content"
+          ]
+        },
+        {
+          "pdf_page_number": 28,
+          "quality_flags": [
+            "low_text"
+          ]
+        },
+        {
+          "pdf_page_number": 34,
+          "quality_flags": [
+            "low_text",
+            "low_ocr_confidence"
+          ]
+        },
+        {
+          "pdf_page_number": 40,
+          "quality_flags": [
+            "empty_text",
+            "non_text_content"
+          ]
+        },
+        {
+          "pdf_page_number": 50,
+          "quality_flags": [
+            "low_text"
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.116,
+      "output_path": "rag\\data\\processed\\pages\\indium_solder_defects_2021.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\indium_solder_defects_2021.checkpoint.json"
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "title": "Solder Paste Print Inspection Defect Guide",
+      "expected_pages": 44,
+      "processed_pages": 44,
+      "status_counts": {
+        "success": 44
+      },
+      "extraction_method_counts": {
+        "native": 37,
+        "ocr": 7
+      },
+      "printed_page_labels": 30,
+      "block_counts": {
+        "footer": 43,
+        "header": 34,
+        "heading": 107,
+        "list_item": 53,
+        "paragraph": 175,
+        "table": 49
+      },
+      "quality_flag_counts": {},
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [],
+      "elapsed_seconds": 0.045,
+      "output_path": "rag\\data\\processed\\pages\\solder_paste_print_inspection_guide.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\solder_paste_print_inspection_guide.checkpoint.json"
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+      "expected_pages": 48,
+      "processed_pages": 48,
+      "status_counts": {
+        "blank": 42,
+        "partial": 1,
+        "success": 5
+      },
+      "extraction_method_counts": {
+        "mixed": 5,
+        "none": 42,
+        "ocr": 1
+      },
+      "printed_page_labels": 0,
+      "block_counts": {
+        "footer": 4,
+        "header": 5,
+        "heading": 16,
+        "paragraph": 8,
+        "table": 4
+      },
+      "quality_flag_counts": {
+        "blank_page": 42,
+        "confirmed_blank_page": 42,
+        "low_text": 1
+      },
+      "failed_pages": [],
+      "blank_pages": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "partial_pages": [
+        {
+          "pdf_page_number": 2,
+          "quality_flags": [
+            "low_text"
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.01,
+      "output_path": "rag\\data\\processed\\pages\\ipc_7530_zh.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\ipc_7530_zh.checkpoint.json"
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "title": "GJB 3243A-2021 电子元器件表面安装要求",
+      "expected_pages": 38,
+      "processed_pages": 38,
+      "status_counts": {
+        "success": 38
+      },
+      "extraction_method_counts": {
+        "ocr": 38
+      },
+      "printed_page_labels": 36,
+      "block_counts": {
+        "figure_caption": 7,
+        "footer": 1,
+        "formula": 24,
+        "heading": 167,
+        "list_item": 167,
+        "page_number": 36,
+        "paragraph": 293,
+        "table": 132,
+        "table_caption": 9
+      },
+      "quality_flag_counts": {},
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [],
+      "elapsed_seconds": 0.008,
+      "output_path": "rag\\data\\processed\\pages\\gjb_3243a_2021.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\gjb_3243a_2021.checkpoint.json"
+    },
+    {
+      "source_id": "solder_paste_printing_critical_parameters",
+      "title": "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction",
+      "expected_pages": 13,
+      "processed_pages": 13,
+      "status_counts": {
+        "success": 13
+      },
+      "extraction_method_counts": {
+        "native": 13
+      },
+      "printed_page_labels": 9,
+      "block_counts": {
+        "figure_caption": 16,
+        "footer": 31,
+        "header": 24,
+        "heading": 73,
+        "list_item": 17,
+        "page_number": 8,
+        "paragraph": 112,
+        "table": 56
+      },
+      "quality_flag_counts": {},
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [],
+      "elapsed_seconds": 0.894,
+      "output_path": "rag\\data\\processed\\pages\\solder_paste_printing_critical_parameters.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\solder_paste_printing_critical_parameters.checkpoint.json"
+    },
+    {
+      "source_id": "lead_free_reflow_defects",
+      "title": "Reflow Defects with Lead-Free Soldering Moisture Sensitive Components",
+      "expected_pages": 11,
+      "processed_pages": 11,
+      "status_counts": {
+        "success": 11
+      },
+      "extraction_method_counts": {
+        "native": 11
+      },
+      "printed_page_labels": 1,
+      "block_counts": {
+        "figure_caption": 15,
+        "footer": 8,
+        "formula": 2,
+        "header": 3,
+        "heading": 49,
+        "list_item": 5,
+        "page_number": 5,
+        "paragraph": 74,
+        "table": 23,
+        "table_caption": 7
+      },
+      "quality_flag_counts": {},
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [],
+      "elapsed_seconds": 13.624,
+      "output_path": "rag\\data\\processed\\pages\\lead_free_reflow_defects.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\lead_free_reflow_defects.checkpoint.json"
+    },
+    {
+      "source_id": "fine_pitch_csp_assembly_processes",
+      "title": "Study of SMT Assembly Processes for Fine Pitch CSP Packages",
+      "expected_pages": 10,
+      "processed_pages": 10,
+      "status_counts": {
+        "success": 10
+      },
+      "extraction_method_counts": {
+        "native": 10
+      },
+      "printed_page_labels": 1,
+      "block_counts": {
+        "figure_caption": 14,
+        "footer": 22,
+        "formula": 7,
+        "header": 3,
+        "heading": 9,
+        "list_item": 14,
+        "page_number": 1,
+        "paragraph": 59,
+        "table": 16,
+        "table_caption": 5
+      },
+      "quality_flag_counts": {},
+      "failed_pages": [],
+      "blank_pages": [],
+      "partial_pages": [],
+      "elapsed_seconds": 0.65,
+      "output_path": "rag\\data\\processed\\pages\\fine_pitch_csp_assembly_processes.pages.jsonl",
+      "checkpoint_path": "rag\\data\\processed\\checkpoints\\fine_pitch_csp_assembly_processes.checkpoint.json"
+    }
+  ],
+  "representative_validation": [
+    {
+      "source_id": "indium_solder_defects_2021",
+      "pdf_page_number": 11,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "3",
+      "actual_printed_page_label": "3",
+      "required_block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "actual_block_types": [
+        "footer",
+        "header",
+        "heading",
+        "list_item",
+        "page_number",
+        "paragraph"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "indium_solder_defects_2021",
+      "pdf_page_number": 18,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "10",
+      "actual_printed_page_label": "10",
+      "required_block_types": [
+        "formula"
+      ],
+      "actual_block_types": [
+        "formula",
+        "header",
+        "list_item",
+        "page_number",
+        "paragraph"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "indium_solder_defects_2021",
+      "pdf_page_number": 38,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "30",
+      "actual_printed_page_label": "30",
+      "required_block_types": [
+        "formula",
+        "paragraph"
+      ],
+      "actual_block_types": [
+        "formula",
+        "list_item",
+        "page_number",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "pdf_page_number": 4,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "4",
+      "actual_printed_page_label": "4",
+      "required_block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "actual_block_types": [
+        "footer",
+        "header",
+        "heading",
+        "list_item",
+        "paragraph"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "pdf_page_number": 10,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "10",
+      "actual_printed_page_label": "10",
+      "required_block_types": [
+        "paragraph"
+      ],
+      "actual_block_types": [
+        "footer",
+        "header",
+        "heading",
+        "list_item",
+        "paragraph"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "pdf_page_number": 25,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": null,
+      "actual_printed_page_label": null,
+      "required_block_types": [
+        "paragraph"
+      ],
+      "actual_block_types": [
+        "header",
+        "heading",
+        "list_item",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "pdf_page_number": 3,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": null,
+      "actual_printed_page_label": null,
+      "required_block_types": [
+        "paragraph",
+        "table"
+      ],
+      "actual_block_types": [
+        "footer",
+        "header",
+        "heading",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "pdf_page_number": 7,
+      "expected_status": "blank",
+      "actual_status": "blank",
+      "expected_printed_page_label": null,
+      "actual_printed_page_label": null,
+      "required_block_types": [],
+      "actual_block_types": [],
+      "passed": true
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "pdf_page_number": 8,
+      "expected_status": "blank",
+      "actual_status": "blank",
+      "expected_printed_page_label": null,
+      "actual_printed_page_label": null,
+      "required_block_types": [],
+      "actual_block_types": [],
+      "passed": true
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "pdf_page_number": 2,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "I",
+      "actual_printed_page_label": "I",
+      "required_block_types": [
+        "heading"
+      ],
+      "actual_block_types": [
+        "heading",
+        "page_number",
+        "paragraph"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "pdf_page_number": 8,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "5",
+      "actual_printed_page_label": "5",
+      "required_block_types": [
+        "table"
+      ],
+      "actual_block_types": [
+        "heading",
+        "page_number",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "pdf_page_number": 20,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "17",
+      "actual_printed_page_label": "17",
+      "required_block_types": [
+        "heading",
+        "table"
+      ],
+      "actual_block_types": [
+        "formula",
+        "heading",
+        "list_item",
+        "page_number",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "pdf_page_number": 37,
+      "expected_status": "success",
+      "actual_status": "success",
+      "expected_printed_page_label": "34",
+      "actual_printed_page_label": "34",
+      "required_block_types": [
+        "formula",
+        "table"
+      ],
+      "actual_block_types": [
+        "formula",
+        "heading",
+        "page_number",
+        "paragraph",
+        "table"
+      ],
+      "passed": true
+    }
+  ],
+  "representative_validation_passed": true,
+  "elapsed_seconds": 19.391
+}

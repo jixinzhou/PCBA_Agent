@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "page_id": "ipc_7530_zh:p0001",
+  "source_id": "ipc_7530_zh",
+  "source_sha256": "780d61706c312e447225066a83bdd5abc7c98ccde800d24a7e1b8c5bfaffdea6",
+  "pdf_page_index": 0,
+  "pdf_page_number": 1,
+  "status": "success",
+  "text": "示例页面文本。",
+  "extraction_method": "native",
+  "parser": {
+    "name": "example-parser",
+    "version": "0.0.0"
+  },
+  "ocr": {
+    "used": false
+  },
+  "quality": {
+    "assessment": "pass",
+    "text_char_count": 7,
+    "flags": []
+  }
+}

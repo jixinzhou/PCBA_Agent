@@ -1,0 +1,19 @@
+schema_version: "1.0.0"
+
+sample:
+  pages_per_source: 5
+
+native_extraction:
+  parser: pypdf
+
+ocr:
+  engine: rapidocr
+  backend: onnxruntime
+  render_dpi: 200
+  trigger_below_chars: 80
+  force_source_ids:
+    - gjb_3243a_2021
+
+quality:
+  minimum_text_chars: 80
+  maximum_replacement_ratio: 0.01

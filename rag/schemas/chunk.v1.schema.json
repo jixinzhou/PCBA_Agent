@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chunk.v1.schema.json",
+  "title": "PCBA RAG Chunk V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "chunk_id",
+    "source_id",
+    "page_ids",
+    "pdf_page_start",
+    "pdf_page_end",
+    "section_path",
+    "text",
+    "metadata",
+    "text_hash"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "page_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "pdf_page_start": {"type": "integer", "minimum": 1},
+    "pdf_page_end": {"type": "integer", "minimum": 1},
+    "section_path": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "text": {"type": "string", "minLength": 1},
+    "metadata": {"$ref": "metadata.v1.schema.json"},
+    "text_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

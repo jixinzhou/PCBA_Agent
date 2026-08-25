@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "status": "frozen",
+  "frozen_date": "2026-08-19",
+  "evaluation_name": "PCBA Retriever Main Evaluation V0.3",
+  "formal_goal": {
+    "query_count": 16,
+    "candidate_answerable_count": 14,
+    "candidate_unanswerable_query_ids": ["Q019", "Q024"],
+    "rel2_gold_count": 43
+  },
+  "retrieval": {
+    "collection": "pcba_industrial_knowledge_v0_3",
+    "dense_top_k": 20,
+    "sparse_top_k": 20,
+    "rrf_k": 60,
+    "dense_weight": 1.0,
+    "sparse_weight": 1.0,
+    "candidate_pool_top_k": 20
+  },
+  "reranker": {
+    "model_id": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "max_length": 1024
+  },
+  "final_ranking": {
+    "method": "rank_fusion",
+    "formula": "(1-w)/(60+retrieval_rank) + w/(60+reranker_rank)",
+    "reranker_weight": 0.73,
+    "retriever_weight": 0.27,
+    "final_top_k": 5
+  },
+  "artifacts": {
+    "rag/evaluation/question/retriever_main.json": "c08d69c386e3ead93375e210a1bbdd7fcfd5ce2a1e0594ac81084d93a55daafa",
+    "rag/evaluation/question/multi_evidence.json": "b7a231d1b9b294eca4a486d10051d20a32b15ba87a5b5eab0c6f0c57a2034d17",
+    "rag/evaluation/question/agent_kg.json": "0ba95f2cad950ecd65d9ba9a23cd3f66536f80790a1e1524a837d36ae963f408",
+    "rag/evaluation/question/no_answer_abstention.json": "16dc1239c7da71e7030e755f13a5a314dcae51ac293fb85743a0301ae0f0c1ee",
+    "rag/evaluation/question/manifest.json": "11f9289bfd180ca02897bde21bdaf0747d7dbad8c2b57c226c7c3377c84f63a5",
+    "rag/evaluation/question/retriever_main_top20_v0.3.csv": "fc3fdd23849bf2c0bcf693a91e86382834240e32cfcd4af9a505dcde2cd54059",
+    "rag/evaluation/question/retriever_main_gold_v0.3.json": "b56fd31151b7057fdff889f2218de93cbd0151dd0d7d761fbb67f2dd857fe771",
+    "rag/evaluation/question/retriever_main_metrics_summary.json": "03f3997fb3b364f7e593a24fff7eddb359c18d7863239ec8c4c1f1b31cb499ea",
+    "rag/evaluation/question/retriever_main_rank_fusion_metrics.json": "2d97d1cd34b6a022fdf1f9665acf90c5ed591816f9076dc834ac41b9bf823bb6",
+    "rag/config/retriever_main_reranker.v0.1.yaml": "213ab3df03583d536506935519127c96e1a463dbc1e0c9f365c5a08852be8471",
+    "rag/config/retriever_main_rank_fusion.v0.1.yaml": "76affbe7ffeb86b652cb2de59e447be508e53679ebb34be774298d8dc0d283b6"
+  },
+  "change_policy": "Any artifact hash change requires explicit refreeze and full metric recomputation."
+}

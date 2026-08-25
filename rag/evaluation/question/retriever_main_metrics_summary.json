@@ -1,0 +1,60 @@
+{
+  "evaluation_goal": "retriever_main",
+  "goal_query_count": 16,
+  "primary_answerable_query_count": 14,
+  "direct_gold_coverage_of_goal": 0.875,
+  "candidate_unanswerable_query_ids": [
+    "Q019",
+    "Q024"
+  ],
+  "rel2_gold_count": 43,
+  "metric_scope": "Primary ranking metrics use only candidate_answerable=true queries; Q019 and Q024 are reported separately.",
+  "methods": {
+    "rrf_retriever": {
+      "macro_recall_at_5": 0.3625283446712018,
+      "micro_rel2_recall_at_5": 0.3953488372093023,
+      "rel2_hit_at_5_count": 17,
+      "direct_hit_at_5_count": 9,
+      "mrr_at_10": 0.4805555555555555,
+      "ndcg_at_10": 0.5820977120445047,
+      "source_hit_at_5": 0.7857142857142857,
+      "page_hit_at_5": 0.7142857142857143,
+      "top5_relevance_counts": {"0": 25, "1": 28, "2": 17}
+    },
+    "reranker": {
+      "macro_recall_at_5": 0.7363945578231293,
+      "micro_rel2_recall_at_5": 0.5813953488372093,
+      "rel2_hit_at_5_count": 25,
+      "direct_hit_at_5_count": 14,
+      "mrr_at_10": 0.6333333333333334,
+      "ndcg_at_10": 0.7891310149800246,
+      "source_hit_at_5": 1.0,
+      "page_hit_at_5": 1.0,
+      "top5_relevance_counts": {"0": 10, "1": 35, "2": 25}
+    },
+    "rank_fusion_w_0_73": {
+      "retriever_weight": 0.27,
+      "reranker_weight": 0.73,
+      "macro_recall_at_5": 0.76218820861678,
+      "micro_rel2_recall_at_5": 0.627906976744186,
+      "rel2_hit_at_5_count": 27,
+      "direct_hit_at_5_count": 14,
+      "mrr_at_10": 0.5857142857142856,
+      "ndcg_at_10": 0.7724541190555007,
+      "source_hit_at_5": 1.0,
+      "page_hit_at_5": 1.0,
+      "top5_relevance_counts": {"0": 10, "1": 33, "2": 27}
+    }
+  },
+  "grid_search": {
+    "macro_best_weight_range": [0.72, 0.74],
+    "selected_weight": 0.72,
+    "fixed_weight_0_73_is_macro_optimal": true
+  },
+  "artifacts": {
+    "question_set": "retriever_main.json",
+    "candidate_pool": "retriever_main_top20_v0.3.csv",
+    "gold": "retriever_main_gold_v0.3.json",
+    "full_grid_results": "retriever_main_rank_fusion_metrics.json"
+  }
+}

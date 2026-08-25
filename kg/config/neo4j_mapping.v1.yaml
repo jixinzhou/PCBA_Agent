@@ -1,0 +1,168 @@
+mapping_id: pcba-causal-graph-mapping
+mapping_version: "1.0.0"
+status: frozen_for_t11_1_review
+
+source_contracts:
+  ontology:
+    path: ontology/pcba_defect_causality.v1.1.yaml
+    ontology_id: pcba_defect_causality
+    ontology_version: "1.1.0"
+    sha256: a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6
+    authority: causal_fact_source
+  entity_dictionary:
+    path: rag/schemas/entity_dictionary.json
+    dictionary_version: "1.1.0"
+    sha256: 3e1eaf19a881f622c0cc532fc055c5228e9fd6aeebb7a50b7fafaa38dee82ebb
+    authority: terminology_support_only
+  tool_models:
+    path: tool/agent_tools/models.py
+    sha256: 1cd41995a8a714b2e3fc4847735f5df27d93f99d622b15aada1beef572217add
+    authority: tool_input_contract
+
+active_graph:
+  expected_counts:
+    Process: 3
+    Defect: 4
+    CandidateCause: 5
+    QualityMetric: 7
+    Tool: 4
+    CausalHypothesis: 5
+  base_entity_label: KnowledgeEntity
+  node_labels:
+    - Process
+    - Defect
+    - CandidateCause
+    - QualityMetric
+    - Tool
+    - CausalHypothesis
+  relationship_types:
+    - HAS_HYPOTHESIS
+    - PROPOSES_CAUSE
+    - BELONGS_TO
+    - REQUIRES_METRIC
+    - VALIDATED_BY
+    - OPTIMIZED_BY
+
+node_mappings:
+  Process:
+    source_collection: processes
+    identity_property: entity_id
+    properties: [entity_id, canonical_name, display_name_zh, aliases]
+  Defect:
+    source_collection: defects
+    identity_property: entity_id
+    canonical_lookup_property: canonical_name
+    properties: [entity_id, canonical_name, display_name_zh, aliases]
+  CandidateCause:
+    source_collection: candidate_causes
+    identity_property: entity_id
+    properties: [entity_id, canonical_name, display_name_zh, aliases, process_id]
+  QualityMetric:
+    source_collection: validation_metrics
+    identity_property: entity_id
+    properties:
+      - entity_id
+      - canonical_name
+      - display_name_zh
+      - aliases
+      - process_id
+      - tool_observable
+      - api_field
+  Tool:
+    source_collection: tools
+    identity_property: entity_id
+    properties:
+      - entity_id
+      - canonical_name
+      - display_name_zh
+      - process_id
+      - tool_role
+  CausalHypothesis:
+    source_collection: relationships
+    identity_property: relationship_id
+    properties:
+      - relationship_id
+      - defect_id
+      - candidate_cause_id
+      - process_id
+      - relation_strength
+      - verification_status
+      - interpretation
+      - ontology_id
+      - ontology_version
+      - ontology_source
+      - ontology_sha256
+      - evidence_status
+
+relationship_mappings:
+  - type: HAS_HYPOTHESIS
+    from: {label: Defect, lookup: canonical_name, source_field: defect_id}
+    to: {label: CausalHypothesis, lookup: relationship_id, source_field: relationship_id}
+  - type: PROPOSES_CAUSE
+    from: {label: CausalHypothesis, lookup: relationship_id, source_field: relationship_id}
+    to: {label: CandidateCause, lookup: entity_id, source_field: candidate_cause_id}
+  - type: BELONGS_TO
+    variant: candidate_cause_to_process
+    from: {label: CandidateCause, lookup: entity_id, source_field: candidate_cause_id}
+    to: {label: Process, lookup: canonical_name, source_field: process_id}
+  - type: BELONGS_TO
+    variant: metric_to_process
+    from: {label: QualityMetric, lookup: entity_id, source_field: validation_metric_ids}
+    to: {label: Process, lookup: canonical_name, source_field: process_id}
+  - type: BELONGS_TO
+    variant: tool_to_process
+    from: {label: Tool, lookup: canonical_name, source_field: validation_tool_or_optimization_tool}
+    to: {label: Process, lookup: canonical_name, source_field: process_id}
+  - type: REQUIRES_METRIC
+    from: {label: CausalHypothesis, lookup: relationship_id, source_field: relationship_id}
+    to: {label: QualityMetric, lookup: entity_id, source_field: validation_metric_ids}
+  - type: VALIDATED_BY
+    when: validation_tool_is_not_null
+    from: {label: CausalHypothesis, lookup: relationship_id, source_field: relationship_id}
+    to: {label: Tool, lookup: canonical_name, source_field: validation_tool}
+  - type: OPTIMIZED_BY
+    when: optimization_tool_is_not_null
+    from: {label: CausalHypothesis, lookup: relationship_id, source_field: relationship_id}
+    to: {label: Tool, lookup: canonical_name, source_field: optimization_tool}
+
+tool_contracts:
+  spi_vte_prediction:
+    model: SpiPredictionToolInput
+    required_input_paths:
+      - input.squeegee_pressure_kgf
+      - input.squeegee_speed_m_s
+      - input.separation_speed_m_s
+      - input.separation_distance_mm
+  spi_parameter_optimization:
+    model: SpiOptimizationToolInput
+  reflow_profile_prediction:
+    model: ReflowPredictionToolInput
+    required_input_paths:
+      - input.points
+      - input.zone_means_c
+      - input.belt_speed_cm_min
+  reflow_parameter_optimization:
+    model: ReflowOptimizationToolInput
+
+query_rules:
+  candidate_order: [strong, medium_strong, conditional]
+  final_tie_break: relationship_id
+  retain_unverified: true
+  tool_supported_means_capability_not_result: true
+  initial_assessment_status: not_evaluated
+  deduplicate_required_controls_by: [metric_id, process_id, validation_tool]
+  evidence_policy: curated_relationship_chunk_links_only
+  optimization_requires_prediction_revalidation: true
+
+excluded_from_active_graph:
+  - entity_id: METRIC-SPI-VTE-VARIANCE
+    reason: not_in_t09_v1_1_ontology
+  - entity_id: CRITERION-VTE-TARGET
+    reason: pending_process_confirmation
+  - entity_id: CRITERION-PWI-UPPER
+    reason: pending_project_confirmation
+
+deferred_operational_entities:
+  entity_types: [AdjustmentAction, ProcessParameter]
+  reason: minimal_t11_1_scope_keeps_only_frozen_t09_causal_graph
+  planned_source: rag/schemas/entity_dictionary.json_and_tool_input_contracts

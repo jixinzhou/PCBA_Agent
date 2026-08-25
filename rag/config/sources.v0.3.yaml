@@ -1,0 +1,95 @@
+schema_version: "1.0.0"
+knowledge_base_id: pcba_industrial_knowledge
+knowledge_base_version: "0.3.0"
+
+sources:
+  - source_id: indium_solder_defects_2021
+    file_path: txt_source/indium-guide-to-minimizing-solder-defects-2021-tpcag2sd.pdf
+    enabled: true
+    title: A Guide to Minimizing Solder Defects
+    organization: Indium Corporation
+    document_type: vendor_guide
+    language: en
+    evidence_roles: [defect_mechanism, troubleshooting_guidance]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 1d02c788b82011b13d668f291c5959dae65c043728f1c71619c1e21d9feee6b5
+
+  - source_id: solder_paste_print_inspection_guide
+    file_path: txt_source/Solder-Paste-Print-Inspection-Defect-Guide.pdf
+    enabled: true
+    title: Solder Paste Print Inspection Defect Guide
+    organization: null
+    document_type: industry_guide
+    language: en
+    evidence_roles: [troubleshooting_guidance, process_guideline]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 14f4510bc509bf82aba837b71f2a86f00bf2ebe608aa9062815cd0b115ab18c6
+
+  - source_id: ipc_7530_zh
+    file_path: txt_source/IPC-7530+焊工艺温度曲线指南(回流焊和波峰焊)+中文版.pdf
+    enabled: true
+    title: IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版
+    organization: IPC
+    document_type: standard
+    language: zh-CN
+    evidence_roles: [process_guideline]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: 780d61706c312e447225066a83bdd5abc7c98ccde800d24a7e1b8c5bfaffdea6
+
+  - source_id: gjb_3243a_2021
+    file_path: txt_source/GJB_3243A-2021_电子元器件表面安装要求.pdf
+    enabled: true
+    title: GJB 3243A-2021 电子元器件表面安装要求
+    organization: null
+    document_type: standard
+    language: zh-CN
+    evidence_roles: [normative_requirement]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: d4429e339e3772286ad5395b719e0b78135ba04c69bdeb0495bb1a18eb9569af
+
+  - source_id: solder_paste_printing_critical_parameters
+    file_path: txt_source/补充/43.Thesolderpasteprintingprocess_criticalparameters_defectscenarios_specifications_andcostreduction.pdf
+    enabled: true
+    title: "The Solder Paste Printing Process: Critical Parameters, Defect Scenarios, Specifications, and Cost Reduction"
+    organization: National Taipei University of Technology
+    document_type: industry_guide
+    language: en
+    evidence_roles: [defect_mechanism, process_guideline]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: de99ab5a68fce4d9949d865873680e6604d6f0d550ac554ec0c73ffcbe343cce
+
+  - source_id: lead_free_reflow_defects
+    file_path: txt_source/补充/E10&S30_02.pdf
+    enabled: true
+    title: Reflow Defects with Lead-Free Soldering Moisture Sensitive Components
+    organization: Rehm Anlagenbau GmbH and Technical University Dresden
+    document_type: industry_guide
+    language: en
+    evidence_roles: [defect_mechanism, troubleshooting_guidance]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: eb0e6dc38d3652321c3e2c84b7d8b130e1ab994136419ebe4e9b432d73af56da
+
+  - source_id: fine_pitch_csp_assembly_processes
+    file_path: txt_source/补充/E18&S07-1.pdf
+    enabled: true
+    title: Study of SMT Assembly Processes for Fine Pitch CSP Packages
+    organization: Flextronics
+    document_type: industry_guide
+    language: en
+    evidence_roles: [defect_mechanism, process_guideline]
+    rights_status: pending_confirmation
+    redistribution_allowed: unknown
+    processing_scope: local_only
+    sha256: c3f82b2b7eb2535e6e698b12ecc9b2f80df6653ca29343297d793b0dff00be49

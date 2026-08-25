@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_request.v1.schema.json",
+  "title": "PCBA Agent Request V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0", "default": "1.0.0"},
+    "request_id": {"type": "string", "minLength": 1},
+    "thread_id": {"type": "string", "minLength": 1},
+    "user_question": {"type": ["string", "null"]},
+    "image_path": {"type": ["string", "null"]},
+    "goal": {"enum": ["diagnose", "diagnose_and_optimize"], "default": "diagnose"},
+    "provided_defect": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component", null]},
+    "observations": {"type": "object"},
+    "response_language": {"enum": ["auto", "zh", "en"], "default": "auto"}
+  },
+  "required": ["thread_id"],
+  "anyOf": [
+    {"required": ["user_question"]},
+    {"required": ["image_path"]},
+    {"required": ["provided_defect"]}
+  ]
+}

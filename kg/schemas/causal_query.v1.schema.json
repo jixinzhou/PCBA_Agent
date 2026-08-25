@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "causal_query.v1.schema.json",
+  "title": "PCBA Causal Knowledge Query Response V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "ontology",
+    "defect",
+    "candidates",
+    "required_controls",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "ontology": {"$ref": "#/$defs/ontology"},
+    "defect": {"$ref": "#/$defs/entity"},
+    "candidates": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/candidate"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "required_controls": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/required_control"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "ontology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ontology_id", "ontology_version", "source_path", "source_sha256"],
+      "properties": {
+        "ontology_id": {"const": "pcba_defect_causality"},
+        "ontology_version": {"const": "1.1.0"},
+        "source_path": {"const": "ontology/pcba_defect_causality.v1.1.yaml"},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "canonical_name", "display_name_zh"],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "display_name_zh": {"type": "string", "minLength": 1}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "canonical_name",
+        "display_name_zh",
+        "tool_observable",
+        "api_field"
+      ],
+      "properties": {
+        "entity_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "display_name_zh": {"type": "string", "minLength": 1},
+        "tool_observable": {"type": "boolean"},
+        "api_field": {"type": ["string", "null"]}
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_type",
+        "tool_name",
+        "required_inputs",
+        "missing_inputs",
+        "reason"
+      ],
+      "properties": {
+        "action_type": {
+          "enum": [
+            "invoke_tool",
+            "request_missing_data",
+            "manual_inspection",
+            "not_available"
+          ]
+        },
+        "tool_name": {
+          "enum": [
+            "spi_vte_prediction",
+            "spi_parameter_optimization",
+            "reflow_profile_prediction",
+            "reflow_parameter_optimization",
+            null
+          ]
+        },
+        "required_inputs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "missing_inputs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action_type": {"enum": ["invoke_tool", "request_missing_data"]}
+            },
+            "required": ["action_type"]
+          },
+          "then": {"properties": {"tool_name": {"type": "string"}}}
+        },
+        {
+          "if": {
+            "properties": {"action_type": {"const": "manual_inspection"}},
+            "required": ["action_type"]
+          },
+          "then": {"properties": {"tool_name": {"type": "null"}}}
+        },
+        {
+          "if": {
+            "properties": {"action_type": {"const": "invoke_tool"}},
+            "required": ["action_type"]
+          },
+          "then": {"properties": {"missing_inputs": {"maxItems": 0}}}
+        },
+        {
+          "if": {
+            "properties": {"action_type": {"const": "request_missing_data"}},
+            "required": ["action_type"]
+          },
+          "then": {"properties": {"missing_inputs": {"minItems": 1}}}
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_type",
+        "source_path",
+        "ontology_version",
+        "source_sha256",
+        "evidence_status"
+      ],
+      "properties": {
+        "source_type": {"const": "ontology"},
+        "source_path": {"const": "ontology/pcba_defect_causality.v1.1.yaml"},
+        "ontology_version": {"const": "1.1.0"},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "evidence_status": {"enum": ["ontology_only", "curated"]}
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chunk_id", "source_id", "page_number", "review_status"],
+      "properties": {
+        "chunk_id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "page_number": {"type": "integer", "minimum": 1},
+        "review_status": {"const": "curated"}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship_id",
+        "candidate_cause",
+        "process",
+        "relation_strength",
+        "verification_capability",
+        "assessment_status",
+        "interpretation",
+        "validation_metrics",
+        "validation_action",
+        "optimization_action",
+        "revalidation_required",
+        "provenance",
+        "evidence_refs",
+        "limitations"
+      ],
+      "properties": {
+        "relationship_id": {
+          "type": "string",
+          "pattern": "^REL-[A-Z0-9-]+$"
+        },
+        "candidate_cause": {"$ref": "#/$defs/entity"},
+        "process": {"$ref": "#/$defs/entity"},
+        "relation_strength": {"enum": ["strong", "medium_strong", "conditional"]},
+        "verification_capability": {"enum": ["tool_supported", "unverified"]},
+        "assessment_status": {
+          "enum": ["not_evaluated", "supported", "contradicted", "inconclusive"]
+        },
+        "interpretation": {"type": "string", "minLength": 1},
+        "validation_metrics": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/metric"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "validation_action": {"$ref": "#/$defs/action"},
+        "optimization_action": {"$ref": "#/$defs/action"},
+        "revalidation_required": {"type": "boolean"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/evidence_ref"},
+          "uniqueItems": true
+        },
+        "limitations": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"verification_capability": {"const": "unverified"}},
+            "required": ["verification_capability"]
+          },
+          "then": {
+            "properties": {
+              "validation_action": {
+                "properties": {
+                  "action_type": {"const": "manual_inspection"},
+                  "tool_name": {"type": "null"}
+                }
+              },
+              "optimization_action": {
+                "properties": {
+                  "action_type": {"const": "not_available"},
+                  "tool_name": {"type": "null"}
+                }
+              },
+              "revalidation_required": {"const": false}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"verification_capability": {"const": "tool_supported"}},
+            "required": ["verification_capability"]
+          },
+          "then": {
+            "properties": {
+              "validation_action": {
+                "properties": {
+                  "action_type": {"enum": ["invoke_tool", "request_missing_data"]},
+                  "tool_name": {
+                    "enum": ["spi_vte_prediction", "reflow_profile_prediction"]
+                  }
+                }
+              },
+              "revalidation_required": {"const": true}
+            }
+          }
+        }
+      ]
+    },
+    "required_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric_id",
+        "canonical_name",
+        "process_id",
+        "validation_tool",
+        "source_relationship_ids"
+      ],
+      "properties": {
+        "metric_id": {"type": "string", "minLength": 1},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "process_id": {"enum": ["printing", "placement", "reflow"]},
+        "validation_tool": {
+          "enum": ["spi_vte_prediction", "reflow_profile_prediction", null]
+        },
+        "source_relationship_ids": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^REL-[A-Z0-9-]+$"},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

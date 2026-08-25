@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metadata.v1.schema.json",
+  "title": "PCBA RAG Metadata V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_title",
+    "organization",
+    "document_type",
+    "language",
+    "rights_status",
+    "process_ids",
+    "defect_ids",
+    "evidence_roles",
+    "tag_origin",
+    "parser_version",
+    "ocr_used"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "source_title": {"type": "string", "minLength": 1},
+    "organization": {"type": ["string", "null"]},
+    "document_type": {"enum": ["standard", "vendor_guide", "industry_guide"]},
+    "language": {"enum": ["zh-CN", "en", "mixed"]},
+    "rights_status": {"enum": ["pending_confirmation", "restricted", "cleared", "unknown"]},
+    "process_ids": {
+      "type": "array",
+      "items": {"enum": ["printing", "placement", "reflow"]},
+      "uniqueItems": true
+    },
+    "defect_ids": {
+      "type": "array",
+      "items": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component"]},
+      "uniqueItems": true
+    },
+    "evidence_roles": {
+      "type": "array",
+      "items": {"enum": ["defect_mechanism", "troubleshooting_guidance", "process_guideline", "normative_requirement"]},
+      "uniqueItems": true
+    },
+    "tag_origin": {"enum": ["none", "rule", "curated", "mixed"]},
+    "parser_version": {"type": "string", "minLength": 1},
+    "ocr_used": {"type": "boolean"}
+  }
+}

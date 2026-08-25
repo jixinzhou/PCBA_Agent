@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_name": "pcba_no_answer_abstention_v1",
+  "description": "No-answer and abstention questions evaluated separately",
+  "query_count": 3,
+  "items": [
+    {
+      "query_id": "Q041",
+      "query": "波峰焊预热温度应该设置为多少？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "wave_soldering"
+      ],
+      "query_type": "unanswerable_out_of_scope",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "no_answer_abstention"
+    },
+    {
+      "query_id": "Q043",
+      "query": "BGA内部空洞率超过多少一定会导致产品失效？",
+      "language": "zh",
+      "answerable": false,
+      "defect_ids": [],
+      "process_ids": [
+        "reflow"
+      ],
+      "query_type": "unanswerable_unsupported_claim",
+      "eval_focus": [
+        "no_answer"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "no_answer_abstention"
+    },
+    {
+      "query_id": "Q048",
+      "query": "Which solder paste brand can completely eliminate solder bridging?",
+      "language": "en",
+      "answerable": false,
+      "defect_ids": [
+        "short"
+      ],
+      "process_ids": [
+        "printing"
+      ],
+      "query_type": "unanswerable_unsupported_claim",
+      "eval_focus": [
+        "no_answer",
+        "cross_language"
+      ],
+      "gold_sources": [],
+      "gold_pages": [],
+      "query_version": "original",
+      "evaluation_group": "no_answer_abstention"
+    }
+  ]
+}

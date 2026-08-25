@@ -1,0 +1,15 @@
+experiment_version: pcba-reranker-rank-disagreement-fusion/0.1.0
+base_evaluation_config: rag/config/reranker.full_evaluation.v0.1.yaml
+fusion:
+  rrf_k: 60
+  base_reranker_weight: 0.73
+  disagreement_thresholds: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+  weight_offsets: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
+  primary_metric: macro_recall_at_5
+  tie_break_metrics:
+    - micro_rel2_recall_at_5
+    - mrr_at_10
+    - ndcg_at_10
+  final_tie_break: least_intervention
+output:
+  results: rag/evaluation/reranker_rank_disagreement_fusion_results.json

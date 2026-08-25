@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "ontology": {
+    "ontology_id": "pcba_defect_causality",
+    "ontology_version": "1.1.0",
+    "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+    "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6"
+  },
+  "defect": {
+    "entity_id": "DEFECT-SHIFTED-COMPONENT",
+    "canonical_name": "shifted_component",
+    "display_name_zh": "元件偏移"
+  },
+  "candidates": [
+    {
+      "relationship_id": "REL-SHIFTED-COMPONENT-PLACEMENT",
+      "candidate_cause": {
+        "entity_id": "CAUSE-PLACEMENT-OFFSET",
+        "canonical_name": "placement_offset",
+        "display_name_zh": "贴装位置偏差"
+      },
+      "process": {
+        "entity_id": "PROCESS-PLACEMENT",
+        "canonical_name": "placement",
+        "display_name_zh": "元器件贴装"
+      },
+      "relation_strength": "strong",
+      "verification_capability": "unverified",
+      "assessment_status": "not_evaluated",
+      "interpretation": "贴装位置偏差是强候选原因，当前无贴装预测 Tool，保留为未工具验证因素。",
+      "validation_metrics": [
+        {
+          "entity_id": "METRIC-PLACEMENT-OFFSET-XYTHETA",
+          "canonical_name": "placement_offset_x_y_theta",
+          "display_name_zh": "贴装X/Y/θ偏差",
+          "tool_observable": false,
+          "api_field": null
+        }
+      ],
+      "validation_action": {
+        "action_type": "manual_inspection",
+        "tool_name": null,
+        "required_inputs": ["manual_observation.placement_offset_x_y_theta"],
+        "missing_inputs": ["manual_observation.placement_offset_x_y_theta"],
+        "reason": "当前没有贴装预测Tool，需要人工检查X/Y/θ偏差。"
+      },
+      "optimization_action": {
+        "action_type": "not_available",
+        "tool_name": null,
+        "required_inputs": [],
+        "missing_inputs": [],
+        "reason": "当前候选路径没有正式优化Tool。"
+      },
+      "revalidation_required": false,
+      "provenance": {
+        "source_type": "ontology",
+        "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+        "ontology_version": "1.1.0",
+        "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6",
+        "evidence_status": "ontology_only"
+      },
+      "evidence_refs": [],
+      "limitations": ["人工贴装检查完成前保持unverified。"]
+    },
+    {
+      "relationship_id": "REL-SHIFTED-COMPONENT-REFLOW",
+      "candidate_cause": {
+        "entity_id": "CAUSE-REFLOW-THERMAL-IMBALANCE",
+        "canonical_name": "reflow_thermal_imbalance",
+        "display_name_zh": "回流热不均或润湿不同步"
+      },
+      "process": {
+        "entity_id": "PROCESS-REFLOW",
+        "canonical_name": "reflow",
+        "display_name_zh": "回流焊"
+      },
+      "relation_strength": "conditional",
+      "verification_capability": "tool_supported",
+      "assessment_status": "not_evaluated",
+      "interpretation": "回流热不均或润湿不同步仅作为条件性候选原因，不得表述为元件偏移的必然根因。",
+      "validation_metrics": [
+        {
+          "entity_id": "METRIC-REFLOW-PEAK-TEMP",
+          "canonical_name": "peak_temperature_c",
+          "display_name_zh": "峰值温度",
+          "tool_observable": true,
+          "api_field": "peak_temperature_c"
+        },
+        {
+          "entity_id": "METRIC-REFLOW-TAL",
+          "canonical_name": "time_above_217_s",
+          "display_name_zh": "217℃以上时间",
+          "tool_observable": true,
+          "api_field": "time_above_217_s"
+        },
+        {
+          "entity_id": "METRIC-REFLOW-PWI",
+          "canonical_name": "pwi",
+          "display_name_zh": "PWI",
+          "tool_observable": true,
+          "api_field": "pwi"
+        },
+        {
+          "entity_id": "METRIC-REFLOW-THERMAL-DELTA",
+          "canonical_name": "reflow_point_temperature_difference",
+          "display_name_zh": "不同测点温度差异",
+          "tool_observable": true,
+          "api_field": "point_results"
+        }
+      ],
+      "validation_action": {
+        "action_type": "request_missing_data",
+        "tool_name": "reflow_profile_prediction",
+        "required_inputs": [
+          "input.points",
+          "input.zone_means_c",
+          "input.belt_speed_cm_min"
+        ],
+        "missing_inputs": [
+          "input.points",
+          "input.zone_means_c",
+          "input.belt_speed_cm_min"
+        ],
+        "reason": "需要测点、13温区设定和链速才能执行回流预测。"
+      },
+      "optimization_action": {
+        "action_type": "not_available",
+        "tool_name": "reflow_parameter_optimization",
+        "required_inputs": [],
+        "missing_inputs": [],
+        "reason": "必须先完成回流预测并确认异常，才能进入参数优化。"
+      },
+      "revalidation_required": true,
+      "provenance": {
+        "source_type": "ontology",
+        "source_path": "ontology/pcba_defect_causality.v1.1.yaml",
+        "ontology_version": "1.1.0",
+        "source_sha256": "a4719a05819d33482126c0241656b27494dc146b05b240c5e2cff53cd01112a6",
+        "evidence_status": "ontology_only"
+      },
+      "evidence_refs": [],
+      "limitations": [
+        "存在回流预测Tool不表示当前案例已得到Tool支持。",
+        "conditional关系不能表述为元件偏移的必然原因。"
+      ]
+    }
+  ],
+  "required_controls": [
+    {
+      "metric_id": "METRIC-PLACEMENT-OFFSET-XYTHETA",
+      "canonical_name": "placement_offset_x_y_theta",
+      "process_id": "placement",
+      "validation_tool": null,
+      "source_relationship_ids": ["REL-SHIFTED-COMPONENT-PLACEMENT"]
+    },
+    {
+      "metric_id": "METRIC-REFLOW-PEAK-TEMP",
+      "canonical_name": "peak_temperature_c",
+      "process_id": "reflow",
+      "validation_tool": "reflow_profile_prediction",
+      "source_relationship_ids": ["REL-SHIFTED-COMPONENT-REFLOW"]
+    },
+    {
+      "metric_id": "METRIC-REFLOW-TAL",
+      "canonical_name": "time_above_217_s",
+      "process_id": "reflow",
+      "validation_tool": "reflow_profile_prediction",
+      "source_relationship_ids": ["REL-SHIFTED-COMPONENT-REFLOW"]
+    },
+    {
+      "metric_id": "METRIC-REFLOW-PWI",
+      "canonical_name": "pwi",
+      "process_id": "reflow",
+      "validation_tool": "reflow_profile_prediction",
+      "source_relationship_ids": ["REL-SHIFTED-COMPONENT-REFLOW"]
+    },
+    {
+      "metric_id": "METRIC-REFLOW-THERMAL-DELTA",
+      "canonical_name": "reflow_point_temperature_difference",
+      "process_id": "reflow",
+      "validation_tool": "reflow_profile_prediction",
+      "source_relationship_ids": ["REL-SHIFTED-COMPONENT-REFLOW"]
+    }
+  ],
+  "warnings": [
+    "元件偏移返回两条独立候选路径，不能因Tool可用性删除人工检查路径。"
+  ]
+}

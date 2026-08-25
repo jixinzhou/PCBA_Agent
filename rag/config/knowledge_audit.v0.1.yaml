@@ -1,0 +1,197 @@
+schema_version: "1.0.0"
+audit_version: "pcba-knowledge-audit/0.1.0"
+
+inputs:
+  chunks_glob: "rag/data/processed/chunks_enriched/*.chunks.v1.1.jsonl"
+  pages_glob: "rag/data/processed/pages/*.pages.jsonl"
+  top20_csv: "rag/evaluation/evaluation_top20.csv"
+  top50_csv: "rag/evaluation/evaluation_top50_experiment.csv"
+
+outputs:
+  candidates_csv: "rag/evaluation/knowledge_audit_candidates.csv"
+  review_report: "rag/evaluation/T10.10_KNOWLEDGE_COVERAGE_REVIEW.md"
+
+ranking:
+  max_chunk_candidates_per_query: 5
+  max_page_candidates_per_query: 3
+  csv_excerpt_chars: 800
+  report_excerpt_chars: 260
+
+queries:
+  - query_id: Q001
+    question: "焊膏印刷量不足可能导致哪些典型焊接缺陷？"
+    facets:
+      - facet_id: low_deposit_effects
+        description: "焊膏沉积或转移不足及其导致的焊接缺陷"
+        min_groups: 2
+        term_groups:
+          - ["insufficient paste", "solder paste insufficient", "solder paste insufficients", "insufficient deposit", "insufficient solder deposit", "low paste deposit", "poor paste transfer", "low transfer efficiency", "焊膏沉积不足", "焊膏转移不足", "印刷量不足"]
+          - ["insufficient solder", "insufficient solder joint", "open joint", "open joints", "opens", "solder defect", "少锡", "焊料不足", "开路"]
+
+  - query_id: Q004
+    question: "印刷过程中脱模不良为什么可能引起少锡？"
+    facets:
+      - facet_id: release_to_insufficient_solder
+        description: "脱模／分离／开口释放不良与少锡之间的机理"
+        min_groups: 2
+        term_groups:
+          - ["stencil release", "paste release", "aperture release", "separation speed", "release problem", "脱模", "分离速度", "开口释放"]
+          - ["insufficient solder", "insufficient paste", "poor transfer", "transfer efficiency", "少锡", "焊料不足", "转移效率"]
+
+  - query_id: Q007
+    question: "贴装偏移是否可能导致最终焊点焊料不足？"
+    facets:
+      - facet_id: placement_offset_to_insufficient_solder
+        description: "贴装偏移与最终焊点少锡之间的关系"
+        min_groups: 2
+        term_groups:
+          - ["component misalignment", "component shift", "placement offset", "misplaced component", "贴装偏移", "元件偏移", "位置偏差"]
+          - ["insufficient solder", "insufficient solder joint", "low solder", "少锡", "焊料不足", "焊点不足"]
+
+  - query_id: Q008
+    question: "回流焊温度曲线异常是否可能造成焊料不足？"
+    facets:
+      - facet_id: reflow_profile_to_insufficient_solder
+        description: "回流温度曲线异常与少锡／不充分焊接之间的关系"
+        min_groups: 2
+        term_groups:
+          - ["reflow profile", "thermal profile", "temperature profile", "peak temperature", "time above liquidus", "回流曲线", "温度曲线", "峰值温度", "液相线以上时间"]
+          - ["insufficient solder", "incomplete reflow", "poor wetting", "non-wetting", "少锡", "焊料不足", "润湿不良", "回流不足"]
+
+  - query_id: Q009
+    question: "少锡可能由印刷、贴装和回流中的哪些因素共同造成？"
+    facets:
+      - facet_id: printing_causes
+        description: "印刷工序中的少锡因素"
+        min_groups: 2
+        include_partial: false
+        term_groups:
+          - ["printing", "stencil", "squeegee", "aperture", "paste transfer", "印刷", "钢网", "刮刀", "转移效率"]
+          - ["insufficient solder", "insufficient paste", "low deposit", "少锡", "焊料不足", "沉积不足"]
+      - facet_id: placement_causes
+        description: "贴装工序中的少锡因素"
+        min_groups: 2
+        include_partial: false
+        term_groups:
+          - ["placement", "component misalignment", "placement offset", "misplaced component", "贴装", "元件偏移", "位置偏差"]
+          - ["insufficient solder", "low solder", "少锡", "焊料不足"]
+      - facet_id: reflow_causes
+        description: "回流工序中的少锡因素"
+        min_groups: 2
+        include_partial: false
+        term_groups:
+          - ["reflow", "temperature profile", "thermal profile", "wetting", "回流", "温度曲线", "润湿"]
+          - ["insufficient solder", "incomplete reflow", "poor wetting", "少锡", "焊料不足", "回流不足"]
+
+  - query_id: Q010
+    question: "IPC资料中对焊料不足的可接受性要求是什么？"
+    source_ids: [ipc_7530_zh]
+    facets:
+      - facet_id: ipc_acceptability_insufficient_solder
+        description: "IPC-7530中焊料不足的明确可接受性或判定条款"
+        min_groups: 2
+        term_groups:
+          - ["少锡", "焊料不足", "焊锡不足", "insufficient solder"]
+          - ["可接受", "不允许", "判定", "验收", "要求", "acceptability", "acceptance criteria", "shall"]
+
+  - query_id: Q011
+    question: "焊膏印刷量过多可能导致哪些质量问题？"
+    facets:
+      - facet_id: excessive_deposit_effects
+        description: "焊膏印刷或沉积过量导致的质量缺陷"
+        min_groups: 2
+        term_groups:
+          - ["excessive paste", "excess paste deposit", "excessive solder paste", "too much solder paste", "焊膏过量", "锡膏沉积过多", "印刷量过多"]
+          - ["bridging", "solder balls", "short circuit", "excess solder", "defect", "桥连", "短路", "焊球", "多锡", "质量问题"]
+
+  - query_id: Q013
+    question: "钢网开口或印刷条件异常为什么会造成锡量过多？"
+    facets:
+      - facet_id: printing_conditions_to_excessive_deposit
+        description: "钢网开口或印刷参数异常与锡膏沉积过量之间的机理"
+        min_groups: 2
+        term_groups:
+          - ["stencil aperture", "aperture size", "stencil thickness", "squeegee pressure", "printing parameter", "钢网开口", "开口尺寸", "钢网厚度", "刮刀压力", "印刷参数"]
+          - ["excessive paste", "excessive solder paste", "excess deposit", "too much paste", "excess solder", "paste volume", "bleed-out", "bleed out", "paste squeeze out", "锡膏过量", "沉积过多", "锡量过多", "多锡"]
+
+  - query_id: Q017
+    question: "元器件贴装位置异常会不会加剧焊料过多的问题？"
+    facets:
+      - facet_id: placement_offset_to_excessive_solder
+        description: "贴装位置异常与焊料过多之间的关系"
+        min_groups: 2
+        term_groups:
+          - ["component misalignment", "component shift", "placement offset", "misplaced component", "贴装偏移", "元件偏移", "位置异常"]
+          - ["excessive solder", "excess solder paste", "excess paste", "多锡", "焊料过多", "锡膏过量"]
+
+  - query_id: Q019
+    question: "焊料过多从印刷到回流可能经历怎样的缺陷形成路径？"
+    facets:
+      - facet_id: printing_excess_path
+        description: "印刷阶段形成锡膏过量的因素"
+        min_groups: 2
+        include_partial: false
+        term_groups:
+          - ["printing", "stencil", "squeegee", "aperture", "印刷", "钢网", "刮刀", "开口"]
+          - ["excessive paste", "excessive solder paste", "excess deposit", "too much paste", "bleed-out", "bleed out", "锡膏过量", "沉积过多", "锡量过多"]
+      - facet_id: reflow_excess_effects
+        description: "过量锡膏在回流阶段形成的缺陷"
+        min_groups: 2
+        include_partial: false
+        term_groups:
+          - ["reflow", "melting", "wetting", "回流", "熔化", "润湿"]
+          - ["excessive solder", "bridging", "solder balls", "short circuit", "多锡", "桥连", "焊球", "短路"]
+
+  - query_id: Q020
+    question: "相关标准中对于焊料过多或焊料堆积有哪些判定要求？"
+    source_ids: [ipc_7530_zh, gjb_3243a_2021]
+    facets:
+      - facet_id: standard_acceptability_excess_solder
+        description: "标准中的焊料过多／堆积可接受性或判定条款"
+        min_groups: 2
+        term_groups:
+          - ["焊料过多", "焊锡过多", "焊料堆积", "多锡", "excessive solder", "excess solder", "maximum fill height", "最大填充高度", "焊料厚度"]
+          - ["可接受", "不允许", "判定", "验收", "要求", "应", "不得", "acceptability", "shall"]
+
+  - query_id: Q025
+    question: "What are the possible causes of solder bridging during reflow?"
+    facets:
+      - facet_id: reflow_bridging_causes
+        description: "回流过程中焊锡桥连的可能原因"
+        min_groups: 2
+        term_groups:
+          - ["solder bridging", "solder bridge", "bridging", "short circuit", "桥连", "焊锡桥连", "短路"]
+          - ["reflow", "reflow soldering", "thermal profile", "wetting", "回流焊", "温度曲线", "润湿"]
+          - ["cause", "caused by", "result from", "due to", "原因", "导致", "由于"]
+
+  - query_id: Q030
+    question: "IPC资料中对于焊锡桥连或短路的可接受性如何规定？"
+    source_ids: [ipc_7530_zh]
+    facets:
+      - facet_id: ipc_acceptability_bridging
+        description: "IPC-7530中桥连／短路的明确可接受性条款"
+        min_groups: 2
+        term_groups:
+          - ["桥连", "焊锡桥连", "短路", "solder bridge", "bridging", "short circuit"]
+          - ["可接受", "不允许", "判定", "验收", "要求", "acceptability", "acceptance criteria", "shall"]
+
+  - query_id: Q033
+    question: "元件初始贴装偏差在回流焊后是否可能进一步变化？"
+    facets:
+      - facet_id: placement_shift_during_reflow
+        description: "初始贴装偏差在回流过程中继续移动或变化"
+        min_groups: 2
+        term_groups:
+          - ["initial placement", "placement offset", "component misalignment", "component shift", "初始贴装", "贴装偏差", "元件偏移"]
+          - ["reflow", "self-alignment", "surface tension", "component movement", "movement during reflow", "move during reflow", "shift during reflow", "tombstoning", "回流", "自对中", "表面张力", "移动"]
+
+  - query_id: Q034
+    question: "焊盘上的锡膏分布不均会不会影响元器件回流后的最终位置？"
+    facets:
+      - facet_id: uneven_paste_to_final_position
+        description: "锡膏分布／沉积不均通过润湿或表面张力影响元件最终位置"
+        min_groups: 2
+        term_groups:
+          - ["uneven paste", "unequal paste", "paste imbalance", "paste volume imbalance", "unequal solder volume", "uneven deposit", "uneven solder paste deposits", "锡膏分布不均", "锡膏不均", "沉积不均"]
+          - ["component shift", "component movement", "misalignment", "final position", "shift after reflow", "元件偏移", "元件移动", "最终位置"]
+          - ["surface tension", "wetting imbalance", "asymmetric wetting", "表面张力", "润湿不均", "润湿不同步"]

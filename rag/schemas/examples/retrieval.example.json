@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "example-request-001",
+  "query": "示例检索问题",
+  "normalized_query": "示例检索问题",
+  "results": [
+    {
+      "rank": 1,
+      "chunk_id": "ipc_7530_zh:c000001",
+      "text": "示例 Chunk 文本。",
+      "citation": {
+        "source_id": "ipc_7530_zh",
+        "source_title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+        "pdf_page_start": 1,
+        "pdf_page_end": 1,
+        "section_path": ["示例章节"]
+      },
+      "metadata": {
+        "schema_version": "1.0.0",
+        "source_title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+        "organization": "IPC",
+        "document_type": "standard",
+        "language": "zh-CN",
+        "rights_status": "pending_confirmation",
+        "process_ids": ["reflow"],
+        "defect_ids": ["shifted_component"],
+        "evidence_roles": ["process_guideline"],
+        "tag_origin": "curated",
+        "parser_version": "example-parser/0.0.0",
+        "ocr_used": false
+      },
+      "dense_score": null,
+      "sparse_score": null,
+      "fusion_score": null,
+      "rerank_score": null
+    }
+  ],
+  "trace": {
+    "knowledge_base_version": "0.1.0",
+    "collection_name": "pcba_industrial_knowledge_v0_1",
+    "retriever_version": "0.1.0",
+    "applied_filters": {
+      "source_ids": [],
+      "process_ids": [],
+      "defect_ids": [],
+      "evidence_roles": [],
+      "languages": [],
+      "document_types": []
+    },
+    "retrieval_time_ms": 0
+  }
+}

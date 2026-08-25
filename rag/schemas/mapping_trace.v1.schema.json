@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mapping_trace.v1.schema.json",
+  "title": "PCBA RAG Metadata Mapping Trace V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "chunk_id",
+    "source_id",
+    "mapping_version",
+    "dictionary_version",
+    "ontology_version",
+    "excluded_from_semantic_tagging",
+    "exclusion_rule",
+    "matches",
+    "final_process_ids",
+    "final_defect_ids",
+    "final_evidence_roles"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "mapping_version": {"type": "string", "minLength": 1},
+    "dictionary_version": {"type": "string", "minLength": 1},
+    "ontology_version": {"type": "string", "minLength": 1},
+    "excluded_from_semantic_tagging": {"type": "boolean"},
+    "exclusion_rule": {"type": ["string", "null"]},
+    "matches": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/match"}
+    },
+    "final_process_ids": {
+      "type": "array",
+      "items": {"enum": ["printing", "placement", "reflow"]},
+      "uniqueItems": true
+    },
+    "final_defect_ids": {
+      "type": "array",
+      "items": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component"]},
+      "uniqueItems": true
+    },
+    "final_evidence_roles": {
+      "type": "array",
+      "items": {"enum": ["defect_mechanism", "troubleshooting_guidance", "process_guideline", "normative_requirement"]},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "term_category",
+        "matched_term",
+        "matched_in",
+        "source_entity_id",
+        "relationship_id",
+        "assigned_process_ids",
+        "assigned_defect_ids",
+        "assigned_evidence_roles"
+      ],
+      "properties": {
+        "rule_id": {"type": "string", "minLength": 1},
+        "term_category": {"enum": ["synonym", "related_term", "candidate_cause", "process_term", "evidence_role_rule", "curated_default"]},
+        "matched_term": {"type": "string", "minLength": 1},
+        "matched_in": {"enum": ["section_path", "text", "source_default"]},
+        "source_entity_id": {"type": ["string", "null"]},
+        "relationship_id": {"type": ["string", "null"]},
+        "assigned_process_ids": {
+          "type": "array",
+          "items": {"enum": ["printing", "placement", "reflow"]},
+          "uniqueItems": true
+        },
+        "assigned_defect_ids": {
+          "type": "array",
+          "items": {"enum": ["insufficient_solder", "excessive_solder", "short", "shifted_component"]},
+          "uniqueItems": true
+        },
+        "assigned_evidence_roles": {
+          "type": "array",
+          "items": {"enum": ["defect_mechanism", "troubleshooting_guidance", "process_guideline", "normative_requirement"]},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

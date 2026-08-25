@@ -1,0 +1,32 @@
+experiment_version: pcba-reranker-full-evaluation/0.1.0
+model:
+  model_id: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  implementation: FlagEmbedding.FlagReranker
+  use_fp16: true
+  device: cuda:0
+  batch_size: 1
+  max_length: 1024
+  normalize_score: false
+input:
+  candidate_pool: rag/evaluation/evaluation_top20_final_v3.csv
+  original_gold: rag/evaluation/gold_dataset_final_v3.json
+  candidate_count_per_query: 20
+  excluded_query_ids:
+    - Q001
+    - Q004
+    - Q007
+    - Q008
+    - Q009
+    - Q013
+    - Q017
+    - Q020
+    - Q029
+    - Q033
+    - Q034
+  query_overrides:
+    Q019: 为什么过大的焊膏沉积量可能在印刷和贴装后未出现桥连，却在回流后形成桥连？
+output:
+  reranked_top_k: 10
+  final_top_k: 5
+  report: rag/reports/T10.10_RERANKER_FULL_EVALUATION.md

@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T10.2",
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "pypdf": "6.15.0",
+      "cryptography": "50.0.0",
+      "pypdfium2": "5.13.0",
+      "rapidocr": "3.9.2",
+      "onnxruntime": "1.28.0",
+      "jsonschema": "4.26.0",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3",
+      "Pillow": "12.2.0",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.4",
+      "torch": "2.5.1+cu121"
+    },
+    "pip_check_ok": true,
+    "pip_check_output": "No broken requirements found."
+  },
+  "total_sources": 4,
+  "total_samples": 20,
+  "all_schema_valid": true,
+  "sources": [
+    {
+      "source_id": "indium_solder_defects_2021",
+      "title": "A Guide to Minimizing Solder Defects",
+      "path": "txt_source\\indium-guide-to-minimizing-solder-defects-2021-tpcag2sd.pdf",
+      "sha256_valid": true,
+      "encrypted": true,
+      "page_count": 52,
+      "sample_count": 5,
+      "sample_output": "rag\\data\\processed\\samples\\indium_solder_defects_2021.jsonl",
+      "samples": [
+        {
+          "pdf_page_number": 1,
+          "selection_reason": "first_page",
+          "native_text_chars": 74,
+          "final_text_chars": 133,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.0115,
+            "average_score": 0.9495,
+            "line_count": 9
+          }
+        },
+        {
+          "pdf_page_number": 6,
+          "selection_reason": "lowest_native_text",
+          "native_text_chars": 0,
+          "final_text_chars": 22,
+          "extraction_method": "ocr",
+          "status": "partial",
+          "quality_flags": [
+            "low_text"
+          ],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 0.6074,
+            "average_score": 0.9968,
+            "line_count": 3
+          }
+        },
+        {
+          "pdf_page_number": 19,
+          "selection_reason": "highest_native_text",
+          "native_text_chars": 2538,
+          "final_text_chars": 2538,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 38,
+          "selection_reason": "table_like",
+          "native_text_chars": 1529,
+          "final_text_chars": 1529,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 27,
+          "selection_reason": "middle_page",
+          "native_text_chars": 1831,
+          "final_text_chars": 1831,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        }
+      ]
+    },
+    {
+      "source_id": "solder_paste_print_inspection_guide",
+      "title": "Solder Paste Print Inspection Defect Guide",
+      "path": "txt_source\\Solder-Paste-Print-Inspection-Defect-Guide.pdf",
+      "sha256_valid": true,
+      "encrypted": false,
+      "page_count": 44,
+      "sample_count": 5,
+      "sample_output": "rag\\data\\processed\\samples\\solder_paste_print_inspection_guide.jsonl",
+      "samples": [
+        {
+          "pdf_page_number": 1,
+          "selection_reason": "first_page",
+          "native_text_chars": 68,
+          "final_text_chars": 85,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 0.7395,
+            "average_score": 0.9945,
+            "line_count": 6
+          }
+        },
+        {
+          "pdf_page_number": 25,
+          "selection_reason": "lowest_native_text",
+          "native_text_chars": 0,
+          "final_text_chars": 1146,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.909,
+            "average_score": 0.9484,
+            "line_count": 35
+          }
+        },
+        {
+          "pdf_page_number": 12,
+          "selection_reason": "highest_native_text",
+          "native_text_chars": 5409,
+          "final_text_chars": 5409,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 32,
+          "selection_reason": "table_like",
+          "native_text_chars": 2970,
+          "final_text_chars": 2970,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 23,
+          "selection_reason": "middle_page",
+          "native_text_chars": 1352,
+          "final_text_chars": 1352,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        }
+      ]
+    },
+    {
+      "source_id": "ipc_7530_zh",
+      "title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+      "path": "txt_source\\IPC-7530+焊工艺温度曲线指南(回流焊和波峰焊)+中文版.pdf",
+      "sha256_valid": true,
+      "encrypted": false,
+      "page_count": 48,
+      "sample_count": 5,
+      "sample_output": "rag\\data\\processed\\samples\\ipc_7530_zh.jsonl",
+      "samples": [
+        {
+          "pdf_page_number": 1,
+          "selection_reason": "first_page",
+          "native_text_chars": 179,
+          "final_text_chars": 179,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 8,
+          "selection_reason": "lowest_native_text",
+          "native_text_chars": 18,
+          "final_text_chars": 17,
+          "extraction_method": "ocr",
+          "status": "partial",
+          "quality_flags": [
+            "low_text"
+          ],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 0.9163,
+            "average_score": 0.9999,
+            "line_count": 2
+          }
+        },
+        {
+          "pdf_page_number": 3,
+          "selection_reason": "highest_native_text",
+          "native_text_chars": 1227,
+          "final_text_chars": 1227,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 6,
+          "selection_reason": "table_like",
+          "native_text_chars": 299,
+          "final_text_chars": 299,
+          "extraction_method": "native",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": null
+        },
+        {
+          "pdf_page_number": 25,
+          "selection_reason": "middle_page",
+          "native_text_chars": 18,
+          "final_text_chars": 17,
+          "extraction_method": "ocr",
+          "status": "partial",
+          "quality_flags": [
+            "low_text"
+          ],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 0.736,
+            "average_score": 0.9999,
+            "line_count": 2
+          }
+        }
+      ]
+    },
+    {
+      "source_id": "gjb_3243a_2021",
+      "title": "GJB 3243A-2021 电子元器件表面安装要求",
+      "path": "txt_source\\GJB_3243A-2021_电子元器件表面安装要求.pdf",
+      "sha256_valid": true,
+      "encrypted": false,
+      "page_count": 38,
+      "sample_count": 5,
+      "sample_output": "rag\\data\\processed\\samples\\gjb_3243a_2021.jsonl",
+      "samples": [
+        {
+          "pdf_page_number": 1,
+          "selection_reason": "first_page,lowest_native_text,highest_native_text,table_like",
+          "native_text_chars": 0,
+          "final_text_chars": 204,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.1583,
+            "average_score": 0.9902,
+            "line_count": 12
+          }
+        },
+        {
+          "pdf_page_number": 20,
+          "selection_reason": "middle_page",
+          "native_text_chars": 0,
+          "final_text_chars": 489,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.9112,
+            "average_score": 0.9957,
+            "line_count": 50
+          }
+        },
+        {
+          "pdf_page_number": 38,
+          "selection_reason": "last_page",
+          "native_text_chars": 0,
+          "final_text_chars": 193,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.1629,
+            "average_score": 0.9905,
+            "line_count": 16
+          }
+        },
+        {
+          "pdf_page_number": 10,
+          "selection_reason": "coverage_page",
+          "native_text_chars": 0,
+          "final_text_chars": 1129,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 3.3171,
+            "average_score": 0.9839,
+            "line_count": 46
+          }
+        },
+        {
+          "pdf_page_number": 29,
+          "selection_reason": "coverage_page",
+          "native_text_chars": 0,
+          "final_text_chars": 457,
+          "extraction_method": "ocr",
+          "status": "success",
+          "quality_flags": [],
+          "schema_valid": true,
+          "ocr": {
+            "elapsed_seconds": 1.6039,
+            "average_score": 0.9916,
+            "line_count": 53
+          }
+        }
+      ]
+    }
+  ]
+}

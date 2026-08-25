@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "chunk_id": "ipc_7530_zh:c000001",
+  "source_id": "ipc_7530_zh",
+  "page_ids": ["ipc_7530_zh:p0001"],
+  "pdf_page_start": 1,
+  "pdf_page_end": 1,
+  "section_path": ["示例章节"],
+  "text": "示例 Chunk 文本。",
+  "metadata": {
+    "schema_version": "1.0.0",
+    "source_title": "IPC-7530 焊工艺温度曲线指南（回流焊和波峰焊）中文版",
+    "organization": "IPC",
+    "document_type": "standard",
+    "language": "zh-CN",
+    "rights_status": "pending_confirmation",
+    "process_ids": ["reflow"],
+    "defect_ids": ["shifted_component"],
+    "evidence_roles": ["process_guideline"],
+    "tag_origin": "curated",
+    "parser_version": "example-parser/0.0.0",
+    "ocr_used": false
+  },
+  "text_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+}
