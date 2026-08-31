@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCBA Quality Copilot</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">PC</span>
+      <div><strong>PCBA Quality Copilot</strong><small>跨工序质量诊断智能体</small></div>
+    </div>
+    <div class="topbar-actions">
+      <span id="service-state" class="service-state"><i></i> 本地系统</span>
+      <button id="new-conversation" class="button ghost" type="button">新建对话</button>
+    </div>
+  </header>
+
+  <main class="chat-app">
+    <section class="chat-surface">
+      <div class="chat-heading">
+        <div>
+          <p class="eyebrow">PCBA AGENT</p>
+          <h1>质量诊断助手</h1>
+        </div>
+        <span id="conversation-chip" class="thread-chip">正在建立会话</span>
+      </div>
+
+      <div id="message-list" class="message-list" aria-live="polite">
+        <article id="welcome-message" class="chat-message assistant">
+          <div class="message-avatar">AI</div>
+          <div class="message-bubble welcome-bubble">
+            <h2>你好，我可以帮你识别、诊断和优化 PCBA 缺陷</h2>
+            <p>直接发送图片或描述问题即可。需要验证原因时，我会告诉你还缺少哪些现场证据或工艺参数；你可以继续在对话中补充。</p>
+            <div class="prompt-examples">
+              <button type="button">这张图片是什么缺陷？</button>
+              <button type="button">为什么会发生元件偏移？</button>
+              <button type="button">如果PWI异常，帮我优化并复验。</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div id="progress-panel" class="progress-panel" hidden>
+        <div class="progress-head"><span class="spinner"></span><b id="progress-title">正在理解你的问题…</b><em id="elapsed-time">0s</em></div>
+        <div id="progress-steps" class="progress-steps"></div>
+      </div>
+
+      <form id="chat-form" class="chat-composer">
+        <label id="image-drop" class="composer-attachment" for="image-input" title="添加 AOI 图片">
+          <input id="image-input" type="file" accept="image/png,image/jpeg">
+          <img id="image-preview" alt="待发送图片" hidden>
+          <span id="image-placeholder"><b>＋</b><small>图片</small></span>
+          <span id="image-state"></span>
+        </label>
+        <label class="composer-input">
+          <textarea id="message-input" rows="2" placeholder="发送图片或直接提问；也可以在这里补充温区、链速、SPI参数或人工观察…"></textarea>
+          <span id="form-status">可以开始提问</span>
+        </label>
+        <button id="send-message" class="button primary composer-send" type="submit"><span>发送</span><i>↑</i></button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

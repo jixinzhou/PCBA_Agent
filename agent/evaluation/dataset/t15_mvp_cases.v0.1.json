@@ -1,0 +1,582 @@
+{
+  "schema_version": "0.1.0",
+  "dataset_id": "pcba_agent_t15_mvp_v0_1",
+  "created_at": "2026-08-26",
+  "frozen_at": "2026-08-30",
+  "review_status": "frozen_by_user_approval",
+  "evaluation_started": true,
+  "description": "T15最小可行系统评测集：4个基础缺陷样本、2个缺数据派生样本和1个Tool失败执行变体。",
+  "composition": {
+    "base_case_count": 4,
+    "derived_case_count": 2,
+    "execution_variant_count": 1,
+    "controlled_composite": true,
+    "warning": "AOI图片与工艺实验行分别取自独立数据源，仅用于受控系统评测，不代表同一生产批次或同一现场事件。"
+  },
+  "selection_policy": {
+    "aoi_image": "在冻结AOI test split中，按类别选择预测正确且confidence最高的样本；同分时按relative_path升序。",
+    "spi_high_vte": "选择正式SPI模型预测VTE>100中最接近100且实测方差较低的真实实验行：序号20。",
+    "spi_low_vte": "选择正式SPI模型预测值最低的真实实验行：序号8；VTE<100用于支持少锡的印刷候选。",
+    "reflow_abnormal": "不使用69组实验行；复用T14已验收的训练域边界异常样本domain_min_fast，初始PWI为105.46且优化复验为24.23。",
+    "question": "从冻结RAG问题集中选择相近问题并改写为现场诊断问法，保留source_query_ids。"
+  },
+  "decision_rules": [
+    {
+      "rule_id": "SPI-VTE-LOW-001",
+      "expression": "spi_vte_prediction.data.vte_mean < 100.0",
+      "applies_to": [
+        "insufficient_solder"
+      ],
+      "effect": "支持焊膏沉积或转移不足候选路径，但不声明唯一根因。",
+      "status": "approved_by_user_2026-08-30"
+    },
+    {
+      "rule_id": "SPI-VTE-HIGH-001",
+      "expression": "spi_vte_prediction.data.vte_mean > 100.0",
+      "applies_to": [
+        "excessive_solder"
+      ],
+      "effect": "支持焊膏沉积过量候选路径，但不声明唯一根因。",
+      "status": "approved_by_user_2026-08-30",
+      "note": "VTE>100不能作为少锡的支持证据。"
+    },
+    {
+      "rule_id": "REFLOW-PWI-HIGH-001",
+      "expression": "reflow_profile_prediction.data.overall.max_pwi > 100.0",
+      "applies_to": [
+        "shifted_component.reflow_thermal_imbalance"
+      ],
+      "effect": "支持条件性回流候选路径；goal为diagnose_and_optimize时允许优化，且必须复验。",
+      "status": "approved_by_user_2026-08-30"
+    }
+  ],
+  "sources": {
+    "aoi_test_split": {
+      "path": "数据资料/AOI图像识别数据/train_phase/splits/test.csv",
+      "sha256": "0f74831918c5f4faec2ea9c41ab7db41d21eaed7c4ddbc1640690132cb808c9f"
+    },
+    "aoi_test_predictions": {
+      "path": "数据资料/AOI图像识别数据/train_phase/reports/test_predictions.csv",
+      "sha256": "44d7213d62311782730716b885eaeb033ad2dff25a5dd9cfa0782ff9394a669c"
+    },
+    "spi_experiment": {
+      "path": "数据资料/VTE数据/DOE焊膏印刷实验数据.xlsx",
+      "sheet": "Sheet1",
+      "sha256": "d79aff891330e70d7c87f835e094054f0b1fa00306adf119554000435c6f8186"
+    },
+    "spi_model": {
+      "path": "tool/services/spi/models/vte_mean_model.joblib",
+      "sha256": "dc1daa9928268e34dfff034990e25ae62af9ba066755d4ac28fdb31d18118730"
+    },
+    "reflow_training_domain": {
+      "path": "tool/services/reflow/models/training_domain.json",
+      "sha256": "d8246e6d914a8ead3e991db4b9495acffd135641788c312a2127830dcdfde3fe"
+    },
+    "t14_validated_sample": {
+      "path": "agent/storage/t14_sample_results.json",
+      "sha256": "97d7adb07f920456ed42a0d6c2ece65240bff0b6936c9c45229181ddc5441601"
+    },
+    "reflow_delivery_model": {
+      "path": "tool/services/reflow/models/reflow_gpr_delivery_model.joblib",
+      "sha256": "cebe1879530b3a7963517c790e25c31f553e017f0ac44c1136b134c5956ca587"
+    },
+    "retriever_questions": {
+      "path": "rag/evaluation/question/retriever_main.json",
+      "sha256": "c08d69c386e3ead93375e210a1bbdd7fcfd5ce2a1e0594ac81084d93a55daafa"
+    },
+    "agent_kg_questions": {
+      "path": "rag/evaluation/question/agent_kg.json",
+      "sha256": "0ba95f2cad950ecd65d9ba9a23cd3f66536f80790a1e1524a837d36ae963f408"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "T15-C01-INSUFFICIENT-SPI-LOW",
+      "case_kind": "base",
+      "defect_gold": "insufficient_solder",
+      "question": "这处少锡可能是什么原因？请结合当前SPI参数判断焊膏印刷是否异常。",
+      "question_provenance": {
+        "source_query_ids": [
+          "Q002",
+          "Q003"
+        ],
+        "rewrite_type": "real_user_style"
+      },
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/insufficient_solder/insufficient (86).png",
+        "goal": "diagnose",
+        "observations": {
+          "input": {
+            "squeegee_pressure_kgf": 10.0,
+            "squeegee_speed_m_s": 60.0,
+            "separation_speed_m_s": 3.0,
+            "separation_distance_mm": 1.0
+          }
+        },
+        "response_language": "zh"
+      },
+      "aoi_provenance": {
+        "split": "test",
+        "relative_path": "insufficient_solder/insufficient (86).png",
+        "width": 45,
+        "height": 92,
+        "mode": "RGB",
+        "sha256": "c335a374c161e377a90a401b930a7db4b69bee5d9a4214c58c23bbb808ab4c55",
+        "historical_split_record_sha256": "404a8dcb89a839595204c72a8cbd9edf9b45c69d7487ddb0f46f230fface2911",
+        "integrity_status": "current_file_hash_refrozen_for_t15",
+        "integrity_note": "旧test.csv哈希与当前同名文件不一致；已按用户确认，以当前实际文件SHA256重新冻结用于T15，不再把旧哈希作为本次完整性依据。",
+        "frozen_prediction": {
+          "predicted_class": "insufficient_solder",
+          "confidence": 0.989492
+        }
+      },
+      "process_provenance": {
+        "source": "spi_experiment",
+        "excel_row": 9,
+        "experiment_id": 8,
+        "measured_vte_mean": 92.73,
+        "measured_vte_variance": 2.8,
+        "model_predicted_vte_mean": 93.0103,
+        "within_training_domain": true
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification",
+          "spi_vte_prediction"
+        ],
+        "forbidden_tools": [
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization",
+          "spi_parameter_optimization"
+        ],
+        "expected_relationship_ids": [
+          "REL-INSUFFICIENT-SOLDER-PRINTING"
+        ],
+        "expected_assessment_status": "supported",
+        "expected_final_status": "completed",
+        "reason": "正式模型预测VTE<100，按已确认方向支持少锡的印刷候选；仍不得据此声明唯一根因，diagnose目标下不优化。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "tool_selection",
+        "causal_consistency",
+          "low_vte"
+      ]
+    },
+    {
+      "case_id": "T15-C02-EXCESSIVE-SPI-HIGH",
+      "case_kind": "base",
+      "defect_gold": "excessive_solder",
+      "question": "这处多锡是否与焊膏印刷参数有关？请结合VTE判断当前印刷状态。",
+      "question_provenance": {
+        "source_query_ids": [
+          "Q011",
+          "Q012"
+        ],
+        "rewrite_type": "real_user_style"
+      },
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/excessive_solder/excessive (21).png",
+        "goal": "diagnose",
+        "observations": {
+          "input": {
+            "squeegee_pressure_kgf": 8.0,
+            "squeegee_speed_m_s": 69.3,
+            "separation_speed_m_s": 2.0,
+            "separation_distance_mm": 2.0
+          }
+        },
+        "response_language": "zh"
+      },
+      "aoi_provenance": {
+        "split": "test",
+        "relative_path": "excessive_solder/excessive (21).png",
+        "width": 43,
+        "height": 104,
+        "mode": "RGB",
+        "sha256": "ee8ab8f6b21cd9ddf5c6a45c6b5632d46af174368bf56a289b66bb8b7090b82a",
+        "frozen_prediction": {
+          "predicted_class": "excessive_solder",
+          "confidence": 0.974623
+        }
+      },
+      "process_provenance": {
+        "source": "spi_experiment",
+        "excel_row": 21,
+        "experiment_id": 20,
+        "measured_vte_mean": 106.59,
+        "measured_vte_variance": 2.05,
+        "model_predicted_vte_mean": 107.0934,
+        "within_training_domain": true
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification",
+          "spi_vte_prediction"
+        ],
+        "forbidden_tools": [
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization",
+          "spi_parameter_optimization"
+        ],
+        "expected_relationship_ids": [
+          "REL-EXCESSIVE-SOLDER-PRINTING"
+        ],
+        "expected_assessment_status": "supported",
+        "expected_final_status": "completed",
+        "reason": "真实实测和正式模型预测均大于100；该值只支持多锡的印刷候选，不确认唯一根因。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "tool_selection",
+        "high_vte",
+        "causal_consistency"
+      ]
+    },
+    {
+      "case_id": "T15-C03-SHORT-NO-TOOL",
+      "case_kind": "base",
+      "defect_gold": "short",
+      "question": "这个桥连或短路可能由哪些工艺因素造成？目前应该先检查什么？",
+      "question_provenance": {
+        "source_query_ids": [
+          "Q021",
+          "Q028"
+        ],
+        "rewrite_type": "real_user_style"
+      },
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/short/short (238).png",
+        "goal": "diagnose",
+        "observations": {
+          "input": {
+            "squeegee_pressure_kgf": 6.0,
+            "squeegee_speed_m_s": 15.0,
+            "separation_speed_m_s": 1.0,
+            "separation_distance_mm": 1.0
+          }
+        },
+        "response_language": "zh"
+      },
+      "aoi_provenance": {
+        "split": "test",
+        "relative_path": "short/short (238).png",
+        "width": 37,
+        "height": 30,
+        "mode": "RGB",
+        "sha256": "85cf73edbab4c5c9e3056b14ee297e3a766e970d9f6760e49687c56a84134eaa",
+        "frozen_prediction": {
+          "predicted_class": "short",
+          "confidence": 0.991774
+        }
+      },
+      "process_provenance": {
+        "source": "spi_experiment",
+        "excel_row": 2,
+        "experiment_id": 1,
+        "measured_vte_mean": 96.24,
+        "measured_vte_variance": 2.1,
+        "model_predicted_vte_mean": 97.7319,
+        "usage": "irrelevant_context_for_no_tool_test"
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification"
+        ],
+        "forbidden_tools": [
+          "spi_vte_prediction",
+          "spi_parameter_optimization",
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization"
+        ],
+        "expected_relationship_ids": [
+          "REL-SHORT-WET-PASTE-BRIDGING"
+        ],
+        "expected_assessment_status": "not_evaluated",
+        "expected_verification_capability": "unverified",
+        "expected_final_status": "completed",
+        "reason": "当前短路路径没有预测Tool；即使请求中带有无关SPI参数，也不能因此误调用SPI Tool。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "no_tool_relation",
+        "unnecessary_tool_call",
+        "evidence_limited"
+      ]
+    },
+    {
+      "case_id": "T15-C04-SHIFTED-REFLOW-PWI-HIGH",
+      "case_kind": "base",
+      "defect_gold": "shifted_component",
+      "question": "这个元件在回流后出现偏移。请判断是贴装偏差还是回流热过程异常；若回流PWI超标，请优化并复验。",
+      "question_provenance": {
+        "source_query_ids": [
+          "Q036",
+          "Q038"
+        ],
+        "rewrite_type": "real_user_style"
+      },
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/shifted_component/shifted (79).png",
+        "goal": "diagnose_and_optimize",
+        "observations": {
+          "input": {
+            "points": [
+              {
+                "point_id": "P1",
+                "component_x_mm": 117.7094,
+                "component_y_mm": 28.5415,
+                "component_volume_mm3": 107.0
+              }
+            ],
+            "zone_means_c": [
+              135.0,
+              145.0,
+              155.0,
+              165.0,
+              173.0,
+              180.0,
+              190.0,
+              210.0,
+              220.0,
+              230.0,
+              245.0,
+              260.0,
+              255.0
+            ],
+            "belt_speed_cm_min": 95.0
+          },
+          "optimization_target": {
+            "mode": "minimize_pwi"
+          },
+          "adjustable_parameters": {
+            "zone_indexes": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ],
+            "adjust_belt_speed": true
+          }
+        },
+        "response_language": "zh"
+      },
+      "aoi_provenance": {
+        "split": "test",
+        "relative_path": "shifted_component/shifted (79).png",
+        "width": 144,
+        "height": 269,
+        "mode": "RGB",
+        "sha256": "8b1cd81cf4087b7d057bf49bf216486247e6fd3b2e859b91544ae8dbd20db967",
+        "frozen_prediction": {
+          "predicted_class": "shifted_component",
+          "confidence": 0.988531
+        }
+      },
+      "process_provenance": {
+        "source": "t14_validated_sample",
+        "sample_id": "domain_min_fast",
+        "sample_type": "controlled_training_domain_boundary_case",
+        "uses_69_experiment_rows": false,
+        "note": "该输入不是69组实验表中的实测行，而是T14已经完整跑通预测、优化和独立复验的受控训练域边界样本。",
+        "route_point": {
+          "matched_tc": "TC7",
+          "matched_ref": "U22",
+          "component_x_mm": 117.7094,
+          "component_y_mm": 28.5415,
+          "component_volume_mm3": 107.0
+        },
+        "validated_input": {
+          "zone_means_c": [
+            135.0,
+            145.0,
+            155.0,
+            165.0,
+            173.0,
+            180.0,
+            190.0,
+            210.0,
+            220.0,
+            230.0,
+            245.0,
+            260.0,
+            255.0
+          ],
+          "belt_speed_cm_min": 95.0,
+          "within_training_domain": true
+        },
+        "initial_prediction": {
+          "pwi": 105.46,
+          "status": "unqualified",
+          "peak_temperature_c": 229.454016,
+          "time_above_217_s": 40.855975,
+          "within_training_domain": true
+        },
+        "prior_t14_closure_reference": {
+          "optimized_pwi": 24.23,
+          "revalidation_qualified": true,
+          "usage": "仅证明样本可完成闭环；T15正式评测必须重新执行，不能直接复用缓存结果。"
+        }
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification",
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization",
+          "reflow_profile_prediction"
+        ],
+        "expected_tool_phases": [
+          "classification",
+          "validation",
+          "optimization",
+          "revalidation"
+        ],
+        "forbidden_tools": [
+          "spi_vte_prediction",
+          "spi_parameter_optimization"
+        ],
+        "expected_relationship_ids": [
+          "REL-SHIFTED-COMPONENT-PLACEMENT",
+          "REL-SHIFTED-COMPONENT-REFLOW"
+        ],
+        "expected_candidate_statuses": {
+          "REL-SHIFTED-COMPONENT-PLACEMENT": "unverified",
+          "REL-SHIFTED-COMPONENT-REFLOW": "supported"
+        },
+        "first_turn_status": "needs_input",
+        "first_turn_pending_inputs": [
+          "manual_observation.placement_offset_x_y_theta"
+        ],
+        "resume": {
+          "unavailable_inputs": [
+            "manual_observation.placement_offset_x_y_theta"
+          ]
+        },
+        "expected_final_status_after_resume": "completed",
+        "optimization_revalidation_required": true,
+        "reason": "必须同时保留贴装人工路径和回流Tool路径；PWI异常只支持条件性回流候选，优化结果必须经独立预测复验。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "multi_path",
+        "high_pwi",
+        "optimization",
+        "revalidation",
+        "missing_manual_input"
+      ]
+    },
+    {
+      "case_id": "T15-C05-EXCESSIVE-MISSING-SPI",
+      "case_kind": "derived_missing_input",
+      "source_case_id": "T15-C02-EXCESSIVE-SPI-HIGH",
+      "defect_gold": "excessive_solder",
+      "question": "这处多锡是否与焊膏印刷参数有关？如果数据不够，请告诉我还要提供什么。",
+      "derivation": "复用C02图片并移除全部SPI input字段。",
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/excessive_solder/excessive (21).png",
+        "goal": "diagnose",
+        "observations": {},
+        "response_language": "zh"
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification"
+        ],
+        "forbidden_tools": [
+          "spi_vte_prediction",
+          "spi_parameter_optimization",
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization"
+        ],
+        "expected_first_status": "needs_input",
+        "expected_missing_inputs_exact": [
+          "input.separation_distance_mm",
+          "input.separation_speed_m_s",
+          "input.squeegee_pressure_kgf",
+          "input.squeegee_speed_m_s"
+        ],
+        "reason": "SPI必填参数不完整时不得调用预测Tool，必须明确补问四个字段。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "missing_input_identification",
+        "no_premature_tool_call"
+      ]
+    },
+    {
+      "case_id": "T15-C06-SHIFTED-MISSING-REFLOW",
+      "case_kind": "derived_missing_input",
+      "source_case_id": "T15-C04-SHIFTED-REFLOW-PWI-HIGH",
+      "defect_gold": "shifted_component",
+      "question": "这个元件回流后发生偏移，请判断贴装和回流两条路径；如果数据不够，请告诉我需要补什么。",
+      "derivation": "复用C04图片并移除回流input、优化目标和可调参数。",
+      "request": {
+        "image_path": "数据资料/AOI图像识别数据/solder-joint-dataset/shifted_component/shifted (79).png",
+        "goal": "diagnose_and_optimize",
+        "observations": {},
+        "response_language": "zh"
+      },
+      "gold_behavior": {
+        "expected_tool_sequence": [
+          "pcba_defect_classification"
+        ],
+        "forbidden_tools": [
+          "spi_vte_prediction",
+          "spi_parameter_optimization",
+          "reflow_profile_prediction",
+          "reflow_parameter_optimization"
+        ],
+        "expected_first_status": "needs_input",
+        "expected_missing_inputs_exact": [
+          "input.belt_speed_cm_min",
+          "input.points",
+          "input.zone_means_c",
+          "manual_observation.placement_offset_x_y_theta"
+        ],
+        "expected_relationship_ids": [
+          "REL-SHIFTED-COMPONENT-PLACEMENT",
+          "REL-SHIFTED-COMPONENT-REFLOW"
+        ],
+        "reason": "必须同时补问回流预测所需三项输入和贴装人工检查结果，缺数据时不得提前调用或优化。"
+      },
+      "scoring_tags": [
+        "aoi_classification",
+        "multi_path",
+        "missing_input_identification",
+        "no_premature_tool_call"
+      ]
+    }
+  ],
+  "execution_variants": [
+    {
+      "variant_id": "T15-V01-REFLOW-TOOL-FAILURE",
+      "source_case_id": "T15-C04-SHIFTED-REFLOW-PWI-HIGH",
+      "injection": {
+        "tool_name": "reflow_profile_prediction",
+        "phase": "validation",
+        "failure": "timeout"
+      },
+      "gold_behavior": {
+        "candidate_assessment_status": "inconclusive",
+        "must_record_tool_failure": true,
+        "must_not_call": [
+          "reflow_parameter_optimization"
+        ],
+        "must_not_claim": [
+          "回流候选已确认",
+          "参数已优化"
+        ]
+      },
+      "note": "该变体复用C04数据，不增加新的源样本。"
+    }
+  ],
+  "confirmed_by_user": [
+    "VTE<100支持少锡印刷候选，VTE>100支持多锡印刷候选。",
+    "C04不使用69组实验行，改用T14已验证的PWI 105.46训练域内异常样本。",
+    "C01以当前实际少锡图片SHA256重新冻结，不沿用错位的旧test.csv哈希。",
+    "首轮保持6个数据Case加1个Tool失败执行变体。"
+  ],
+  "review_questions": []
+}

@@ -5,6 +5,7 @@ import math
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -76,6 +77,11 @@ class QdrantPointContractTests(unittest.TestCase):
             },
             set(self.config["payload_indexes"]),
         )
+
+    def test_local_runtime_can_override_qdrant_url_without_editing_config(self) -> None:
+        with patch.dict("os.environ", {"PCBA_QDRANT_URL": "http://127.0.0.1:16333"}):
+            config = load_qdrant_config(PROJECT_ROOT)
+        self.assertEqual("http://127.0.0.1:16333", config["qdrant"]["url"])
 
 
 class GeneratedQdrantIndexTests(unittest.TestCase):

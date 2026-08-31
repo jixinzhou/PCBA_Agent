@@ -33,13 +33,15 @@ class AgentRunner:
         self.connection = sqlite3.connect(path, check_same_thread=False)
         serde = JsonPlusSerializer(pickle_fallback=False, allowed_json_modules=())
         self.checkpointer = SqliteSaver(self.connection, serde=serde)
+        self.qwen = qwen or QwenClient(self.settings.raw["llm"])
         graph = PCBAAgentGraph(
             settings=self.settings,
-            qwen=qwen or QwenClient(self.settings.raw["llm"]),
+            qwen=self.qwen,
             rag=rag or AgentRAGAdapter(root, self.settings.raw["rag"]),
             kg=kg or KGAdapter(root),
             tools=tools or ToolAdapter(root),
         )
+        self.agent_graph = graph
         self.graph = graph.build(self.checkpointer)
 
     def close(self) -> None:

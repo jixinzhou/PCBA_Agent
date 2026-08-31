@@ -400,7 +400,19 @@ tasks:
 
 - id: T15
   name: 构建测试集并完成智能体系统评测
-  status: todo
+  status: done
+  progress_state: frozen_evaluation_passed
+  progress:
+    - 已冻结6个基础Case与1个Tool失败变体，数据集SHA256为86445bba9e6969c10d3b4350c7aca5410e2f567a668d16f4ac9e5dd6dea0e655
+    - 已修复携带图片时AOI被文本路径短路的问题，并对图文一致、冲突、AOI失败和本体外类别进行显式处理
+    - 已按VTE小于95%支持少锡、大于105%支持多锡、中间区间保持不确定的规则完成候选路径感知判定
+    - 14项Agent单元测试全部通过；同一冻结集复评中6个基础Case严格通过6/6，Tool失败变体通过
+    - Tool Recall与Precision、完整序列、AOI Recall、缺陷识别、缺失输入、因果状态、优化复验、引用完整和安全降级均为100%，不必要Tool调用率为0%
+  deliverables:
+    - agent/evaluation/dataset/t15_mvp_cases.v0.1.json
+    - agent/evaluation/dataset/T15_MVP_DATASET_REVIEW.md
+    - agent/evaluation/results/t15_evaluation_results.v0.1.json
+    - agent/evaluation/reports/T15_SYSTEM_EVALUATION.md
   acceptance:
     - 评测Tool选择正确率、不必要Tool调用率和缺失数据识别率
     - 评测证据引用完整率、因果一致性、优化后复验率和拒答正确性
@@ -408,11 +420,39 @@ tasks:
 
 - id: T16
   name: Docker部署与项目文档整理
-  status: todo
+  status: in_progress
+  progress_state: local_web_accepted_github_packaged
+  progress:
+    - 已按用户确认先完成轻量且功能完整的本地Web，Docker部署延后至体验确认之后
+    - 已实现Agent FastAPI、PNG/JPEG上传、诊断调用与同thread_id恢复接口，保持既有Agent JSON协议
+    - 已移除缺陷、目标、SPI/Reflow和高级JSON表单，前端只保留聊天、图片附件和新建会话；参数通过自然语言补充
+    - 已新增SQLite会话、消息与诊断快照持久化；解释型追问复用上一轮证据而不重跑诊断，原因诊断、优化和新案例按语义分流
+    - 已新增后台消息任务、阶段进度轮询和RAG启动预热，避免长诊断阻塞浏览器并降低首轮请求等待
+    - 最终回复由Qwen综合候选状态、Tool结论和带编号RAG证据生成固定五段式中文报告；程序追加精确数值并过滤确认唯一根因的越界措辞
+    - 回流优化固定复用当前输入的唯一测温点，前端和Agent均不再展示或补问optimization_point；高级输入意外包含多点时确定性使用首点
+    - 本地启动器可启动或复用Neo4j、Qdrant及三套模型服务，Web端口占用时从18080起自动寻找下一个可用端口
+    - 32项Agent/API测试全部通过；已修复少锡优化闭环及同义图片识别问法分流，真实图片在“这是什么缺陷”和“这张图片是什么缺陷”下均直达AOI并返回相同少锡结果
+    - 用户已确认本地Web完整通过；已生成真实聊天界面封面并完成根README项目包装，统一Docker编排保留为后续部署项
+  deliverables:
+    - agent/src/pcba_agent/web.py
+    - agent/src/pcba_agent/conversation.py
+    - agent/web/index.html
+    - agent/web/static/styles.css
+    - agent/web/static/app.js
+    - agent/scripts/start_web.ps1
+    - agent/tests/test_web.py
+    - agent/tests/test_conversation.py
+  acceptance:
+    - 用户完成本地前端体验并确认交互后再开始Docker完整部署
+    - Docker阶段完成一键启动、健康检查、持久化与端到端Smoke验证
 
 - id: T17
   name: 初始化并发布GitHub仓库
   status: done
+  progress_state: refreshed_with_chat_agent_release
+  deliverables:
+    - 根README项目介绍、架构、指标、快速启动与工程边界
+    - docs/assets/pcba-agent-chat.png真实界面封面
 
 - id: T18
   name: 瘦身启动必读项目文档并归档历史内容

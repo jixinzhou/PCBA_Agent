@@ -29,6 +29,18 @@ class AgentRAGAdapter:
         self.retriever_factory = retriever_factory
         self.reranker_factory = reranker_factory
         self._reranker: Any | None = None
+        self._query_encoder: Any | None = None
+
+    def _load_query_encoder(self) -> Any:
+        if self._query_encoder is not None:
+            return self._query_encoder
+        from pcba_rag.retriever import BgeM3QueryEncoder, load_retriever_config
+
+        self._query_encoder = BgeM3QueryEncoder(
+            self.root,
+            load_retriever_config(self.root),
+        )
+        return self._query_encoder
 
     def _retriever(self) -> Any:
         if self.retriever_factory:
@@ -38,7 +50,7 @@ class AgentRAGAdapter:
             sys.path.insert(0, source)
         from pcba_rag.retriever import Retriever
 
-        return Retriever(self.root)
+        return Retriever(self.root, encoder=self._load_query_encoder())
 
     def _load_reranker(self) -> Any:
         if self._reranker is not None:

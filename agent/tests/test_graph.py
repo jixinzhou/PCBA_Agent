@@ -75,6 +75,18 @@ class FakeKG:
                 validation_tool="reflow_profile_prediction", missing=missing,
                 optimization_tool="reflow_parameter_optimization",
             ))
+        elif defect == "insufficient_solder":
+            inp = observations.get("input", {})
+            fields = (
+                "squeegee_pressure_kgf", "squeegee_speed_m_s",
+                "separation_speed_m_s", "separation_distance_mm",
+            )
+            missing = [f"input.{field}" for field in fields if inp.get(field) is None]
+            candidates.append(candidate(
+                "REL-INSUFFICIENT-SOLDER-PRINTING", capability="tool_supported",
+                validation_tool="spi_vte_prediction", missing=missing,
+                optimization_tool="spi_parameter_optimization",
+            ))
         return {
             "defect": {"canonical_name": defect}, "candidates": candidates,
             "warnings": ["候选不是唯一根因。"],
@@ -86,7 +98,9 @@ class FakeTools:
         self.fail_validation = fail_validation
         self.revalidation_qualified = revalidation_qualified
         self.calls: list[str] = []
+        self.arguments: list[tuple[str, dict[str, Any]]] = []
         self.prediction_count = 0
+        self.spi_prediction_count = 0
 
     def classify(self, image_path: str, request_id: str) -> dict[str, Any]:
         self.calls.append("pcba_defect_classification")
@@ -94,6 +108,7 @@ class FakeTools:
 
     def invoke(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         self.calls.append(name)
+        self.arguments.append((name, arguments))
         if name == "reflow_profile_prediction":
             self.prediction_count += 1
             if self.fail_validation and self.prediction_count == 1:
@@ -104,6 +119,14 @@ class FakeTools:
             return {"data": {"recommended_parameters": {
                 "zone_means_c": [150] * 13, "belt_speed_cm_min": 80,
             }, "target_reached": True}}
+        if name == "spi_vte_prediction":
+            self.spi_prediction_count += 1
+            return {"data": {
+                "vte_mean": 94.0 if self.spi_prediction_count == 1 else 100.0,
+                "within_training_domain": True,
+            }}
+        if name == "spi_parameter_optimization":
+            return {"data": {"recommended_parameters": spi_input()}}
         raise AssertionError(name)
 
 
@@ -132,10 +155,38 @@ class GraphTests(unittest.TestCase):
         self.assertEqual("not_evaluated", final.candidates[0]["assessment_status"])
 
     def test_image_only_classifies_then_resumes_missing_data(self) -> None:
-        with self.runner() as runner:
+        tools = FakeTools()
+        with self.runner(tools=tools) as runner:
             first = runner.invoke({"thread_id": "image-1", "image_path": "fake.png"})
         self.assertEqual("needs_input", first.status)
         self.assertIn("input.points", first.pending_inputs)
+        self.assertIn("pcba_defect_classification", tools.calls)
+        self.assertEqual("defect_classification", first.tool_trace[0]["phase"])
+        self.assertTrue(first.tool_trace[0]["success"])
+
+    def test_image_is_classified_even_when_question_contains_defect(self) -> None:
+        tools = FakeTools()
+        with self.runner(tools=tools) as runner:
+            first = runner.invoke({
+                "thread_id": "image-text-1",
+                "image_path": "fake.png",
+                "user_question": "这个元件偏移是什么原因？",
+            })
+        self.assertEqual("needs_input", first.status)
+        self.assertIn("input.points", first.pending_inputs)
+        self.assertEqual(["pcba_defect_classification"], tools.calls)
+
+    def test_aoi_result_wins_over_non_explicit_conflicting_text(self) -> None:
+        tools = FakeTools()
+        with self.runner(tools=tools) as runner:
+            first = runner.invoke({
+                "thread_id": "image-conflict-1",
+                "image_path": "fake.png",
+                "user_question": "这个短路是什么原因？",
+            })
+        self.assertEqual("needs_input", first.status)
+        self.assertIn("input.points", first.pending_inputs)
+        self.assertEqual("defect_evidence_conflict", first.degradation_trace[0]["stage"])
 
     def test_reranker_degradation_is_explicit(self) -> None:
         with self.runner(rag=FakeRAG(degraded=True)) as runner:
@@ -194,6 +245,45 @@ class GraphTests(unittest.TestCase):
         reflow = next(item for item in final.candidates if item["relationship_id"] == "REL-SHIFT-REFLOW")
         self.assertEqual("rejected", reflow["optimization_result"]["recommendation_status"])
 
+    def test_spi_optimization_accepts_revalidation_inside_vte_target(self) -> None:
+        tools = FakeTools()
+        with self.runner(tools=tools) as runner:
+            result = runner.invoke({
+                "thread_id": "spi-opt-ok", "provided_defect": "insufficient_solder",
+                "goal": "diagnose_and_optimize", "observations": {"input": spi_input()},
+            })
+        candidate_result = result.candidates[0]
+        self.assertEqual("supported", candidate_result["assessment_status"])
+        self.assertEqual("accepted", candidate_result["optimization_result"]["recommendation_status"])
+        self.assertEqual(2, tools.calls.count("spi_vte_prediction"))
+        self.assertEqual(1, tools.calls.count("spi_parameter_optimization"))
+
+    def test_reflow_optimization_uses_fixed_first_point_without_selection(self) -> None:
+        tools = FakeTools(revalidation_qualified=True)
+        process_input = reflow_input()
+        process_input["points"].append({
+            "point_id": "P2", "component_x_mm": 4,
+            "component_y_mm": 5, "component_volume_mm3": 6,
+        })
+        with self.runner(tools=tools) as runner:
+            result = runner.invoke({
+                "thread_id": "opt-point-id", "provided_defect": "shifted_component",
+                "goal": "diagnose_and_optimize",
+                "observations": {
+                    "input": process_input,
+                    "manual_observation": {"placement_offset": "未发现明显贴装偏差"},
+                    "optimization_target": {"mode": "minimize_pwi"},
+                    "adjustable_parameters": {"zone_indexes": [10], "adjust_belt_speed": True},
+                },
+            })
+        self.assertEqual("completed", result.status)
+        optimization_args = next(
+            arguments for name, arguments in tools.arguments
+            if name == "reflow_parameter_optimization"
+        )
+        self.assertEqual("P1", optimization_args["input"]["points"][0]["point_id"])
+        self.assertNotIn("optimization_point", result.pending_inputs)
+
     def test_unknown_defect_can_be_refused_without_tool_call(self) -> None:
         tools = FakeTools()
         with self.runner(tools=tools) as runner:
@@ -215,6 +305,15 @@ def reflow_input() -> dict[str, Any]:
         "points": [{"point_id": "P1", "component_x_mm": 1, "component_y_mm": 2, "component_volume_mm3": 3}],
         "zone_means_c": [150] * 13,
         "belt_speed_cm_min": 80,
+    }
+
+
+def spi_input() -> dict[str, Any]:
+    return {
+        "squeegee_pressure_kgf": 8,
+        "squeegee_speed_m_s": 37.5,
+        "separation_speed_m_s": 2,
+        "separation_distance_mm": 0.6,
     }
 
 

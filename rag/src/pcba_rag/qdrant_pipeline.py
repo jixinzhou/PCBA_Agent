@@ -4,6 +4,7 @@ import hashlib
 import importlib.metadata
 import json
 import math
+import os
 import time
 import uuid
 from dataclasses import dataclass
@@ -26,7 +27,10 @@ class QdrantIndexInput:
 
 def load_qdrant_config(project_root: Path) -> dict[str, Any]:
     path = project_root / "rag/config/qdrant.v0.3.yaml"
-    return yaml.safe_load(path.read_text(encoding="utf-8"))
+    config = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if override := os.getenv("PCBA_QDRANT_URL"):
+        config["qdrant"]["url"] = override
+    return config
 
 
 def point_id_for_chunk(chunk_id: str, namespace: str) -> str:

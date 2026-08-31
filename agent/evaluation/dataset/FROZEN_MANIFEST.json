@@ -1,0 +1,19 @@
+{
+  "manifest_version": "1.0.0",
+  "dataset_id": "pcba_agent_t15_mvp_v0_1",
+  "frozen_at": "2026-08-30",
+  "frozen_by": "user_approval",
+  "files": [
+    {
+      "path": "agent/evaluation/dataset/t15_mvp_cases.v0.1.json",
+      "sha256": "86445bba9e6969c10d3b4350c7aca5410e2f567a668d16f4ac9e5dd6dea0e655",
+      "role": "gold_dataset"
+    },
+    {
+      "path": "agent/evaluation/dataset/T15_MVP_DATASET_REVIEW.md",
+      "sha256": "405239fafc0b7532b725973059f7ed238031ea8c87d73b9e5878ada460e9624c",
+      "role": "dataset_description"
+    }
+  ],
+  "mutation_policy": "本轮评测完成前不得修改Gold；任何变化必须提升数据集版本并重新冻结。"
+}
