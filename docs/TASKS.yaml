@@ -453,6 +453,7 @@ tasks:
   deliverables:
     - 根README项目介绍、架构、指标、快速启动与工程边界
     - docs/assets/pcba-agent-chat.png真实界面封面
+    - docs/assets/pcba-agent-diagnosis-report.png中文诊断报告界面
 
 - id: T18
   name: 瘦身启动必读项目文档并归档历史内容
